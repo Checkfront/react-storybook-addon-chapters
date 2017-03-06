@@ -1,6 +1,6 @@
 import React from 'react';
-import _Story from './components/Story';
-import { H1, H2, H3, H4, H5, H6, Code, P, UL, A, LI } from './components/markdown';
+import _Story from '@kadira/react-storybook-addon-info/dist/components/Story';
+import { H1, H2, H3, H4, H5, H6, Code, P, UL, A, LI } from '@kadira/react-storybook-addon-info/dist/components/markdown';
 export const Story = _Story;
 
 const defaultOptions = {
