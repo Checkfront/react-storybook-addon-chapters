@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { baseFonts } from '@kadira/react-storybook-addon-info/dist/components/theme';
 import Chapter from './Chapter';
-import renderInfoContent from './info-content';
-import theme from './theme';
+import renderInfoContent from '../utils/info-content';
+import theme from '../theme';
 
 const styles = {
   story: {
@@ -35,10 +35,11 @@ export default class Story extends Component {
           {subtitle && <p style={styles.subtitle}>{subtitle}</p>}
           {info && <div style={styles.info}>{renderInfoContent(info)}</div>}
         </div>
-        {chapters.map((chapter, index) => <Chapter key={index}
+        {chapters.map((chapter, index) => <Chapter
+          key={index}
           context={context}
-          { ...chapter}
-          />
+          {...chapter}
+        />
         )}
       </div>
     );

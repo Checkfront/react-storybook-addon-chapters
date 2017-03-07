@@ -1,6 +1,6 @@
 import React from 'react';
 import { configure, setAddon, addDecorator } from '@kadira/storybook';
-import ChaptersAddon from '../src/';
+import chapterAddon from '../src/';
 
 addDecorator((story) => (
   <div style={{padding: 20}}>
@@ -8,7 +8,7 @@ addDecorator((story) => (
   </div>
 ));
 
-setAddon(ChaptersAddon);
+setAddon(chapterAddon);
 
 configure(function () {
   require('../example/story');

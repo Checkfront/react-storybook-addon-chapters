@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import PropTable from '@kadira/react-storybook-addon-info/dist/components/PropTable';
 import Node from '@kadira/react-storybook-addon-info/dist/components/Node';
 import { Pre } from '@kadira/react-storybook-addon-info/dist/components/markdown';
-import renderInfoContent from './info-content';
-import theme from './theme';
+import PropTable from './PropTable';
+import renderInfoContent from '../utils/info-content';
+import theme from '../theme';
 
 const styles = {
   container: {
@@ -35,13 +35,13 @@ const styles = {
     fontSize: 12,
     letterSpacing: 2,
     textTransform: 'uppercase',
-  }
+  },
 };
 
 export default class Section extends Component {
   renderSourceCode() {
     return (
-      <div>
+      <div style={styles.subsection}>
         <h4 style={styles.subsectionTitle}>Source</h4>
         <Pre>
           {React.Children.map(this.props.children, (root, idx) => (
@@ -97,7 +97,7 @@ export default class Section extends Component {
       return (
         <div key={idx}>
           <h5>&lt;{type.displayName || type.name}&gt; Component</h5>
-          <PropTable type={type}/>
+          <PropTable type={type} />
         </div>
       );
     });
@@ -107,7 +107,7 @@ export default class Section extends Component {
     }
 
     return (
-      <div>
+      <div style={styles.subsection}>
         <h4 style={styles.subsectionTitle}>PropTypes</h4>
         {propTables}
       </div>
@@ -138,12 +138,8 @@ export default class Section extends Component {
                 </div>
               </div>
             }
-            {showSource &&
-              <div style={styles.subsection}>{this.renderSourceCode()}</div>
-            }
-            {showPropTables &&
-              <div style={styles.subsection}>{this.renderPropTables()}</div>
-            }
+            {showSource && this.renderSourceCode()}
+            {showPropTables && this.renderPropTables()}
           </div>
         </div>
       </div>
@@ -171,4 +167,5 @@ Section.defaultProps = {
   subtitle: '',
   info: '',
   showSource: true,
+  showPropTables: false,
 };

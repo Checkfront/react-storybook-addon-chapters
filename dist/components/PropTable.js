@@ -36,9 +36,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PropVal = require('./PropVal');
+var _PropTable = require('@kadira/react-storybook-addon-info/dist/components/PropTable');
 
-var _PropVal2 = _interopRequireDefault(_PropVal);
+var _PropTable2 = _interopRequireDefault(_PropTable);
+
+var _theme = require('../theme');
+
+var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52,11 +56,20 @@ for (var typeName in _react2.default.PropTypes) {
   PropTypesMap.set(type.isRequired, typeName);
 }
 
-var stylesheet = {
+var padding = 10;
+var styles = {
   propTable: {
-    marginLeft: -10,
-    borderSpacing: '10px 5px',
-    borderCollapse: 'separate'
+    fontSize: 13,
+    borderCollapse: 'collapse',
+    marginLeft: -10
+  },
+  propTableTh: {
+    color: _theme2.default.grayDarker,
+    padding: padding
+  },
+  propTableTd: {
+    borderTop: '1px solid ' + _theme2.default.grayLight,
+    padding: padding
   }
 };
 
@@ -86,7 +99,7 @@ var PropTable = function (_React$Component) {
           }
           var typeInfo = type.propTypes[property];
           var propType = PropTypesMap.get(typeInfo) || 'other';
-          var required = typeInfo.isRequired === undefined ? 'yes' : 'no';
+          var required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
           props[property] = { property: property, propType: propType, required: required };
         }
       }
@@ -121,7 +134,7 @@ var PropTable = function (_React$Component) {
 
       return _react2.default.createElement(
         'table',
-        { style: stylesheet.propTable },
+        { style: styles.propTable },
         _react2.default.createElement(
           'thead',
           null,
@@ -130,23 +143,23 @@ var PropTable = function (_React$Component) {
             null,
             _react2.default.createElement(
               'th',
-              null,
-              'property'
+              { style: styles.propTableTh },
+              'Property'
             ),
             _react2.default.createElement(
               'th',
-              null,
-              'propType'
+              { style: styles.propTableTh },
+              'PropType'
             ),
             _react2.default.createElement(
               'th',
-              null,
-              'required'
+              { style: styles.propTableTh },
+              'Required'
             ),
             _react2.default.createElement(
               'th',
-              null,
-              'default'
+              { style: styles.propTableTh },
+              'Default'
             )
           )
         ),
@@ -159,23 +172,23 @@ var PropTable = function (_React$Component) {
               { key: row.property },
               _react2.default.createElement(
                 'td',
-                null,
+                { style: styles.propTableTd },
                 row.property
               ),
               _react2.default.createElement(
                 'td',
-                null,
+                { style: styles.propTableTd },
                 row.propType
               ),
               _react2.default.createElement(
                 'td',
-                null,
+                { style: styles.propTableTd },
                 row.required
               ),
               _react2.default.createElement(
                 'td',
-                null,
-                row.defaultValue === undefined ? '-' : _react2.default.createElement(_PropVal2.default, { val: row.defaultValue })
+                { style: styles.propTableTd },
+                row.defaultValue === undefined ? '-' : _react2.default.createElement(_PropTable2.default, { val: row.defaultValue })
               )
             );
           })

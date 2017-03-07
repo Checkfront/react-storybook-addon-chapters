@@ -6,7 +6,7 @@ const grayLight = '#eaeff2';
 const grayLighter = '#f7f9fb';
 
 export default {
-  border: '#ccd6dd',
+  border: gray,
   grayDarkest,
   grayDarker,
   grayDark,

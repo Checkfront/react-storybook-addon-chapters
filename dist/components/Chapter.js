@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -24,75 +28,73 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _theme = require('@kadira/react-storybook-addon-info/dist/components/theme');
+var _Section = require('./Section');
 
-var _Chapter = require('./Chapter');
-
-var _Chapter2 = _interopRequireDefault(_Chapter);
+var _Section2 = _interopRequireDefault(_Section);
 
 var _infoContent = require('../utils/info-content');
 
 var _infoContent2 = _interopRequireDefault(_infoContent);
 
-var _theme2 = require('../theme');
+var _theme = require('../theme');
 
-var _theme3 = _interopRequireDefault(_theme2);
+var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  story: (0, _extends3.default)({}, _theme.baseFonts),
   header: {
     marginBottom: 60
   },
+  hr: {
+    border: 'none',
+    backgroundColor: _theme2.default.border,
+    height: 1
+  },
   title: {
-    color: _theme3.default.grayDarkest,
-    fontSize: 36,
+    color: _theme2.default.grayDarkest,
+    fontSize: 24,
     marginBottom: 10
   },
   subtitle: {
-    color: _theme3.default.grayDark,
-    fontSize: 24,
+    color: _theme2.default.grayDark,
+    fontSize: 16,
     marginBottom: 20,
     marginTop: 0
   },
-  info: _theme3.default.infoStyle
+  info: _theme2.default.infoStyle
 };
 
-var Story = function (_Component) {
-  (0, _inherits3.default)(Story, _Component);
+var Chapter = function (_Component) {
+  (0, _inherits3.default)(Chapter, _Component);
 
-  function Story() {
-    (0, _classCallCheck3.default)(this, Story);
-    return (0, _possibleConstructorReturn3.default)(this, (Story.__proto__ || (0, _getPrototypeOf2.default)(Story)).apply(this, arguments));
+  function Chapter() {
+    (0, _classCallCheck3.default)(this, Chapter);
+    return (0, _possibleConstructorReturn3.default)(this, (Chapter.__proto__ || (0, _getPrototypeOf2.default)(Chapter)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(Story, [{
+  (0, _createClass3.default)(Chapter, [{
     key: 'render',
     value: function render() {
       var _props = this.props,
           context = _props.context,
-          subtitle = _props.subtitle,
           title = _props.title,
+          subtitle = _props.subtitle,
           info = _props.info,
-          chapters = _props.chapters;
+          sections = _props.sections;
 
       return _react2.default.createElement(
         'div',
-        { style: styles.story },
+        null,
         _react2.default.createElement(
           'div',
           { style: styles.header },
           title && _react2.default.createElement(
-            'h1',
+            'h3',
             { style: styles.title },
             title
           ),
@@ -101,38 +103,51 @@ var Story = function (_Component) {
             { style: styles.subtitle },
             subtitle
           ),
+          (subtitle || info) && _react2.default.createElement('hr', { style: styles.hr }),
           info && _react2.default.createElement(
             'div',
             { style: styles.info },
             (0, _infoContent2.default)(info)
           )
         ),
-        chapters.map(function (chapter, index) {
-          return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({ key: index,
-            context: context
-          }, chapter));
+        sections.map(function (section, index) {
+          var options = section.options || {};
+          var sectionProps = {
+            context: context,
+            title: section.title,
+            subtitle: section.subtitle,
+            info: section.info,
+            showSource: Boolean(options.showSource),
+            showPropTables: Boolean(options.showPropTables),
+            propTables: options.propTables
+          };
+          return _react2.default.createElement(
+            _Section2.default,
+            (0, _extends3.default)({ key: index }, sectionProps),
+            section.sectionFn(context)
+          );
         })
       );
     }
   }]);
-  return Story;
+  return Chapter;
 }(_react.Component);
 
-exports.default = Story;
+exports.default = Chapter;
 
 
-Story.displayName = 'Story';
-Story.propTypes = {
+Chapter.displayName = 'Chapter';
+Chapter.propTypes = {
   context: _react.PropTypes.object,
   title: _react.PropTypes.string,
   subtitle: _react.PropTypes.string,
   info: _react.PropTypes.string,
-  chapters: _react.PropTypes.arrayOf(_react.PropTypes.object)
+  sections: _react.PropTypes.arrayOf(_react.PropTypes.object)
 };
-Story.defaultProps = {
+Chapter.defaultProps = {
   context: {},
   title: '',
   subtitle: '',
   info: '',
-  chapters: []
+  sections: []
 };

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Section from './Section';
-import renderInfoContent from './info-content';
-import theme from './theme';
+import renderInfoContent from '../utils/info-content';
+import theme from '../theme';
 
 const styles = {
   header: {
@@ -34,11 +34,11 @@ export default class Chapter extends Component {
         <div style={styles.header}>
           {title && <h3 style={styles.title}>{title}</h3>}
           {subtitle && <p style={styles.subtitle}>{subtitle}</p>}
-          {(subtitle || info) && <hr style={styles.hr}/>}
+          {(subtitle || info) && <hr style={styles.hr} />}
           {info && <div style={styles.info}>{renderInfoContent(info)}</div>}
         </div>
         {sections.map((section, index) => {
-          const options = section.options;
+          const options = section.options || {};
           const sectionProps = {
             context,
             title: section.title,
