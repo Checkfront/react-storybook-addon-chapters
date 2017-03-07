@@ -1,6 +1,6 @@
 # React Storybook Chapters Addon
 
-A React Storybook addon to give users the additional flexibility of breaking down their story into smaller categories (chapters) and subcategories (sections) for more organizational goodness.
+A React Storybook addon to allow breaking down of a story into smaller categories (chapters) and subcategories (sections) for more organizational goodness.
 
 A story consists of multiple chapters and a chapter consists of multiple sections. Each section can render a block of code,
 which typically used to showcase one component or a particular state of a component.

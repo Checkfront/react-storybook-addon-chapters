@@ -1,10 +1,10 @@
 {
-  "name": "react-storybook-addon-info-chapter",
-  "version": "3.3.0",
-  "description": "A React Storybook addon to show additional information for your stories.",
+  "name": "react-storybook-addon-chapters",
+  "version": "1.0.0",
+  "description": "A React Storybook addon to allow breaking down of a story into smaller categories (chapters) and subcategories (sections)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yangshun/react-storybook-addon-info-chapter.git"
+    "url": "https://github.com/yangshun/react-storybook-addon-chapters.git"
   },
   "license": "MIT",
   "scripts": {
