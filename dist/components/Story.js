@@ -108,7 +108,8 @@ var Story = function (_Component) {
           )
         ),
         chapters.map(function (chapter, index) {
-          return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({ key: index,
+          return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({
+            key: index,
             context: context
           }, chapter));
         })

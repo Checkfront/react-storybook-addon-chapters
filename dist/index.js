@@ -19,7 +19,8 @@ exports.default = {
     var storyContent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     return this.add(storyName, function (context) {
-      return _react2.default.createElement(_Story2.default, { context: context,
+      return _react2.default.createElement(_Story2.default, {
+        context: context,
         title: storyName,
         subtitle: storyContent.subtitle,
         info: storyContent.info,
