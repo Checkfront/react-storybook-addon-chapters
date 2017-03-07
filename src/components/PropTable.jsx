@@ -1,5 +1,6 @@
 import React from 'react';
-import PropVal from './PropVal';
+import PropVal from '@kadira/react-storybook-addon-info/dist/components/PropTable';
+import theme from '../theme';
 
 const PropTypesMap = new Map();
 for (const typeName in React.PropTypes) {
@@ -11,11 +12,20 @@ for (const typeName in React.PropTypes) {
   PropTypesMap.set(type.isRequired, typeName);
 }
 
-const stylesheet = {
+const padding = 10;
+const styles = {
   propTable: {
+    fontSize: 13,
+    borderCollapse: 'collapse',
     marginLeft: -10,
-    borderSpacing: '10px 5px',
-    borderCollapse: 'separate',
+  },
+  propTableTh: {
+    color: theme.grayDarker,
+    padding,
+  },
+  propTableTd: {
+    borderTop: `1px solid ${theme.grayLight}`,
+    padding,
   },
 };
 
@@ -36,7 +46,7 @@ export default class PropTable extends React.Component {
         }
         const typeInfo = type.propTypes[property];
         const propType = PropTypesMap.get(typeInfo) || 'other';
-        const required = typeInfo.isRequired === undefined ? 'yes' : 'no';
+        const required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
         props[property] = { property, propType, required };
       }
     }
@@ -66,22 +76,22 @@ export default class PropTable extends React.Component {
     });
 
     return (
-      <table style={stylesheet.propTable}>
+      <table style={styles.propTable}>
         <thead>
           <tr>
-            <th>property</th>
-            <th>propType</th>
-            <th>required</th>
-            <th>default</th>
+            <th style={styles.propTableTh}>Property</th>
+            <th style={styles.propTableTh}>PropType</th>
+            <th style={styles.propTableTh}>Required</th>
+            <th style={styles.propTableTh}>Default</th>
           </tr>
         </thead>
         <tbody>
           {array.map(row => (
             <tr key={row.property}>
-              <td>{row.property}</td>
-              <td>{row.propType}</td>
-              <td>{row.required}</td>
-              <td>{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
+              <td style={styles.propTableTd}>{row.property}</td>
+              <td style={styles.propTableTd}>{row.propType}</td>
+              <td style={styles.propTableTd}>{row.required}</td>
+              <td style={styles.propTableTd}>{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
             </tr>
           ))}
         </tbody>
