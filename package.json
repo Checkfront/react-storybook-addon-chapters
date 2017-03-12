@@ -1,6 +1,6 @@
 {
   "name": "react-storybook-addon-chapters",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.",
   "repository": {
     "type": "git",
