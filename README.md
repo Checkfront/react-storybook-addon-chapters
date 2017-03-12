@@ -1,8 +1,8 @@
 # React Storybook Chapters Addon
 
-A React Storybook addon to allow breaking down of a story into smaller categories (chapters) and subcategories (sections) for more organizational goodness.
+React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.
 
-A story consists of multiple chapters and a chapter consists of multiple sections. Each section can render a block of code,
+Using the addon, a story can consist of multiple chapters and a chapter consists of multiple sections. Each section can render a block of code,
 which typically used to showcase one component or a particular state of a component.
 
 Chapters can be used to group related components together, or show varying states of a component.
@@ -42,7 +42,7 @@ Then create your stories with the `.addWithChapters` API.
 ```js
 import React from 'react';
 import Button from './Button';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 
 storiesOf('Addon Chapters')
   .addWithChapters(
@@ -51,16 +51,18 @@ storiesOf('Addon Chapters')
       subtitle: <Optional story subtitle>,
       info: <Optional story info>,
       chapters: [
+        // List of chapters.
         {
           title: <Optional chapter title>,
           subtitle: <Optional chapter subtitle>,
           info: <Optional chapter info>,
           sections: [
+            // List of sections.
             {
               title: <Optional section title>,
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
-              sectionFn: () => (<Button label="My Button" onClick={action('onClick')}/>),
+              sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
               options: { showSource: true, showPropTables: true },
             },
             ...

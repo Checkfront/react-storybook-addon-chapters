@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from './Button';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 
 storiesOf('Addon Chapters')
   .addWithChapters(
     'Story With Chapters',
     {
-      subtitle: 'Provide subtitles for your stories!',
+      subtitle: 'Display multiple components within one story!',
       info: `
         **Chapters** and **Sections** give users the additional flexibility of breaking down their story into smaller categories and groups for more organizational goodness.
         You can also provide an abstract of your story in this **Story Info**.
@@ -17,6 +17,7 @@ storiesOf('Addon Chapters')
         Yes, all info sections support markdown formatting!
       `,
       chapters: [
+        // List of chapters.
         {
           title: 'This is a Chapter\'s Title',
           subtitle: 'And this is a chapter\'s subtitle',
@@ -26,6 +27,7 @@ storiesOf('Addon Chapters')
             Simply omit any of them to hide them from rendering.
           `,
           sections: [
+            // List of sections.
             {
               title: 'This is a Section\'s Title',
               subtitle: 'Each section can be used to render a component',
@@ -36,12 +38,12 @@ storiesOf('Addon Chapters')
 
                 There's also the option of showing the source code and \`propTypes\` of the component.
               `,
-              sectionFn: () => (<Button label="My Button" onClick={action('onClick')}/>),
+              sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }}/>),
               options: { showSource: true, showPropTables: true },
             },
             {
               title: 'Here\'s another section, but without subtitle and info',
-              sectionFn: () => (<Button label="My Disabled Button" disabled onClick={action('onClick')}/>),
+              sectionFn: () => (<Button label="My Disabled Button" disabled onClick={() => {}}/>),
             },
           ],
         },
@@ -82,16 +84,18 @@ storiesOf('Addon Chapters')
       subtitle: <Optional story subtitle>,
       info: <Optional story info>,
       chapters: [
+        // List of chapters.
         {
           title: <Optional chapter title>,
           subtitle: <Optional chapter subtitle>,
           info: <Optional chapter info>,
           sections: [
+            // List of sections.
             {
               title: <Optional section title>,
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
-              sectionFn: () => (<Button label="My Disabled Button" disabled onClick={action('onClick')}/>),
+              sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
               options: { showSource: true, showPropTables: true },
             },
             ...
@@ -122,12 +126,12 @@ storiesOf('Addon Chapters')
               info: `
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               `,
-              sectionFn: () => (<Button label="My Button" onClick={action('onClick')}/>),
+              sectionFn: () => (<Button label="My Button" onClick={() => {}}/>),
             },
             {
               title: 'Section Title Again',
               subtitle: 'Section Subtitle Again',
-              sectionFn: () => (<Button label="My Button Again" onClick={action('onClick')}/>),
+              sectionFn: () => (<Button label="My Button Again" onClick={() => {}}/>),
             },
           ],
         },

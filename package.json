@@ -1,7 +1,7 @@
 {
   "name": "react-storybook-addon-chapters",
   "version": "1.0.0",
-  "description": "A React Storybook addon to allow breaking down of a story into smaller categories (chapters) and subcategories (sections)",
+  "description": "React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.",
   "repository": {
     "type": "git",
     "url": "https://github.com/yangshun/react-storybook-addon-chapters.git"
@@ -14,7 +14,8 @@
     "testonly": "mocha --require .scripts/mocha_runner src/**/tests/**/*.js",
     "test": "npm run lint && npm run testonly",
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
-    "storybook": "start-storybook -p 9010",
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 9011",
     "publish-storybook": "bash .scripts/publish_storybook.sh"
   },
   "devDependencies": {
