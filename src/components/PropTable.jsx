@@ -1,5 +1,5 @@
 import React from 'react';
-import PropVal from '@kadira/react-storybook-addon-info/dist/components/PropTable';
+import PropVal from '@kadira/react-storybook-addon-info/dist/components/PropVal';
 import theme from '../theme';
 
 const PropTypesMap = new Map();
@@ -7,9 +7,9 @@ for (const typeName in React.PropTypes) {
   if (!React.PropTypes.hasOwnProperty(typeName)) {
     continue;
   }
-  const type = React.PropTypes[typeName];
-  PropTypesMap.set(type, typeName);
-  PropTypesMap.set(type.isRequired, typeName);
+  const component = React.PropTypes[typeName];
+  PropTypesMap.set(component, typeName);
+  PropTypesMap.set(component.isRequired, typeName);
 }
 
 const padding = 10;
@@ -31,32 +31,32 @@ const styles = {
 
 export default class PropTable extends React.Component {
   render() {
-    const type = this.props.type;
+    const component = this.props.component;
 
-    if (!type) {
+    if (!component) {
       return null;
     }
 
     const props = {};
 
-    if (type.propTypes) {
-      for (const property in type.propTypes) {
-        if (!type.propTypes.hasOwnProperty(property)) {
+    if (component.propTypes) {
+      for (const property in component.propTypes) {
+        if (!component.propTypes.hasOwnProperty(property)) {
           continue;
         }
-        const typeInfo = type.propTypes[property];
+        const typeInfo = component.propTypes[property];
         const propType = PropTypesMap.get(typeInfo) || 'other';
         const required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
         props[property] = { property, propType, required };
       }
     }
 
-    if (type.defaultProps) {
-      for (const property in type.defaultProps) {
-        if (!type.defaultProps.hasOwnProperty(property)) {
+    if (component.defaultProps) {
+      for (const property in component.defaultProps) {
+        if (!component.defaultProps.hasOwnProperty(property)) {
           continue;
         }
-        const value = type.defaultProps[property];
+        const value = component.defaultProps[property];
         if (value === undefined) {
           continue;
         }
@@ -67,11 +67,11 @@ export default class PropTable extends React.Component {
       }
     }
 
-    const array = Object.values(props);
-    if (!array.length) {
+    const propsList = Object.values(props);
+    if (!propsList.length) {
       return <small>No propTypes defined!</small>;
     }
-    array.sort(function (a, b) {
+    propsList.sort(function (a, b) {
       return a.property > b.property;
     });
 
@@ -86,7 +86,7 @@ export default class PropTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {array.map(row => (
+          {propsList.map(row => (
             <tr key={row.property}>
               <td style={styles.propTableTd}>{row.property}</td>
               <td style={styles.propTableTd}>{row.propType}</td>

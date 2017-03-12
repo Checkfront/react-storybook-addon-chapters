@@ -53,19 +53,19 @@ export default class Section extends Component {
   }
 
   renderPropTables() {
-    const types = new Map();
+    const components = new Map();
 
     if (!this.props.children) {
       return null;
     }
 
     if (this.props.propTables) {
-      this.props.propTables.forEach(function (type) {
-        types.set(type, true);
+      this.props.propTables.forEach(function (component) {
+        components.set(component, true);
       });
     }
 
-    // Depth-first traverse and collect types.
+    // Depth-first traverse and collect components.
     function extract(children) {
       if (!children) {
         return;
@@ -80,24 +80,24 @@ export default class Section extends Component {
       if (typeof children === 'string' || typeof children.type === 'string') {
         return;
       }
-      if (children.type && !types.has(children.type)) {
-        types.set(children.type, true);
+      if (children.type && !components.has(children.type)) {
+        components.set(children.type, true);
       }
     }
 
     // Extract components from children.
     extract(this.props.children);
 
-    const typesList = Array.from(types.keys());
-    typesList.sort(function (a, b) {
+    const componentsList = Array.from(components.keys());
+    componentsList.sort(function (a, b) {
       return (a.displayName || a.name) > (b.displayName || b.name);
     });
 
-    const propTables = typesList.map(function (type, idx) {
+    const propTables = componentsList.map(function (component, idx) {
       return (
         <div key={idx}>
-          <h5>&lt;{type.displayName || type.name}&gt; Component</h5>
-          <PropTable type={type} />
+          <h5>&lt;{component.displayName || component.name}&gt; Component</h5>
+          <PropTable component={component} />
         </div>
       );
     });
