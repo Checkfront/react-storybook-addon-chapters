@@ -112,15 +112,12 @@ var Chapter = function (_Component) {
         ),
         sections.map(function (section, index) {
           var options = section.options || {};
-          var sectionProps = {
+          var sectionProps = (0, _extends3.default)({
             context: context,
             title: section.title,
             subtitle: section.subtitle,
-            info: section.info,
-            showSource: Boolean(options.showSource),
-            showPropTables: Boolean(options.showPropTables),
-            propTables: options.propTables
-          };
+            info: section.info
+          }, options);
           return _react2.default.createElement(
             _Section2.default,
             (0, _extends3.default)({ key: index }, sectionProps),

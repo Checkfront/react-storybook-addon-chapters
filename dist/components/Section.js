@@ -32,6 +32,10 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -56,6 +60,17 @@ var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var buttonStyles = {
+  backgroundColor: 'transparent',
+  border: '1px solid ' + _theme2.default.gray,
+  borderRadius: 3,
+  color: _theme2.default.grayDark,
+  cursor: 'pointer',
+  float: 'right',
+  marginLeft: 5,
+  padding: '5px 10px'
+};
+
 var styles = {
   container: {
     marginBottom: 100
@@ -74,6 +89,15 @@ var styles = {
     marginBottom: 20,
     marginTop: 0
   },
+  buttonContainer: {
+    height: 15
+  },
+  button: buttonStyles,
+  'button-active': (0, _extends3.default)({}, buttonStyles, {
+    backgroundColor: _theme2.default.grayLight,
+    borderColor: _theme2.default.grayLight,
+    color: _theme2.default.grayDark
+  }),
   info: _theme2.default.infoStyle,
   componentContainer: {
     marginBottom: 60
@@ -92,9 +116,16 @@ var styles = {
 var Section = function (_Component) {
   (0, _inherits3.default)(Section, _Component);
 
-  function Section() {
+  function Section(props) {
     (0, _classCallCheck3.default)(this, Section);
-    return (0, _possibleConstructorReturn3.default)(this, (Section.__proto__ || (0, _getPrototypeOf2.default)(Section)).apply(this, arguments));
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Section.__proto__ || (0, _getPrototypeOf2.default)(Section)).call(this, props));
+
+    _this.state = {
+      isSourceShown: props.showSource,
+      isPropsTableShown: props.showPropTables
+    };
+    return _this;
   }
 
   (0, _createClass3.default)(Section, [{
@@ -195,6 +226,8 @@ var Section = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           title = _props.title,
           subtitle = _props.subtitle,
@@ -203,6 +236,7 @@ var Section = function (_Component) {
           showSource = _props.showSource,
           showPropTables = _props.showPropTables;
 
+      var showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
       return _react2.default.createElement(
         'div',
         { style: styles.container },
@@ -244,8 +278,32 @@ var Section = function (_Component) {
                 (0, _infoContent2.default)(info)
               )
             ),
-            showSource && this.renderSourceCode(),
-            showPropTables && this.renderPropTables()
+            showButtonsRow && _react2.default.createElement(
+              'div',
+              { style: styles.buttonContainer },
+              this.props.allowPropTablesToggling && _react2.default.createElement(
+                'button',
+                { onClick: function onClick() {
+                    _this2.setState({
+                      isPropsTableShown: !_this2.state.isPropsTableShown
+                    });
+                  }, style: this.state.isPropsTableShown ? styles['button-active'] : styles.button },
+                this.state.isPropsTableShown ? 'Hide' : 'Show',
+                ' Props Table'
+              ),
+              this.props.allowSourceToggling && _react2.default.createElement(
+                'button',
+                { onClick: function onClick() {
+                    _this2.setState({
+                      isSourceShown: !_this2.state.isSourceShown
+                    });
+                  }, style: this.state.isSourceShown ? styles['button-active'] : styles.button },
+                this.state.isSourceShown ? 'Hide' : 'Show',
+                ' Source'
+              )
+            ),
+            this.state.isSourceShown && this.renderSourceCode(),
+            this.state.isPropsTableShown && this.renderPropTables()
           )
         )
       );
@@ -274,5 +332,7 @@ Section.defaultProps = {
   subtitle: '',
   info: '',
   showSource: true,
-  showPropTables: false
+  allowSourceToggling: true,
+  showPropTables: false,
+  allowPropTablesToggling: true
 };

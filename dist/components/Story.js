@@ -60,7 +60,7 @@ var styles = {
   },
   subtitle: {
     color: _theme3.default.grayDark,
-    fontSize: 24,
+    fontSize: 18,
     marginBottom: 20,
     marginTop: 0
   },
