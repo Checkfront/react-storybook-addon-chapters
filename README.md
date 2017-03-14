@@ -51,7 +51,7 @@ storiesOf('Addon Chapters')
       subtitle: <Optional story subtitle>,
       info: <Optional story info>,
       chapters: [
-        // List of chapters.
+        // List of chapters. Refer to Configuration Format section.
         {
           title: <Optional chapter title>,
           subtitle: <Optional chapter subtitle>,
@@ -63,7 +63,12 @@ storiesOf('Addon Chapters')
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
               sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
-              options: { showSource: true, showPropTables: true },
+              options: {
+                showSource: true,
+                allowSourceToggling: true,
+                showPropTables: true,
+                allowPropTablesToggling: true,
+              },
             },
             ...
           ],
@@ -75,6 +80,39 @@ storiesOf('Addon Chapters')
 ```
 
 > Have a look at [this example](example/story.js) stories to learn more about the `addWithChapters` API.
+
+## Configuration Format
+
+#### Story
+
+| Key | Description |  Type | Default |
+|-|-|-|-|
+| subtitle | Story subtitle | String | - |
+| info | Additional information for the story | String (markdown) | - |
+| chapters | An array of Chapter objects | Array<Chapter> | - |
+
+#### Chapter
+
+| Key | Description |  Type | Default |
+|-|-|-|-|
+| title | Chapter title | String | - |
+| subtitle | Chapter subtitle | String | - |
+| info | Additional information for the chapter | String (markdown) | - |
+| sections | An array of Section objects | Array<Section> | - |
+
+#### Section
+
+| Key | Description |  Type | Default |
+|-|-|-|-|
+| title | Section title | String | - |
+| subtitle | Section subtitle | String | - |
+| info | Additional information for the section | String (markdown) | - |
+| sectionFn | A function that returns a React component to be displayed | Function | - |
+| options | A configuration object for this section. Refer to the next few rows for the keys | Object | - |
+| options.showSource | Display the component's source | Boolean | True |
+| options.allowSourceToggling | Allow showing/hiding of the component's source | Boolean | True |
+| options.showPropTables | Display the component's propTypes | Boolean | False |
+| options.allowPropTablesToggling | Allow showing/hiding of the component's propTypes | Boolean | True |
 
 ## The FAQ
 

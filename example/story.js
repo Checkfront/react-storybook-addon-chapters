@@ -40,7 +40,12 @@ storiesOf('Addon Chapters')
                 There's also the option of showing the source code and \`propTypes\` of the component.
               `,
               sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }}/>),
-              options: { showSource: true, showPropTables: true },
+              options: {
+                showSource: false,
+                allowSourceToggling: true,
+                showPropTables: true,
+                allowPropTablesToggling: true,
+              },
             },
             {
               title: 'Here\'s another section, but without subtitle and info',
@@ -97,7 +102,12 @@ storiesOf('Addon Chapters')
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
               sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
-              options: { showSource: true, showPropTables: true },
+              options: {
+                showSource: true,
+                allowSourceToggling: true,
+                showPropTables: true,
+                allowPropTablesToggling: true,
+              },
             },
             ...
           ],

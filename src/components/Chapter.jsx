@@ -44,9 +44,7 @@ export default class Chapter extends Component {
             title: section.title,
             subtitle: section.subtitle,
             info: section.info,
-            showSource: Boolean(options.showSource),
-            showPropTables: Boolean(options.showPropTables),
-            propTables: options.propTables,
+            ...options,
           };
           return (
             <Section key={index} {...sectionProps}>
