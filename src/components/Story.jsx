@@ -18,7 +18,7 @@ const styles = {
   },
   subtitle: {
     color: theme.grayDark,
-    fontSize: 24,
+    fontSize: 18,
     marginBottom: 20,
     marginTop: 0,
   },

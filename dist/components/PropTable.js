@@ -36,9 +36,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PropTable = require('@kadira/react-storybook-addon-info/dist/components/PropTable');
+var _PropVal = require('@kadira/react-storybook-addon-info/dist/components/PropVal');
 
-var _PropTable2 = _interopRequireDefault(_PropTable);
+var _PropVal2 = _interopRequireDefault(_PropVal);
 
 var _theme = require('../theme');
 
@@ -51,9 +51,9 @@ for (var typeName in _react2.default.PropTypes) {
   if (!_react2.default.PropTypes.hasOwnProperty(typeName)) {
     continue;
   }
-  var type = _react2.default.PropTypes[typeName];
-  PropTypesMap.set(type, typeName);
-  PropTypesMap.set(type.isRequired, typeName);
+  var component = _react2.default.PropTypes[typeName];
+  PropTypesMap.set(component, typeName);
+  PropTypesMap.set(component.isRequired, typeName);
 }
 
 var padding = 10;
@@ -84,32 +84,32 @@ var PropTable = function (_React$Component) {
   (0, _createClass3.default)(PropTable, [{
     key: 'render',
     value: function render() {
-      var type = this.props.type;
+      var component = this.props.component;
 
-      if (!type) {
+      if (!component) {
         return null;
       }
 
       var props = {};
 
-      if (type.propTypes) {
-        for (var property in type.propTypes) {
-          if (!type.propTypes.hasOwnProperty(property)) {
+      if (component.propTypes) {
+        for (var property in component.propTypes) {
+          if (!component.propTypes.hasOwnProperty(property)) {
             continue;
           }
-          var typeInfo = type.propTypes[property];
+          var typeInfo = component.propTypes[property];
           var propType = PropTypesMap.get(typeInfo) || 'other';
           var required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
           props[property] = { property: property, propType: propType, required: required };
         }
       }
 
-      if (type.defaultProps) {
-        for (var _property in type.defaultProps) {
-          if (!type.defaultProps.hasOwnProperty(_property)) {
+      if (component.defaultProps) {
+        for (var _property in component.defaultProps) {
+          if (!component.defaultProps.hasOwnProperty(_property)) {
             continue;
           }
-          var value = type.defaultProps[_property];
+          var value = component.defaultProps[_property];
           if (value === undefined) {
             continue;
           }
@@ -120,15 +120,15 @@ var PropTable = function (_React$Component) {
         }
       }
 
-      var array = (0, _values2.default)(props);
-      if (!array.length) {
+      var propsList = (0, _values2.default)(props);
+      if (!propsList.length) {
         return _react2.default.createElement(
           'small',
           null,
           'No propTypes defined!'
         );
       }
-      array.sort(function (a, b) {
+      propsList.sort(function (a, b) {
         return a.property > b.property;
       });
 
@@ -166,7 +166,7 @@ var PropTable = function (_React$Component) {
         _react2.default.createElement(
           'tbody',
           null,
-          array.map(function (row) {
+          propsList.map(function (row) {
             return _react2.default.createElement(
               'tr',
               { key: row.property },
@@ -188,7 +188,7 @@ var PropTable = function (_React$Component) {
               _react2.default.createElement(
                 'td',
                 { style: styles.propTableTd },
-                row.defaultValue === undefined ? '-' : _react2.default.createElement(_PropTable2.default, { val: row.defaultValue })
+                row.defaultValue === undefined ? '-' : _react2.default.createElement(_PropVal2.default, { val: row.defaultValue })
               )
             );
           })

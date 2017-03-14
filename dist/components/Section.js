@@ -120,19 +120,19 @@ var Section = function (_Component) {
   }, {
     key: 'renderPropTables',
     value: function renderPropTables() {
-      var types = new _map2.default();
+      var components = new _map2.default();
 
       if (!this.props.children) {
         return null;
       }
 
       if (this.props.propTables) {
-        this.props.propTables.forEach(function (type) {
-          types.set(type, true);
+        this.props.propTables.forEach(function (component) {
+          components.set(component, true);
         });
       }
 
-      // Depth-first traverse and collect types.
+      // Depth-first traverse and collect components.
       function extract(children) {
         if (!children) {
           return;
@@ -147,20 +147,20 @@ var Section = function (_Component) {
         if (typeof children === 'string' || typeof children.type === 'string') {
           return;
         }
-        if (children.type && !types.has(children.type)) {
-          types.set(children.type, true);
+        if (children.type && !components.has(children.type)) {
+          components.set(children.type, true);
         }
       }
 
       // Extract components from children.
       extract(this.props.children);
 
-      var typesList = (0, _from2.default)(types.keys());
-      typesList.sort(function (a, b) {
+      var componentsList = (0, _from2.default)(components.keys());
+      componentsList.sort(function (a, b) {
         return (a.displayName || a.name) > (b.displayName || b.name);
       });
 
-      var propTables = typesList.map(function (type, idx) {
+      var propTables = componentsList.map(function (component, idx) {
         return _react2.default.createElement(
           'div',
           { key: idx },
@@ -168,10 +168,10 @@ var Section = function (_Component) {
             'h5',
             null,
             '<',
-            type.displayName || type.name,
+            component.displayName || component.name,
             '> Component'
           ),
-          _react2.default.createElement(_PropTable2.default, { type: type })
+          _react2.default.createElement(_PropTable2.default, { component: component })
         );
       });
 

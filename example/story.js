@@ -8,8 +8,9 @@ storiesOf('Addon Chapters')
     {
       subtitle: 'Display multiple components within one story!',
       info: `
-        **Chapters** and **Sections** give users the additional flexibility of breaking down their story into smaller categories and groups for more organizational goodness.
-        You can also provide an abstract of your story in this **Story Info**.
+        React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (**Chapters**) and subcategories (**Sections**) for more organizational goodness.
+
+        This section is called **Story Info** and you can provide an abstract of your story here.
 
         A story consists of multiple chapters and a chapter consists of multiple sections. Each section can render a block of code,
         which typically used to showcase one component or a particular state of a component.
@@ -39,7 +40,12 @@ storiesOf('Addon Chapters')
                 There's also the option of showing the source code and \`propTypes\` of the component.
               `,
               sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }}/>),
-              options: { showSource: true, showPropTables: true },
+              options: {
+                showSource: false,
+                allowSourceToggling: true,
+                showPropTables: true,
+                allowPropTablesToggling: true,
+              },
             },
             {
               title: 'Here\'s another section, but without subtitle and info',
@@ -75,7 +81,7 @@ Then create your stories with the \`.addWithChapters\` API.
 ~~~
 import React from 'react';
 import Button from './Button';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 
 storiesOf('Addon Chapters')
   .addWithChapters(
@@ -96,7 +102,12 @@ storiesOf('Addon Chapters')
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
               sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
-              options: { showSource: true, showPropTables: true },
+              options: {
+                showSource: true,
+                allowSourceToggling: true,
+                showPropTables: true,
+                allowPropTablesToggling: true,
+              },
             },
             ...
           ],
@@ -115,7 +126,8 @@ storiesOf('Addon Chapters')
     'Story Without Chapters',
     {
       info: `
-        If you don't require chapters, simply omit the chapter-related parameters and you'll end up with a list of sections.
+        If you don't require displaying of the chapter information, simply use only one chapter with your list of sections and omit the chapter-related parameters.
+        You'll end up with just a list of rendered sections. Refer to the example in \`example/story.js\`.
       `,
       chapters: [
         {

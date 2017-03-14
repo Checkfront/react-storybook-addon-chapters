@@ -5,6 +5,17 @@ import PropTable from './PropTable';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
+const buttonStyles = {
+  backgroundColor: 'transparent',
+  border: `1px solid ${theme.gray}`,
+  borderRadius: 3,
+  color: theme.grayDark,
+  cursor: 'pointer',
+  float: 'right',
+  marginLeft: 5,
+  padding: '5px 10px',
+};
+
 const styles = {
   container: {
     marginBottom: 100,
@@ -23,6 +34,16 @@ const styles = {
     marginBottom: 20,
     marginTop: 0,
   },
+  buttonContainer: {
+    height: 15,
+  },
+  button: buttonStyles,
+  'button-active': {
+    ...buttonStyles,
+    backgroundColor: theme.grayLight,
+    borderColor: theme.grayLight,
+    color: theme.grayDark,
+  },
   info: theme.infoStyle,
   componentContainer: {
     marginBottom: 60,
@@ -39,6 +60,14 @@ const styles = {
 };
 
 export default class Section extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSourceShown: props.showSource,
+      isPropsTableShown: props.showPropTables,
+    };
+  }
+
   renderSourceCode() {
     return (
       <div style={styles.subsection}>
@@ -118,6 +147,7 @@ export default class Section extends Component {
 
   render() {
     const { title, subtitle, children, info, showSource, showPropTables } = this.props;
+    const showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
     return (
       <div style={styles.container}>
         <div style={styles.header}>
@@ -138,8 +168,30 @@ export default class Section extends Component {
                 </div>
               </div>
             }
-            {showSource && this.renderSourceCode()}
-            {showPropTables && this.renderPropTables()}
+            {showButtonsRow &&
+              <div style={styles.buttonContainer}>
+                {this.props.allowPropTablesToggling &&
+                  <button onClick={() => {
+                    this.setState({
+                      isPropsTableShown: !this.state.isPropsTableShown,
+                    });
+                  }} style={this.state.isPropsTableShown ? styles['button-active'] : styles.button }>
+                    {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
+                  </button>
+                }
+                {this.props.allowSourceToggling &&
+                  <button onClick={() => {
+                    this.setState({
+                      isSourceShown: !this.state.isSourceShown,
+                    });
+                  }} style={this.state.isSourceShown ? styles['button-active'] : styles.button }>
+                    {this.state.isSourceShown ? 'Hide' : 'Show'} Source
+                  </button>
+                }
+              </div>
+            }
+            {this.state.isSourceShown && this.renderSourceCode()}
+            {this.state.isPropsTableShown && this.renderPropTables()}
           </div>
         </div>
       </div>
@@ -167,5 +219,7 @@ Section.defaultProps = {
   subtitle: '',
   info: '',
   showSource: true,
+  allowSourceToggling: true,
   showPropTables: false,
+  allowPropTablesToggling: true,
 };
