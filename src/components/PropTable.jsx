@@ -13,7 +13,7 @@ for (const typeName in React.PropTypes) {
 }
 
 const padding = 10;
-const styles = {
+export const propTableStyles = {
   propTable: {
     fontSize: 13,
     borderCollapse: 'collapse',
@@ -76,22 +76,22 @@ export default class PropTable extends React.Component {
     });
 
     return (
-      <table style={styles.propTable}>
+      <table style={propTableStyles.propTable}>
         <thead>
           <tr>
-            <th style={styles.propTableTh}>Property</th>
-            <th style={styles.propTableTh}>PropType</th>
-            <th style={styles.propTableTh}>Required</th>
-            <th style={styles.propTableTh}>Default</th>
+            <th style={propTableStyles.propTableTh}>Property</th>
+            <th style={propTableStyles.propTableTh}>PropType</th>
+            <th style={propTableStyles.propTableTh}>Required</th>
+            <th style={propTableStyles.propTableTh}>Default</th>
           </tr>
         </thead>
         <tbody>
           {propsList.map(row => (
             <tr key={row.property}>
-              <td style={styles.propTableTd}>{row.property}</td>
-              <td style={styles.propTableTd}>{row.propType}</td>
-              <td style={styles.propTableTd}>{row.required}</td>
-              <td style={styles.propTableTd}>{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
+              <td style={propTableStyles.propTableTd}>{row.property}</td>
+              <td style={propTableStyles.propTableTd}>{row.propType}</td>
+              <td style={propTableStyles.propTableTd}>{row.required}</td>
+              <td style={propTableStyles.propTableTd}>{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
             </tr>
           ))}
         </tbody>

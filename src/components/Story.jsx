@@ -4,7 +4,7 @@ import Chapter from './Chapter';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
-const styles = {
+export const storyStyles = {
   story: {
     ...baseFonts,
   },
@@ -28,21 +28,21 @@ const styles = {
 export default class Story extends Component {
   render() {
     const { context, subtitle, title, info, chapters } = this.props;
-    return (
-      <div style={styles.story}>
-        <div style={styles.header}>
-          {title && <h1 style={styles.title}>{title}</h1>}
-          {subtitle && <p style={styles.subtitle}>{subtitle}</p>}
-          {info && <div style={styles.info}>{renderInfoContent(info)}</div>}
-        </div>
-        {chapters.map((chapter, index) => <Chapter
-          key={index}
-          context={context}
-          {...chapter}
-        />
-        )}
-      </div>
-    );
+
+    const header = [
+      title &&
+        <h1 key="title" style={storyStyles.title}>{title}</h1>,
+      subtitle &&
+        <p key="subtitle" style={storyStyles.subtitle}>{subtitle}</p>,
+      info &&
+        <div key="info" style={storyStyles.info}>{renderInfoContent(info)}</div>
+    ];
+
+    const renderedChapters = chapters.map((chapter, index) => (
+      <Chapter key={index} context={context} {...chapter} />
+    ));
+
+    return StoryDecorator.main(header, renderedChapters);
   }
 }
 
@@ -61,3 +61,14 @@ Story.defaultProps = {
   info: '',
   chapters: [],
 };
+
+export class StoryDecorator {
+  static main(header, chapters) {
+    return (
+      <div style={storyStyles.story}>
+        <div style={storyStyles.header}>{header}</div>
+        {chapters}
+      </div>
+    );
+  };
+}

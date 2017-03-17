@@ -3,7 +3,7 @@ import Section from './Section';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
-const styles = {
+export const chapterStyles = {
   header: {
     marginBottom: 60,
   },
@@ -29,31 +29,33 @@ const styles = {
 export default class Chapter extends Component {
   render() {
     const { context, title, subtitle, info, sections } = this.props;
-    return (
+
+    const header = (
       <div>
-        <div style={styles.header}>
-          {title && <h3 style={styles.title}>{title}</h3>}
-          {subtitle && <p style={styles.subtitle}>{subtitle}</p>}
-          {(subtitle || info) && <hr style={styles.hr} />}
-          {info && <div style={styles.info}>{renderInfoContent(info)}</div>}
-        </div>
-        {sections.map((section, index) => {
-          const options = section.options || {};
-          const sectionProps = {
-            context,
-            title: section.title,
-            subtitle: section.subtitle,
-            info: section.info,
-            ...options,
-          };
-          return (
-            <Section key={index} {...sectionProps}>
-              {section.sectionFn(context)}
-            </Section>
-          );
-        })}
+        {title && <h3 style={chapterStyles.title}>{title}</h3>}
+        {subtitle && <p style={chapterStyles.subtitle}>{subtitle}</p>}
+        {(subtitle || info) && <hr style={chapterStyles.hr}/>}
+        {info && <div style={chapterStyles.info}>{renderInfoContent(info)}</div>}
       </div>
     );
+
+    const renderedSections = sections.map((section, index) => {
+      const options = section.options || {};
+      const sectionProps = {
+        context,
+        title: section.title,
+        subtitle: section.subtitle,
+        info: section.info,
+        ...options,
+      };
+      return (
+        <Section key={index} {...sectionProps}>
+          {section.sectionFn(context)}
+        </Section>
+      );
+    });
+
+    return ChapterDecorator.main(header, renderedSections);
   }
 }
 
@@ -72,3 +74,14 @@ Chapter.defaultProps = {
   info: '',
   sections: [],
 };
+
+export class ChapterDecorator {
+  static main(header, sections) {
+    return (
+      <div>
+        <div style={chapterStyles.header}>{header}</div>
+        {sections}
+      </div>
+    );
+  };
+}
