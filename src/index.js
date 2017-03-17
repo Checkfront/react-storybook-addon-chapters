@@ -1,5 +1,12 @@
 import React from 'react';
 import Story from './components/Story';
+import Theme from './theme';
+
+export * from './components/Chapter';
+export * from './components/PropTable';
+export * from './components/Section';
+export * from './components/Story';
+export { Theme };
 
 export default {
   addWithChapters(storyName, storyContent = {}) {
