@@ -29,14 +29,13 @@ export default class Story extends Component {
   render() {
     const { context, subtitle, title, info, chapters } = this.props;
 
-    const header = [
-      title &&
-        <h1 key="title" style={storyStyles.title}>{title}</h1>,
-      subtitle &&
-        <p key="subtitle" style={storyStyles.subtitle}>{subtitle}</p>,
-      info &&
-        <div key="info" style={storyStyles.info}>{renderInfoContent(info)}</div>
-    ];
+    const header = (
+      <div>
+        {title && StoryDecorator.title(title)}
+        {subtitle && StoryDecorator.subtitle(subtitle)}
+        {info && StoryDecorator.subtitle(renderInfoContent(info))}
+      </div>
+    );
 
     const renderedChapters = chapters.map((chapter, index) => (
       <Chapter key={index} context={context} {...chapter} />
@@ -63,6 +62,24 @@ Story.defaultProps = {
 };
 
 export class StoryDecorator {
+  static title(title) {
+    return (
+      <h1 style={storyStyles.title}>{title}</h1>
+    );
+  }
+
+  static subtitle(subtitle) {
+    return (
+      <p style={storyStyles.subtitle}>{subtitle}</p>
+    );
+  }
+
+  static info(info) {
+    return (
+      <div style={storyStyles.info}>{info}</div>
+    );
+  }
+
   static main(header, chapters) {
     return (
       <div style={storyStyles.story}>

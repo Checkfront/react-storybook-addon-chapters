@@ -137,12 +137,12 @@ export default class Section extends Component {
     const { title, subtitle, children, info, showSource, showPropTables } = this.props;
     const showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
 
-    const header = [
-      title &&
-        <h3 key="title" style={sectionStyles.title}>{title}</h3>,
-      subtitle &&
-        <p key="subtitle" style={sectionStyles.subtitle}>{subtitle}</p>
-    ];
+    const header = (
+      <div>
+        {title && SectionDecorator.title(title)}
+        {subtitle && SectionDecorator.subtitle(subtitle)}
+      </div>
+    );
 
     const buttons = [
       this.props.allowPropTablesToggling &&
@@ -224,6 +224,18 @@ export class SectionDecorator {
       </div>
     );
   };
+
+  static title(title) {
+    return (
+      <h3 style={sectionStyles.title}>{title}</h3>
+    );
+  }
+
+  static subtitle(subtitle) {
+    return (
+      <p style={sectionStyles.subtitle}>{subtitle}</p>
+    );
+  }
 
   static component(component) {
     return (

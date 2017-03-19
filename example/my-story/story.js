@@ -1,7 +1,7 @@
 import React from "react"
 import Button from "../Button"
 import {storiesOf} from "@kadira/storybook"
-import {SectionDecorator, sectionStyles, Theme} from "../../src/"
+import {SectionDecorator, StoryDecorator, sectionStyles, Theme} from "../../src/"
 import {Pre} from "@kadira/react-storybook-addon-info/dist/components/markdown"
 import "./styles.css"
 
@@ -12,7 +12,16 @@ sectionStyles.buttonContainer.marginTop = 10;
 // Access colors from Theme
 const headerStyles = {color: Theme.grayDark};
 
-// Overwrite decorators
+// Custom story subtitle view
+StoryDecorator.subtitle = function (subtitle) {
+  return (
+    <p className="story-subtitle" style={{color: Theme.grayDark}}>
+      {subtitle}
+    </p>
+  );
+};
+
+// Custom source code view
 SectionDecorator.sourceCode = function (sourceCode) {
   return (
     <div className="source-box">
@@ -24,7 +33,7 @@ SectionDecorator.sourceCode = function (sourceCode) {
   );
 };
 
-// Overwrite decorators
+// Custom component view
 SectionDecorator.component = function (component) {
   return (
     <div className="example-box">

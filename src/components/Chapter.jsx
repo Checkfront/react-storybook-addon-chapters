@@ -32,10 +32,10 @@ export default class Chapter extends Component {
 
     const header = (
       <div>
-        {title && <h3 style={chapterStyles.title}>{title}</h3>}
-        {subtitle && <p style={chapterStyles.subtitle}>{subtitle}</p>}
-        {(subtitle || info) && <hr style={chapterStyles.hr}/>}
-        {info && <div style={chapterStyles.info}>{renderInfoContent(info)}</div>}
+        {title && ChapterDecorator.title(title)}
+        {subtitle && ChapterDecorator.subtitle(subtitle)}
+        {(subtitle || info) && ChapterDecorator.ruler()}
+        {info && ChapterDecorator.subtitle(renderInfoContent(info))}
       </div>
     );
 
@@ -76,6 +76,30 @@ Chapter.defaultProps = {
 };
 
 export class ChapterDecorator {
+  static title(title) {
+    return (
+      <h3 style={chapterStyles.title}>{title}</h3>
+    );
+  }
+
+  static subtitle(subtitle) {
+    return (
+      <p style={chapterStyles.subtitle}>{subtitle}</p>
+    );
+  }
+
+  static info(info) {
+    return (
+      <div style={chapterStyles.info}>{info}</div>
+    );
+  }
+
+  static ruler() {
+    return (
+      <hr style={chapterStyles.hr}/>
+    );
+  }
+
   static main(header, sections) {
     return (
       <div>
