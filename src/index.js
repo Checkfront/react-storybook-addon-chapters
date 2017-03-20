@@ -1,11 +1,12 @@
 import React from 'react';
-import Story from './components/Story';
+import Story, { StoryDecorator, storyStyles } from './components/Story';
+import { ChapterDecorator, chapterStyles } from './components/Chapter';
+import { SectionDecorator, sectionStyles } from './components/Section';
+import { propTableStyles } from './components/PropTable';
 import Theme from './theme';
 
-export * from './components/Chapter';
-export * from './components/PropTable';
-export * from './components/Section';
-export * from './components/Story';
+export { StoryDecorator, ChapterDecorator, SectionDecorator };
+export { storyStyles, chapterStyles, sectionStyles, propTableStyles };
 export { Theme };
 
 export default {
