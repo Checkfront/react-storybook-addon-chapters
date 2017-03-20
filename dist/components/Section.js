@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.SectionDecorator = exports.sectionStyles = exports.sectionButtonStyles = undefined;
 
 var _from = require('babel-runtime/core-js/array/from');
 
@@ -60,7 +61,7 @@ var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var buttonStyles = {
+var sectionButtonStyles = exports.sectionButtonStyles = {
   backgroundColor: 'transparent',
   border: '1px solid ' + _theme2.default.gray,
   borderRadius: 3,
@@ -71,7 +72,7 @@ var buttonStyles = {
   padding: '5px 10px'
 };
 
-var styles = {
+var sectionStyles = exports.sectionStyles = {
   container: {
     marginBottom: 100
   },
@@ -92,8 +93,8 @@ var styles = {
   buttonContainer: {
     height: 15
   },
-  button: buttonStyles,
-  'button-active': (0, _extends3.default)({}, buttonStyles, {
+  button: sectionButtonStyles,
+  'button-active': (0, _extends3.default)({}, sectionButtonStyles, {
     backgroundColor: _theme2.default.grayLight,
     borderColor: _theme2.default.grayLight,
     color: _theme2.default.grayDark
@@ -131,22 +132,11 @@ var Section = function (_Component) {
   (0, _createClass3.default)(Section, [{
     key: 'renderSourceCode',
     value: function renderSourceCode() {
-      return _react2.default.createElement(
-        'div',
-        { style: styles.subsection },
-        _react2.default.createElement(
-          'h4',
-          { style: styles.subsectionTitle },
-          'Source'
-        ),
-        _react2.default.createElement(
-          _markdown.Pre,
-          null,
-          _react2.default.Children.map(this.props.children, function (root, idx) {
-            return _react2.default.createElement(_Node2.default, { key: idx, depth: 0, node: root });
-          })
-        )
-      );
+      var sourceCode = _react2.default.Children.map(this.props.children, function (root, idx) {
+        return _react2.default.createElement(_Node2.default, { key: idx, depth: 0, node: root });
+      });
+
+      return SectionDecorator.sourceCode(sourceCode);
     }
   }, {
     key: 'renderPropTables',
@@ -210,18 +200,7 @@ var Section = function (_Component) {
         return null;
       }
 
-      return _react2.default.createElement(
-        'div',
-        { style: styles.subsection },
-        _react2.default.createElement(
-          'h4',
-          { style: styles.subsectionTitle },
-          'PropTypes'
-        ),
-        propTables
-      );
-
-      return;
+      return SectionDecorator.propTables(propTables);
     }
   }, {
     key: 'render',
@@ -237,76 +216,44 @@ var Section = function (_Component) {
           showPropTables = _props.showPropTables;
 
       var showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
-      return _react2.default.createElement(
+
+      var header = _react2.default.createElement(
         'div',
-        { style: styles.container },
-        _react2.default.createElement(
-          'div',
-          { style: styles.header },
-          _react2.default.createElement(
-            'div',
-            null,
-            title && _react2.default.createElement(
-              'h3',
-              { style: styles.title },
-              title
-            ),
-            subtitle && _react2.default.createElement(
-              'p',
-              { style: styles.subtitle },
-              subtitle
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { style: styles.componentContainer },
-          children
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'div',
-            null,
-            info && _react2.default.createElement(
-              'div',
-              { style: styles.subsection },
-              _react2.default.createElement(
-                'div',
-                { style: styles.info },
-                (0, _infoContent2.default)(info)
-              )
-            ),
-            showButtonsRow && _react2.default.createElement(
-              'div',
-              { style: styles.buttonContainer },
-              this.props.allowPropTablesToggling && _react2.default.createElement(
-                'button',
-                { onClick: function onClick() {
-                    _this2.setState({
-                      isPropsTableShown: !_this2.state.isPropsTableShown
-                    });
-                  }, style: this.state.isPropsTableShown ? styles['button-active'] : styles.button },
-                this.state.isPropsTableShown ? 'Hide' : 'Show',
-                ' Props Table'
-              ),
-              this.props.allowSourceToggling && _react2.default.createElement(
-                'button',
-                { onClick: function onClick() {
-                    _this2.setState({
-                      isSourceShown: !_this2.state.isSourceShown
-                    });
-                  }, style: this.state.isSourceShown ? styles['button-active'] : styles.button },
-                this.state.isSourceShown ? 'Hide' : 'Show',
-                ' Source'
-              )
-            ),
-            this.state.isSourceShown && this.renderSourceCode(),
-            this.state.isPropsTableShown && this.renderPropTables()
-          )
-        )
+        null,
+        title && SectionDecorator.title(title),
+        subtitle && SectionDecorator.subtitle(subtitle)
       );
+
+      var buttons = [this.props.allowPropTablesToggling && _react2.default.createElement(
+        'button',
+        { key: 'allowPropTablesToggling', onClick: function onClick() {
+            _this2.setState({
+              isPropsTableShown: !_this2.state.isPropsTableShown
+            });
+          }, style: this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button },
+        this.state.isPropsTableShown ? 'Hide' : 'Show',
+        ' Props Table'
+      ), this.props.allowSourceToggling && _react2.default.createElement(
+        'button',
+        { key: 'allowSourceToggling', onClick: function onClick() {
+            _this2.setState({
+              isSourceShown: !_this2.state.isSourceShown
+            });
+          }, style: this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button },
+        this.state.isSourceShown ? 'Hide' : 'Show',
+        ' Source'
+      )];
+
+      var additional = _react2.default.createElement(
+        'div',
+        null,
+        info && SectionDecorator.info((0, _infoContent2.default)(info)),
+        showButtonsRow && SectionDecorator.buttons(buttons),
+        this.state.isSourceShown && this.renderSourceCode(),
+        this.state.isPropsTableShown && this.renderPropTables()
+      );
+
+      return SectionDecorator.main(SectionDecorator.header(header), SectionDecorator.component(children), SectionDecorator.additional(additional));
     }
   }]);
   return Section;
@@ -336,3 +283,132 @@ Section.defaultProps = {
   showPropTables: false,
   allowPropTablesToggling: true
 };
+
+var SectionDecorator = function () {
+  function SectionDecorator() {
+    (0, _classCallCheck3.default)(this, SectionDecorator);
+  }
+
+  (0, _createClass3.default)(SectionDecorator, null, [{
+    key: 'main',
+    value: function main(header, component, additional) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.container },
+        header,
+        component,
+        additional
+      );
+    }
+  }, {
+    key: 'header',
+    value: function header(_header) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.header },
+        _react2.default.createElement(
+          'div',
+          null,
+          _header
+        )
+      );
+    }
+  }, {
+    key: 'title',
+    value: function title(_title) {
+      return _react2.default.createElement(
+        'h3',
+        { style: sectionStyles.title },
+        _title
+      );
+    }
+  }, {
+    key: 'subtitle',
+    value: function subtitle(_subtitle) {
+      return _react2.default.createElement(
+        'p',
+        { style: sectionStyles.subtitle },
+        _subtitle
+      );
+    }
+  }, {
+    key: 'component',
+    value: function component(_component) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.componentContainer },
+        _component
+      );
+    }
+  }, {
+    key: 'additional',
+    value: function additional(_additional) {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          _additional
+        )
+      );
+    }
+  }, {
+    key: 'sourceCode',
+    value: function sourceCode(_sourceCode) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.subsection },
+        _react2.default.createElement(
+          'h4',
+          { style: sectionStyles.subsectionTitle },
+          'Source'
+        ),
+        _react2.default.createElement(
+          _markdown.Pre,
+          null,
+          _sourceCode
+        )
+      );
+    }
+  }, {
+    key: 'propTables',
+    value: function propTables(_propTables) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.subsection },
+        _react2.default.createElement(
+          'h4',
+          { style: sectionStyles.subsectionTitle },
+          'PropTypes'
+        ),
+        _propTables
+      );
+    }
+  }, {
+    key: 'buttons',
+    value: function buttons(_buttons) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.buttonContainer },
+        _buttons
+      );
+    }
+  }, {
+    key: 'info',
+    value: function info(infoContent) {
+      return _react2.default.createElement(
+        'div',
+        { style: sectionStyles.subsection },
+        _react2.default.createElement(
+          'div',
+          { style: sectionStyles.info },
+          infoContent
+        )
+      );
+    }
+  }]);
+  return SectionDecorator;
+}();
+
+exports.SectionDecorator = SectionDecorator;

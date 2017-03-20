@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.StoryDecorator = exports.storyStyles = undefined;
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -48,7 +49,7 @@ var _theme3 = _interopRequireDefault(_theme2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var styles = {
+var storyStyles = exports.storyStyles = {
   story: (0, _extends3.default)({}, _theme.baseFonts),
   header: {
     marginBottom: 60
@@ -85,35 +86,20 @@ var Story = function (_Component) {
           info = _props.info,
           chapters = _props.chapters;
 
-      return _react2.default.createElement(
+
+      var header = _react2.default.createElement(
         'div',
-        { style: styles.story },
-        _react2.default.createElement(
-          'div',
-          { style: styles.header },
-          title && _react2.default.createElement(
-            'h1',
-            { style: styles.title },
-            title
-          ),
-          subtitle && _react2.default.createElement(
-            'p',
-            { style: styles.subtitle },
-            subtitle
-          ),
-          info && _react2.default.createElement(
-            'div',
-            { style: styles.info },
-            (0, _infoContent2.default)(info)
-          )
-        ),
-        chapters.map(function (chapter, index) {
-          return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({
-            key: index,
-            context: context
-          }, chapter));
-        })
+        null,
+        title && StoryDecorator.title(title),
+        subtitle && StoryDecorator.subtitle(subtitle),
+        info && StoryDecorator.subtitle((0, _infoContent2.default)(info))
       );
+
+      var renderedChapters = chapters.map(function (chapter, index) {
+        return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({ key: index, context: context }, chapter));
+      });
+
+      return StoryDecorator.main(header, renderedChapters);
     }
   }]);
   return Story;
@@ -137,3 +123,55 @@ Story.defaultProps = {
   info: '',
   chapters: []
 };
+
+var StoryDecorator = function () {
+  function StoryDecorator() {
+    (0, _classCallCheck3.default)(this, StoryDecorator);
+  }
+
+  (0, _createClass3.default)(StoryDecorator, null, [{
+    key: 'title',
+    value: function title(_title) {
+      return _react2.default.createElement(
+        'h1',
+        { style: storyStyles.title },
+        _title
+      );
+    }
+  }, {
+    key: 'subtitle',
+    value: function subtitle(_subtitle) {
+      return _react2.default.createElement(
+        'p',
+        { style: storyStyles.subtitle },
+        _subtitle
+      );
+    }
+  }, {
+    key: 'info',
+    value: function info(_info) {
+      return _react2.default.createElement(
+        'div',
+        { style: storyStyles.info },
+        _info
+      );
+    }
+  }, {
+    key: 'main',
+    value: function main(header, chapters) {
+      return _react2.default.createElement(
+        'div',
+        { style: storyStyles.story },
+        _react2.default.createElement(
+          'div',
+          { style: storyStyles.header },
+          header
+        ),
+        chapters
+      );
+    }
+  }]);
+  return StoryDecorator;
+}();
+
+exports.StoryDecorator = StoryDecorator;
