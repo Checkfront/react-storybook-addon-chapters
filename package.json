@@ -16,6 +16,7 @@
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9011",
+    "my-storybook": "start-storybook -p 9011 -c .my-storybook",
     "publish-storybook": "bash .scripts/publish_storybook.sh"
   },
   "devDependencies": {

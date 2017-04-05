@@ -1,5 +1,13 @@
 import React from 'react';
-import Story from './components/Story';
+import Story, { StoryDecorator, storyStyles } from './components/Story';
+import { ChapterDecorator, chapterStyles } from './components/Chapter';
+import { SectionDecorator, sectionStyles } from './components/Section';
+import { propTableStyles } from './components/PropTable';
+import Theme from './theme';
+
+export { StoryDecorator, ChapterDecorator, SectionDecorator };
+export { storyStyles, chapterStyles, sectionStyles, propTableStyles };
+export { Theme };
 
 export default {
   addWithChapters(storyName, storyContent = {}) {

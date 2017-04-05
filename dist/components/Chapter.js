@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.ChapterDecorator = exports.chapterStyles = undefined;
 
 var _extends2 = require('babel-runtime/helpers/extends');
 
@@ -46,7 +47,7 @@ var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var styles = {
+var chapterStyles = exports.chapterStyles = {
   header: {
     marginBottom: 60
   },
@@ -87,44 +88,32 @@ var Chapter = function (_Component) {
           info = _props.info,
           sections = _props.sections;
 
-      return _react2.default.createElement(
+
+      var header = _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'div',
-          { style: styles.header },
-          title && _react2.default.createElement(
-            'h3',
-            { style: styles.title },
-            title
-          ),
-          subtitle && _react2.default.createElement(
-            'p',
-            { style: styles.subtitle },
-            subtitle
-          ),
-          (subtitle || info) && _react2.default.createElement('hr', { style: styles.hr }),
-          info && _react2.default.createElement(
-            'div',
-            { style: styles.info },
-            (0, _infoContent2.default)(info)
-          )
-        ),
-        sections.map(function (section, index) {
-          var options = section.options || {};
-          var sectionProps = (0, _extends3.default)({
-            context: context,
-            title: section.title,
-            subtitle: section.subtitle,
-            info: section.info
-          }, options);
-          return _react2.default.createElement(
-            _Section2.default,
-            (0, _extends3.default)({ key: index }, sectionProps),
-            section.sectionFn(context)
-          );
-        })
+        title && ChapterDecorator.title(title),
+        subtitle && ChapterDecorator.subtitle(subtitle),
+        (subtitle || info) && ChapterDecorator.ruler(),
+        info && ChapterDecorator.subtitle((0, _infoContent2.default)(info))
       );
+
+      var renderedSections = sections.map(function (section, index) {
+        var options = section.options || {};
+        var sectionProps = (0, _extends3.default)({
+          context: context,
+          title: section.title,
+          subtitle: section.subtitle,
+          info: section.info
+        }, options);
+        return _react2.default.createElement(
+          _Section2.default,
+          (0, _extends3.default)({ key: index }, sectionProps),
+          section.sectionFn(context)
+        );
+      });
+
+      return ChapterDecorator.main(header, renderedSections);
     }
   }]);
   return Chapter;
@@ -148,3 +137,60 @@ Chapter.defaultProps = {
   info: '',
   sections: []
 };
+
+var ChapterDecorator = function () {
+  function ChapterDecorator() {
+    (0, _classCallCheck3.default)(this, ChapterDecorator);
+  }
+
+  (0, _createClass3.default)(ChapterDecorator, null, [{
+    key: 'title',
+    value: function title(_title) {
+      return _react2.default.createElement(
+        'h3',
+        { style: chapterStyles.title },
+        _title
+      );
+    }
+  }, {
+    key: 'subtitle',
+    value: function subtitle(_subtitle) {
+      return _react2.default.createElement(
+        'p',
+        { style: chapterStyles.subtitle },
+        _subtitle
+      );
+    }
+  }, {
+    key: 'info',
+    value: function info(_info) {
+      return _react2.default.createElement(
+        'div',
+        { style: chapterStyles.info },
+        _info
+      );
+    }
+  }, {
+    key: 'ruler',
+    value: function ruler() {
+      return _react2.default.createElement('hr', { style: chapterStyles.hr });
+    }
+  }, {
+    key: 'main',
+    value: function main(header, sections) {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { style: chapterStyles.header },
+          header
+        ),
+        sections
+      );
+    }
+  }]);
+  return ChapterDecorator;
+}();
+
+exports.ChapterDecorator = ChapterDecorator;
