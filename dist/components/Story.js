@@ -33,6 +33,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _theme = require('@kadira/react-storybook-addon-info/dist/components/theme');
 
 var _Chapter = require('./Chapter');
@@ -110,11 +114,11 @@ exports.default = Story;
 
 Story.displayName = 'Story';
 Story.propTypes = {
-  context: _react.PropTypes.object,
-  title: _react.PropTypes.string,
-  subtitle: _react.PropTypes.string,
-  info: _react.PropTypes.string,
-  chapters: _react.PropTypes.arrayOf(_react.PropTypes.object)
+  context: _propTypes2.default.object,
+  title: _propTypes2.default.string,
+  subtitle: _propTypes2.default.string,
+  info: _propTypes2.default.string,
+  chapters: _propTypes2.default.arrayOf(_propTypes2.default.object)
 };
 Story.defaultProps = {
   context: {},

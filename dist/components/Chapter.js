@@ -33,6 +33,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Section = require('./Section');
 
 var _Section2 = _interopRequireDefault(_Section);
@@ -124,11 +128,11 @@ exports.default = Chapter;
 
 Chapter.displayName = 'Chapter';
 Chapter.propTypes = {
-  context: _react.PropTypes.object,
-  title: _react.PropTypes.string,
-  subtitle: _react.PropTypes.string,
-  info: _react.PropTypes.string,
-  sections: _react.PropTypes.arrayOf(_react.PropTypes.object)
+  context: _propTypes2.default.object,
+  title: _propTypes2.default.string,
+  subtitle: _propTypes2.default.string,
+  info: _propTypes2.default.string,
+  sections: _propTypes2.default.arrayOf(_propTypes2.default.object)
 };
 Chapter.defaultProps = {
   context: {},

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { baseFonts } from '@kadira/react-storybook-addon-info/dist/components/theme';
 import Chapter from './Chapter';
 import renderInfoContent from '../utils/info-content';

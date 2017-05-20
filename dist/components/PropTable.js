@@ -37,6 +37,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _PropVal = require('@kadira/react-storybook-addon-info/dist/components/PropVal');
 
 var _PropVal2 = _interopRequireDefault(_PropVal);
@@ -48,11 +52,11 @@ var _theme2 = _interopRequireDefault(_theme);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PropTypesMap = new _map2.default();
-for (var typeName in _react2.default.PropTypes) {
-  if (!_react2.default.PropTypes.hasOwnProperty(typeName)) {
+for (var typeName in _propTypes2.default) {
+  if (!_propTypes2.default.hasOwnProperty(typeName)) {
     continue;
   }
-  var component = _react2.default.PropTypes[typeName];
+  var component = _propTypes2.default[typeName];
   PropTypesMap.set(component, typeName);
   PropTypesMap.set(component.isRequired, typeName);
 }
@@ -98,7 +102,7 @@ var PropTable = function (_React$Component) {
           if (!component.propTypes.hasOwnProperty(property)) {
             continue;
           }
-          var typeInfo = component.propTypes[property];
+          var typeInfo = component.propTypes[property];console.log(PropTypesMap.get(typeInfo));
           var propType = PropTypesMap.get(typeInfo) || 'other';
           var required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
           props[property] = { property: property, propType: propType, required: required };
@@ -205,5 +209,5 @@ exports.default = PropTable;
 
 PropTable.displayName = 'PropTable';
 PropTable.propTypes = {
-  type: _react2.default.PropTypes.func
+  type: _propTypes2.default.func
 };

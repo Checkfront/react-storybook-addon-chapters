@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PropVal from '@kadira/react-storybook-addon-info/dist/components/PropVal';
 import theme from '../theme';
 
 const PropTypesMap = new Map();
-for (const typeName in React.PropTypes) {
-  if (!React.PropTypes.hasOwnProperty(typeName)) {
+for (const typeName in PropTypes) {
+  if (!PropTypes.hasOwnProperty(typeName)) {
     continue;
   }
-  const component = React.PropTypes[typeName];
+  const component = PropTypes[typeName];
   PropTypesMap.set(component, typeName);
   PropTypesMap.set(component.isRequired, typeName);
 }
@@ -102,5 +103,5 @@ export default class PropTable extends React.Component {
 
 PropTable.displayName = 'PropTable';
 PropTable.propTypes = {
-  type: React.PropTypes.func,
+  type: PropTypes.func,
 };
