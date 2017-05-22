@@ -102,7 +102,7 @@ var PropTable = function (_React$Component) {
           if (!component.propTypes.hasOwnProperty(property)) {
             continue;
           }
-          var typeInfo = component.propTypes[property];console.log(PropTypesMap.get(typeInfo));
+          var typeInfo = component.propTypes[property];
           var propType = PropTypesMap.get(typeInfo) || 'other';
           var required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
           props[property] = { property: property, propType: propType, required: required };
