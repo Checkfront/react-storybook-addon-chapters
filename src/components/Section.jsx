@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Node from '@kadira/react-storybook-addon-info/dist/components/Node';
 import { Pre } from '@kadira/react-storybook-addon-info/dist/components/markdown';
 import PropTable from './PropTable';

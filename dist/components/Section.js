@@ -41,6 +41,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Node = require('@kadira/react-storybook-addon-info/dist/components/Node');
 
 var _Node2 = _interopRequireDefault(_Node);
@@ -264,14 +268,14 @@ exports.default = Section;
 
 Section.displayName = 'Section';
 Section.propTypes = {
-  context: _react.PropTypes.object,
-  title: _react.PropTypes.string,
-  subtitle: _react.PropTypes.string,
-  info: _react.PropTypes.string,
-  showSource: _react.PropTypes.bool,
-  showPropTables: _react.PropTypes.bool,
-  propTables: _react.PropTypes.arrayOf(_react.PropTypes.func),
-  children: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.array])
+  context: _propTypes2.default.object,
+  title: _propTypes2.default.string,
+  subtitle: _propTypes2.default.string,
+  info: _propTypes2.default.string,
+  showSource: _propTypes2.default.bool,
+  showPropTables: _propTypes2.default.bool,
+  propTables: _propTypes2.default.arrayOf(_propTypes2.default.func),
+  children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array])
 };
 Section.defaultProps = {
   context: {},
