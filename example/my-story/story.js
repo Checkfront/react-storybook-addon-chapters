@@ -1,3 +1,4 @@
+/*
 import { Pre } from '@kadira/react-storybook-addon-info/dist/components/markdown';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
@@ -43,7 +44,7 @@ SectionDecorator.component = function (component) {
   );
 };
 
-storiesOf('Custom decorators')
+ storiesOf('Custom decorators')
   .addWithChapters(
   'Story With Chapters',
   {
@@ -55,19 +56,19 @@ storiesOf('Custom decorators')
             title: 'Default settings',
             sectionFn: () => (<Button
               label="My Button" onClick={() => {
-  alert('Hello World!');
-}}
+                alert('Hello World!');
+              }}
             />),
           },
           {
             title: 'Disabled',
             sectionFn: () => (<Button
               label="My Disabled Button" disabled onClick={() => {
-}}
+              }}
             />),
           },
         ],
       },
     ],
   }
-  );
+  );*/

@@ -66,7 +66,7 @@ Then set the addon in the place you configure storybook like this:
 
 ~~~
 import React from 'react';
-import { configure, setAddon } from '@kadira/storybook';
+import { configure, setAddon } from '@storybook/react';
 import chaptersAddon from 'react-storybook-addon-chapters';
 
 setAddon(chaptersAddon);
@@ -81,7 +81,7 @@ Then create your stories with the \`.addWithChapters\` API.
 ~~~
 import React from 'react';
 import Button from './Button';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 storiesOf('Addon Chapters')
   .addWithChapters(

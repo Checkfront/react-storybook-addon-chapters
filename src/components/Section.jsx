@@ -6,6 +6,30 @@ import PropTable from './PropTable';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
+const propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  info: PropTypes.string,
+  showSource: PropTypes.bool,
+  showPropTables: PropTypes.bool,
+  propTables: PropTypes.arrayOf(PropTypes.func),
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]),
+};
+
+const defaultProps = {
+  context: {},
+  title: '',
+  subtitle: '',
+  info: '',
+  showSource: true,
+  allowSourceToggling: true,
+  showPropTables: false,
+  allowPropTablesToggling: true,
+};
+
 export const sectionButtonStyles = {
   backgroundColor: 'transparent',
   border: `1px solid ${theme.gray}`,
@@ -59,6 +83,91 @@ export const sectionStyles = {
     textTransform: 'uppercase',
   },
 };
+
+export class SectionDecorator {
+  static main(header, component, additional) {
+    return (
+      <div style={sectionStyles.container}>
+        {header}
+        {component}
+        {additional}
+      </div>
+    );
+  }
+
+  static header(header) {
+    return (
+      <div style={sectionStyles.header}>
+        <div>{header}</div>
+      </div>
+    );
+  }
+
+  static title(title) {
+    return (
+      <h3 style={sectionStyles.title}>{title}</h3>
+    );
+  }
+
+  static subtitle(subtitle) {
+    return (
+      <p style={sectionStyles.subtitle}>{subtitle}</p>
+    );
+  }
+
+  static component(component) {
+    return (
+      <div style={sectionStyles.componentContainer}>
+        {component}
+      </div>
+    );
+  }
+
+  static additional(additional) {
+    return (
+      <div>
+        <div>{additional}</div>
+      </div>
+    );
+  }
+
+  static sourceCode(sourceCode) {
+    return (
+      <div style={sectionStyles.subsection}>
+        <h4 style={sectionStyles.subsectionTitle}>Source</h4>
+        <Pre>
+          {sourceCode}
+        </Pre>
+      </div>
+    );
+  }
+
+  static propTables(propTables) {
+    return (
+      <div style={sectionStyles.subsection}>
+        <h4 style={sectionStyles.subsectionTitle}>PropTypes</h4>
+        {propTables}
+      </div>
+    );
+  }
+
+  static buttons(buttons) {
+    return (
+      <div style={sectionStyles.buttonContainer}>{buttons}</div>
+    );
+  }
+
+  static info(infoContent) {
+    return (
+      <div style={sectionStyles.subsection}>
+        <div style={sectionStyles.info}>
+          {infoContent}
+        </div>
+      </div>
+    );
+  }
+}
+
 
 export default class Section extends Component {
   constructor(props) {
@@ -147,22 +256,26 @@ export default class Section extends Component {
 
     const buttons = [
       this.props.allowPropTablesToggling &&
-        <button key="allowPropTablesToggling" onClick={() => {
-          this.setState({
-            isPropsTableShown: !this.state.isPropsTableShown,
-          });
-        }} style={this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button }>
-          {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
+      <button
+key="allowPropTablesToggling" onClick={() => {
+        this.setState({
+          isPropsTableShown: !this.state.isPropsTableShown,
+        });
+      }} style={this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button}
+      >
+        {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
         </button>,
 
       this.props.allowSourceToggling &&
-        <button key="allowSourceToggling" onClick={() => {
-          this.setState({
-            isSourceShown: !this.state.isSourceShown,
-          });
-        }} style={this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button }>
-          {this.state.isSourceShown ? 'Hide' : 'Show'} Source
-        </button>
+      <button
+key="allowSourceToggling" onClick={() => {
+        this.setState({
+          isSourceShown: !this.state.isSourceShown,
+        });
+      }} style={this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button}
+      >
+        {this.state.isSourceShown ? 'Hide' : 'Show'} Source
+        </button>,
     ];
 
     const additional = (
@@ -182,111 +295,5 @@ export default class Section extends Component {
   }
 }
 
-Section.displayName = 'Section';
-Section.propTypes = {
-  context: PropTypes.object,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  info: PropTypes.string,
-  showSource: PropTypes.bool,
-  showPropTables: PropTypes.bool,
-  propTables: PropTypes.arrayOf(PropTypes.func),
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-  ]),
-};
-Section.defaultProps = {
-  context: {},
-  title: '',
-  subtitle: '',
-  info: '',
-  showSource: true,
-  allowSourceToggling: true,
-  showPropTables: false,
-  allowPropTablesToggling: true,
-};
-
-export class SectionDecorator {
-  static main(header, component, additional) {
-    return (
-      <div style={sectionStyles.container}>
-        {header}
-        {component}
-        {additional}
-      </div>
-    );
-  };
-
-  static header(header) {
-    return (
-      <div style={sectionStyles.header}>
-        <div>{header}</div>
-      </div>
-    );
-  };
-
-  static title(title) {
-    return (
-      <h3 style={sectionStyles.title}>{title}</h3>
-    );
-  }
-
-  static subtitle(subtitle) {
-    return (
-      <p style={sectionStyles.subtitle}>{subtitle}</p>
-    );
-  }
-
-  static component(component) {
-    return (
-      <div style={sectionStyles.componentContainer}>
-        {component}
-      </div>
-    );
-  };
-
-  static additional(additional) {
-    return (
-      <div>
-        <div>{additional}</div>
-      </div>
-    );
-  };
-
-  static sourceCode(sourceCode) {
-    return (
-      <div style={sectionStyles.subsection}>
-        <h4 style={sectionStyles.subsectionTitle}>Source</h4>
-        <Pre>
-          {sourceCode}
-        </Pre>
-      </div>
-    );
-  };
-
-  static propTables(propTables) {
-    return (
-      <div style={sectionStyles.subsection}>
-        <h4 style={sectionStyles.subsectionTitle}>PropTypes</h4>
-        {propTables}
-      </div>
-    );
-  };
-
-  static buttons(buttons) {
-    return (
-      <div style={sectionStyles.buttonContainer}>{buttons}</div>
-    )
-  };
-
-  static info(infoContent) {
-    return (
-      <div style={sectionStyles.subsection}>
-        <div style={sectionStyles.info}>
-          {infoContent}
-        </div>
-      </div>
-    );
-  };
-}
+Section.propTypes = propTypes;
+Section.defaultProps = defaultProps;

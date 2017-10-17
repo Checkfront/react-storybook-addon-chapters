@@ -51,6 +51,10 @@ var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var propTypes = {
+  type: _propTypes2.default.func
+};
+
 var PropTypesMap = new _map2.default();
 for (var typeName in _propTypes2.default) {
   if (!_propTypes2.default.hasOwnProperty(typeName)) {
@@ -207,7 +211,4 @@ var PropTable = function (_React$Component) {
 exports.default = PropTable;
 
 
-PropTable.displayName = 'PropTable';
-PropTable.propTypes = {
-  type: _propTypes2.default.func
-};
+PropTable.propTypes = propTypes;
