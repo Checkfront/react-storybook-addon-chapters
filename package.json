@@ -55,7 +55,7 @@
     "@storybook/components": "^3.2.12",
     "@storybook/react": "^3.2.12",
     "babel-runtime": "^6.5.0",
-    "markdown-to-react-components": "^0.2.4",
+    "markdown-to-react-components": "https://github.com/christianalfoni/markdown-to-react-components.git#0a3ce905cc",
     "react-addons-create-fragment": "^15.3.2"
   },
   "main": "dist/index.js",

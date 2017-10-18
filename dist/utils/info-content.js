@@ -13,7 +13,7 @@ var _markdownToReactComponents = require('markdown-to-react-components');
 
 var _markdownToReactComponents2 = _interopRequireDefault(_markdownToReactComponents);
 
-var _markdown = require('@storybook/addon-info/dist/components/markdown');
+var _markdown = require('@kadira/react-storybook-addon-info/dist/components/markdown');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
