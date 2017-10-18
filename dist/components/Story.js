@@ -1,94 +1,94 @@
+'use strict';
 
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 exports.StoryDecorator = exports.storyStyles = undefined;
 
-let _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
-let _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-let _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
 
-let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-let _inherits2 = require('babel-runtime/helpers/inherits');
+var _inherits2 = require('babel-runtime/helpers/inherits');
 
-let _inherits3 = _interopRequireDefault(_inherits2);
+var _inherits3 = _interopRequireDefault(_inherits2);
 
-let _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-let _createClass2 = require('babel-runtime/helpers/createClass');
+var _createClass2 = require('babel-runtime/helpers/createClass');
 
-let _createClass3 = _interopRequireDefault(_createClass2);
+var _createClass3 = _interopRequireDefault(_createClass2);
 
-let _extends2 = require('babel-runtime/helpers/extends');
+var _extends2 = require('babel-runtime/helpers/extends');
 
-let _extends3 = _interopRequireDefault(_extends2);
+var _extends3 = _interopRequireDefault(_extends2);
 
-let _react = require('react');
+var _react = require('react');
 
-let _react2 = _interopRequireDefault(_react);
+var _react2 = _interopRequireDefault(_react);
 
-let _propTypes = require('prop-types');
+var _propTypes = require('prop-types');
 
-let _propTypes2 = _interopRequireDefault(_propTypes);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
-let _components = require('@storybook/components');
+var _components = require('@storybook/components');
 
-let _Chapter = require('./Chapter');
+var _Chapter = require('./Chapter');
 
-let _Chapter2 = _interopRequireDefault(_Chapter);
+var _Chapter2 = _interopRequireDefault(_Chapter);
 
-let _infoContent = require('../utils/info-content');
+var _infoContent = require('../utils/info-content');
 
-let _infoContent2 = _interopRequireDefault(_infoContent);
+var _infoContent2 = _interopRequireDefault(_infoContent);
 
-let _theme = require('../theme');
+var _theme = require('../theme');
 
-let _theme2 = _interopRequireDefault(_theme);
+var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let propTypes = {
+var propTypes = {
   context: _propTypes2.default.object,
   title: _propTypes2.default.string,
   subtitle: _propTypes2.default.string,
   info: _propTypes2.default.string,
-  chapters: _propTypes2.default.arrayOf(_propTypes2.default.object),
+  chapters: _propTypes2.default.arrayOf(_propTypes2.default.object)
 };
 
-let defaultProps = {
+var defaultProps = {
   context: {},
   title: '',
   subtitle: '',
   info: '',
-  chapters: [],
+  chapters: []
 };
 
-let storyStyles = exports.storyStyles = {
+var storyStyles = exports.storyStyles = {
   story: (0, _extends3.default)({}, _components.baseFonts),
   header: {
-    marginBottom: 60,
+    marginBottom: 60
   },
   title: {
     color: _theme2.default.grayDarkest,
     fontSize: 36,
-    marginBottom: 10,
+    marginBottom: 10
   },
   subtitle: {
     color: _theme2.default.grayDark,
     fontSize: 18,
     marginBottom: 20,
-    marginTop: 0,
+    marginTop: 0
   },
-  info: _theme2.default.infoStyle,
+  info: _theme2.default.infoStyle
 };
 
-let StoryDecorator = (function () {
+var StoryDecorator = function () {
   function StoryDecorator() {
     (0, _classCallCheck3.default)(this, StoryDecorator);
   }
@@ -136,11 +136,11 @@ let StoryDecorator = (function () {
     }
   }]);
   return StoryDecorator;
-}());
+}();
 
 exports.StoryDecorator = StoryDecorator;
 
-let Story = (function (_Component) {
+var Story = function (_Component) {
   (0, _inherits3.default)(Story, _Component);
 
   function Story() {
@@ -175,7 +175,7 @@ let Story = (function (_Component) {
     }
   }]);
   return Story;
-}(_react.Component));
+}(_react.Component);
 
 exports.default = Story;
 

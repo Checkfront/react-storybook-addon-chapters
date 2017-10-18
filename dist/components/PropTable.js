@@ -1,88 +1,88 @@
+'use strict';
 
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 exports.propTableStyles = undefined;
 
-let _values = require('babel-runtime/core-js/object/values');
+var _values = require('babel-runtime/core-js/object/values');
 
-let _values2 = _interopRequireDefault(_values);
+var _values2 = _interopRequireDefault(_values);
 
-let _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
-let _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-let _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-let _createClass2 = require('babel-runtime/helpers/createClass');
+var _createClass2 = require('babel-runtime/helpers/createClass');
 
-let _createClass3 = _interopRequireDefault(_createClass2);
+var _createClass3 = _interopRequireDefault(_createClass2);
 
-let _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
 
-let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-let _inherits2 = require('babel-runtime/helpers/inherits');
+var _inherits2 = require('babel-runtime/helpers/inherits');
 
-let _inherits3 = _interopRequireDefault(_inherits2);
+var _inherits3 = _interopRequireDefault(_inherits2);
 
-let _map = require('babel-runtime/core-js/map');
+var _map = require('babel-runtime/core-js/map');
 
-let _map2 = _interopRequireDefault(_map);
+var _map2 = _interopRequireDefault(_map);
 
-let _react = require('react');
+var _react = require('react');
 
-let _react2 = _interopRequireDefault(_react);
+var _react2 = _interopRequireDefault(_react);
 
-let _propTypes = require('prop-types');
+var _propTypes = require('prop-types');
 
-let _propTypes2 = _interopRequireDefault(_propTypes);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
-let _PropVal = require('@storybook/addon-info/dist/components/PropVal');
+var _PropVal = require('@storybook/addon-info/dist/components/PropVal');
 
-let _PropVal2 = _interopRequireDefault(_PropVal);
+var _PropVal2 = _interopRequireDefault(_PropVal);
 
-let _theme = require('../theme');
+var _theme = require('../theme');
 
-let _theme2 = _interopRequireDefault(_theme);
+var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let propTypes = {
-  type: _propTypes2.default.func,
+var propTypes = {
+  type: _propTypes2.default.func
 };
 
-let PropTypesMap = new _map2.default();
-for (let typeName in _propTypes2.default) {
+var PropTypesMap = new _map2.default();
+for (var typeName in _propTypes2.default) {
   if (!_propTypes2.default.hasOwnProperty(typeName)) {
     continue;
   }
-  let component = _propTypes2.default[typeName];
+  var component = _propTypes2.default[typeName];
   PropTypesMap.set(component, typeName);
   PropTypesMap.set(component.isRequired, typeName);
 }
 
-let padding = 10;
-let propTableStyles = exports.propTableStyles = {
+var padding = 10;
+var propTableStyles = exports.propTableStyles = {
   propTable: {
     fontSize: 13,
     borderCollapse: 'collapse',
-    marginLeft: -10,
+    marginLeft: -10
   },
   propTableTh: {
     color: _theme2.default.grayDarker,
-    padding,
+    padding: padding
   },
   propTableTd: {
-    borderTop: `1px solid ${  _theme2.default.grayLight}`,
-    padding,
-  },
+    borderTop: '1px solid ' + _theme2.default.grayLight,
+    padding: padding
+  }
 };
 
-let PropTable = (function (_React$Component) {
+var PropTable = function (_React$Component) {
   (0, _inherits3.default)(PropTable, _React$Component);
 
   function PropTable() {
@@ -206,7 +206,7 @@ let PropTable = (function (_React$Component) {
     }
   }]);
   return PropTable;
-}(_react2.default.Component));
+}(_react2.default.Component);
 
 exports.default = PropTable;
 
