@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Node from '@kadira/react-storybook-addon-info/dist/components/Node';
-import { Pre } from '@kadira/react-storybook-addon-info/dist/components/markdown';
+import Node from '@storybook/addon-info/dist/components/Node';
+import { Pre } from '@storybook/addon-info/dist/components/markdown';
 import PropTable from './PropTable';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
@@ -257,22 +257,22 @@ export default class Section extends Component {
     const buttons = [
       this.props.allowPropTablesToggling &&
       <button
-key="allowPropTablesToggling" onClick={() => {
-        this.setState({
-          isPropsTableShown: !this.state.isPropsTableShown,
-        });
-      }} style={this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button}
+        key="allowPropTablesToggling" onClick={() => {
+          this.setState({
+            isPropsTableShown: !this.state.isPropsTableShown,
+          });
+        }} style={this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button}
       >
         {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
         </button>,
 
       this.props.allowSourceToggling &&
       <button
-key="allowSourceToggling" onClick={() => {
-        this.setState({
-          isSourceShown: !this.state.isSourceShown,
-        });
-      }} style={this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button}
+        key="allowSourceToggling" onClick={() => {
+          this.setState({
+            isSourceShown: !this.state.isSourceShown,
+          });
+        }} style={this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button}
       >
         {this.state.isSourceShown ? 'Hide' : 'Show'} Source
         </button>,

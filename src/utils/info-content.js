@@ -1,6 +1,6 @@
 import React from 'react';
 import mtrc from 'markdown-to-react-components';
-import { H1, H2, H3, H4, H5, H6, Code, P, UL, A, LI } from '@kadira/react-storybook-addon-info/dist/components/markdown';
+import { H1, H2, H3, H4, H5, H6, Code, P, UL, A, LI } from '@storybook/addon-info/dist/components/markdown';
 
 mtrc.configure({
   h1: H1,

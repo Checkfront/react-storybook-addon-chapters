@@ -41,7 +41,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PropVal = require('@kadira/react-storybook-addon-info/dist/components/PropVal');
+var _PropVal = require('@storybook/addon-info/dist/components/PropVal');
 
 var _PropVal2 = _interopRequireDefault(_PropVal);
 

@@ -45,11 +45,11 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Node = require('@kadira/react-storybook-addon-info/dist/components/Node');
+var _Node = require('@storybook/addon-info/dist/components/Node');
 
 var _Node2 = _interopRequireDefault(_Node);
 
-var _markdown = require('@kadira/react-storybook-addon-info/dist/components/markdown');
+var _markdown = require('@storybook/addon-info/dist/components/markdown');
 
 var _PropTable = require('./PropTable');
 
