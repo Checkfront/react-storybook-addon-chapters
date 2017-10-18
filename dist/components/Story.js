@@ -37,7 +37,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _theme = require('@kadira/react-storybook-addon-info/dist/components/theme');
+var _components = require('@storybook/components');
 
 var _Chapter = require('./Chapter');
 
@@ -47,9 +47,9 @@ var _infoContent = require('../utils/info-content');
 
 var _infoContent2 = _interopRequireDefault(_infoContent);
 
-var _theme2 = require('../theme');
+var _theme = require('../theme');
 
-var _theme3 = _interopRequireDefault(_theme2);
+var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -70,22 +70,22 @@ var defaultProps = {
 };
 
 var storyStyles = exports.storyStyles = {
-  story: (0, _extends3.default)({}, _theme.baseFonts),
+  story: (0, _extends3.default)({}, _components.baseFonts),
   header: {
     marginBottom: 60
   },
   title: {
-    color: _theme3.default.grayDarkest,
+    color: _theme2.default.grayDarkest,
     fontSize: 36,
     marginBottom: 10
   },
   subtitle: {
-    color: _theme3.default.grayDark,
+    color: _theme2.default.grayDark,
     fontSize: 18,
     marginBottom: 20,
     marginTop: 0
   },
-  info: _theme3.default.infoStyle
+  info: _theme2.default.infoStyle
 };
 
 var StoryDecorator = function () {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { baseFonts } from '@kadira/react-storybook-addon-info/dist/components/theme';
+import { baseFonts } from '@storybook/components';
 import Chapter from './Chapter';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
