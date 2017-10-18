@@ -4,7 +4,7 @@
   "description": "React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yangshun/react-storybook-addon-chapters.git"
+    "url": "https://github.com/brandonellis/react-storybook-addon-chapters.git"
   },
   "license": "MIT",
   "scripts": {
