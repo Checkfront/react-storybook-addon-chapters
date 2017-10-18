@@ -41,9 +41,9 @@
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
     "prop-types": "^15.5.10",
-    "react": "^15.6.2",
-    "react-addons-test-utils": "^15.3.1",
-    "react-dom": "^0.14.7 || ^15.0.0",
+    "react": "^16.0.0",
+    "react-test-renderer": "^16.0.0-0",
+    "react-dom": "^0.14.7 || ^16.0.0",
     "sinon": "^1.17.6"
   },
   "peerDependencies": {
@@ -55,7 +55,7 @@
     "@storybook/components": "^3.2.12",
     "@storybook/react": "^3.2.12",
     "babel-runtime": "^6.5.0",
-    "markdown-to-react-components": "https://github.com/christianalfoni/markdown-to-react-components.git#0a3ce905cc",
+    "markdown-to-react-components": "https://github.com/besrabasant/markdown-to-react-components.git",
     "react-addons-create-fragment": "^15.3.2"
   },
   "main": "dist/index.js",
