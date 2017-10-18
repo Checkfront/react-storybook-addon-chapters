@@ -72,7 +72,8 @@ var propTypes = {
   showSource: _propTypes2.default.bool,
   showPropTables: _propTypes2.default.bool,
   propTables: _propTypes2.default.arrayOf(_propTypes2.default.func),
-  children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array])
+  children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
+  addonInfo: _propTypes2.default.object
 };
 
 var defaultProps = {
@@ -95,6 +96,7 @@ var sectionButtonStyles = exports.sectionButtonStyles = {
   float: 'right',
   marginLeft: 5,
   padding: '5px 10px'
+
 };
 
 var sectionStyles = exports.sectionStyles = {
@@ -286,8 +288,12 @@ var Section = function (_Component) {
   (0, _createClass3.default)(Section, [{
     key: 'renderSourceCode',
     value: function renderSourceCode() {
+      var _this2 = this;
+
+      var addonInfo = this.props.addonInfo;
+
       var sourceCode = _react2.default.Children.map(this.props.children, function (root, idx) {
-        return _react2.default.createElement(_Node2.default, { key: idx, depth: 0, node: root });
+        return _react2.default.createElement(_Node2.default, (0, _extends3.default)({ key: idx, depth: 0, node: root }, addonInfo, _this2.props));
       });
 
       return SectionDecorator.sourceCode(sourceCode);
@@ -359,7 +365,7 @@ var Section = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _props = this.props,
           title = _props.title,
@@ -382,8 +388,8 @@ var Section = function (_Component) {
         'button',
         {
           key: 'allowPropTablesToggling', onClick: function onClick() {
-            _this2.setState({
-              isPropsTableShown: !_this2.state.isPropsTableShown
+            _this3.setState({
+              isPropsTableShown: !_this3.state.isPropsTableShown
             });
           }, style: this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button
         },
@@ -393,8 +399,8 @@ var Section = function (_Component) {
         'button',
         {
           key: 'allowSourceToggling', onClick: function onClick() {
-            _this2.setState({
-              isSourceShown: !_this2.state.isSourceShown
+            _this3.setState({
+              isSourceShown: !_this3.state.isSourceShown
             });
           }, style: this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button
         },

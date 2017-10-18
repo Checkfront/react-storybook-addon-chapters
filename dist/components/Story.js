@@ -58,7 +58,8 @@ var propTypes = {
   title: _propTypes2.default.string,
   subtitle: _propTypes2.default.string,
   info: _propTypes2.default.string,
-  chapters: _propTypes2.default.arrayOf(_propTypes2.default.object)
+  chapters: _propTypes2.default.arrayOf(_propTypes2.default.object),
+  addonInfo: _propTypes2.default.object
 };
 
 var defaultProps = {
@@ -106,7 +107,7 @@ var StoryDecorator = function () {
     key: 'subtitle',
     value: function subtitle(_subtitle) {
       return _react2.default.createElement(
-        'p',
+        'span',
         { style: storyStyles.subtitle },
         _subtitle
       );
@@ -156,7 +157,8 @@ var Story = function (_Component) {
           subtitle = _props.subtitle,
           title = _props.title,
           info = _props.info,
-          chapters = _props.chapters;
+          chapters = _props.chapters,
+          addonInfo = _props.addonInfo;
 
 
       var header = _react2.default.createElement(
@@ -168,7 +170,7 @@ var Story = function (_Component) {
       );
 
       var renderedChapters = chapters.map(function (chapter, index) {
-        return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({ key: index, context: context }, chapter));
+        return _react2.default.createElement(_Chapter2.default, (0, _extends3.default)({ key: index, context: context, addonInfo: addonInfo }, chapter));
       });
 
       return StoryDecorator.main(header, renderedChapters);

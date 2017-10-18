@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Theme = exports.propTableStyles = exports.sectionStyles = exports.chapterStyles = exports.storyStyles = exports.SectionDecorator = exports.ChapterDecorator = exports.StoryDecorator = undefined;
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -33,18 +37,33 @@ exports.chapterStyles = _Chapter.chapterStyles;
 exports.sectionStyles = _Section.sectionStyles;
 exports.propTableStyles = _PropTable.propTableStyles;
 exports.Theme = _theme2.default;
+
+
+var defaultProps = {
+  addonInfo: {
+    inline: false,
+    header: true,
+    source: true,
+    propTables: [],
+    maxPropsIntoLine: 3,
+    maxPropObjectKeys: 3,
+    maxPropArrayLength: 3,
+    maxPropStringLength: 50
+  }
+};
+
 exports.default = {
   addWithChapters: function addWithChapters(storyName) {
     var storyContent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     return this.add(storyName, function (context) {
-      return _react2.default.createElement(_Story2.default, {
+      return _react2.default.createElement(_Story2.default, (0, _extends3.default)({
         context: context,
         title: storyName,
         subtitle: storyContent.subtitle,
         info: storyContent.info,
         chapters: storyContent.chapters
-      });
+      }, defaultProps));
     });
   }
 };

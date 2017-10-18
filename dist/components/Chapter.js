@@ -56,7 +56,8 @@ var propTypes = {
   title: _propTypes2.default.string,
   subtitle: _propTypes2.default.string,
   info: _propTypes2.default.string,
-  sections: _propTypes2.default.arrayOf(_propTypes2.default.object)
+  sections: _propTypes2.default.arrayOf(_propTypes2.default.object),
+  addonInfo: _propTypes2.default.object
 };
 
 var defaultProps = {
@@ -108,7 +109,7 @@ var ChapterDecorator = function () {
     key: 'subtitle',
     value: function subtitle(_subtitle) {
       return _react2.default.createElement(
-        'p',
+        'span',
         { style: chapterStyles.subtitle },
         _subtitle
       );
@@ -163,7 +164,8 @@ var Chapter = function (_Component) {
           title = _props.title,
           subtitle = _props.subtitle,
           info = _props.info,
-          sections = _props.sections;
+          sections = _props.sections,
+          addonInfo = _props.addonInfo;
 
 
       var header = _react2.default.createElement(
@@ -182,7 +184,9 @@ var Chapter = function (_Component) {
           title: section.title,
           subtitle: section.subtitle,
           info: section.info
-        }, options);
+        }, options, {
+          addonInfo: addonInfo
+        });
         return _react2.default.createElement(
           _Section2.default,
           (0, _extends3.default)({ key: index }, sectionProps),
