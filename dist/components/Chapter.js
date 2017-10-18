@@ -1,96 +1,96 @@
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 exports.ChapterDecorator = exports.chapterStyles = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+let _extends2 = require('babel-runtime/helpers/extends');
 
-var _extends3 = _interopRequireDefault(_extends2);
+let _extends3 = _interopRequireDefault(_extends2);
 
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+let _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+let _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+let _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = require('babel-runtime/helpers/inherits');
+let _inherits2 = require('babel-runtime/helpers/inherits');
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+let _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = require('babel-runtime/helpers/createClass');
+let _createClass2 = require('babel-runtime/helpers/createClass');
 
-var _createClass3 = _interopRequireDefault(_createClass2);
+let _createClass3 = _interopRequireDefault(_createClass2);
 
-var _react = require('react');
+let _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+let _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
+let _propTypes = require('prop-types');
 
-var _propTypes2 = _interopRequireDefault(_propTypes);
+let _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Section = require('./Section');
+let _Section = require('./Section');
 
-var _Section2 = _interopRequireDefault(_Section);
+let _Section2 = _interopRequireDefault(_Section);
 
-var _infoContent = require('../utils/info-content');
+let _infoContent = require('../utils/info-content');
 
-var _infoContent2 = _interopRequireDefault(_infoContent);
+let _infoContent2 = _interopRequireDefault(_infoContent);
 
-var _theme = require('../theme');
+let _theme = require('../theme');
 
-var _theme2 = _interopRequireDefault(_theme);
+let _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var propTypes = {
+let propTypes = {
   context: _propTypes2.default.object,
   title: _propTypes2.default.string,
   subtitle: _propTypes2.default.string,
   info: _propTypes2.default.string,
-  sections: _propTypes2.default.arrayOf(_propTypes2.default.object)
+  sections: _propTypes2.default.arrayOf(_propTypes2.default.object),
 };
 
-var defaultProps = {
+let defaultProps = {
   context: {},
   title: '',
   subtitle: '',
   info: '',
-  sections: []
+  sections: [],
 };
 
-var chapterStyles = exports.chapterStyles = {
+let chapterStyles = exports.chapterStyles = {
   header: {
-    marginBottom: 60
+    marginBottom: 60,
   },
   hr: {
     border: 'none',
     backgroundColor: _theme2.default.border,
-    height: 1
+    height: 1,
   },
   title: {
     color: _theme2.default.grayDarkest,
     fontSize: 24,
-    marginBottom: 10
+    marginBottom: 10,
   },
   subtitle: {
     color: _theme2.default.grayDark,
     fontSize: 16,
     marginBottom: 20,
-    marginTop: 0
+    marginTop: 0,
   },
-  info: _theme2.default.infoStyle
+  info: _theme2.default.infoStyle,
 };
 
-var ChapterDecorator = function () {
+let ChapterDecorator = (function () {
   function ChapterDecorator() {
     (0, _classCallCheck3.default)(this, ChapterDecorator);
   }
@@ -143,11 +143,11 @@ var ChapterDecorator = function () {
     }
   }]);
   return ChapterDecorator;
-}();
+}());
 
 exports.ChapterDecorator = ChapterDecorator;
 
-var Chapter = function (_Component) {
+let Chapter = (function (_Component) {
   (0, _inherits3.default)(Chapter, _Component);
 
   function Chapter() {
@@ -194,7 +194,7 @@ var Chapter = function (_Component) {
     }
   }]);
   return Chapter;
-}(_react.Component);
+}(_react.Component));
 
 exports.default = Chapter;
 
