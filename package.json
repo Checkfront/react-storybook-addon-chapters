@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@storybook/react": "^3.2.12",
-    "@kadira/react-storybook-addon-info": "^3.4.0",
+    "@storybook/addon-info": "^3.2.12",
     "babel-runtime": "^6.5.0",
     "markdown-to-react-components": "^0.2.4",
     "react-addons-create-fragment": "^15.3.2"
