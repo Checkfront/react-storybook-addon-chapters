@@ -10,6 +10,7 @@ const propTypes = {
   subtitle: PropTypes.string,
   info: PropTypes.string,
   sections: PropTypes.arrayOf(PropTypes.object),
+  addonInfo: PropTypes.object,
 };
 
 const defaultProps = {
@@ -52,7 +53,7 @@ export class ChapterDecorator {
 
   static subtitle(subtitle) {
     return (
-      <p style={chapterStyles.subtitle}>{subtitle}</p>
+      <span style={chapterStyles.subtitle}>{subtitle}</span>
     );
   }
 
@@ -80,7 +81,7 @@ export class ChapterDecorator {
 
 export default class Chapter extends Component {
   render() {
-    const { context, title, subtitle, info, sections } = this.props;
+    const { context, title, subtitle, info, sections, addonInfo } = this.props;
 
     const header = (
       <div>
@@ -99,6 +100,7 @@ export default class Chapter extends Component {
         subtitle: section.subtitle,
         info: section.info,
         ...options,
+        addonInfo,
       };
       return (
         <Section key={index} {...sectionProps}>

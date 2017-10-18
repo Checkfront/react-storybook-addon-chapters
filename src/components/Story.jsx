@@ -11,6 +11,7 @@ const propTypes = {
   subtitle: PropTypes.string,
   info: PropTypes.string,
   chapters: PropTypes.arrayOf(PropTypes.object),
+  addonInfo: PropTypes.object,
 };
 
 const defaultProps = {
@@ -51,7 +52,7 @@ export class StoryDecorator {
 
   static subtitle(subtitle) {
     return (
-      <p style={storyStyles.subtitle}>{subtitle}</p>
+      <span style={storyStyles.subtitle}>{subtitle}</span>
     );
   }
 
@@ -73,7 +74,7 @@ export class StoryDecorator {
 
 export default class Story extends Component {
   render() {
-    const { context, subtitle, title, info, chapters } = this.props;
+    const { context, subtitle, title, info, chapters, addonInfo } = this.props;
 
     const header = (
       <div>
@@ -84,7 +85,7 @@ export default class Story extends Component {
     );
 
     const renderedChapters = chapters.map((chapter, index) => (
-      <Chapter key={index} context={context} {...chapter} />
+      <Chapter key={index} context={context} addonInfo={addonInfo} {...chapter} />
     ));
 
     return StoryDecorator.main(header, renderedChapters);
