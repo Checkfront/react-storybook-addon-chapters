@@ -9,6 +9,19 @@ export { StoryDecorator, ChapterDecorator, SectionDecorator };
 export { storyStyles, chapterStyles, sectionStyles, propTableStyles };
 export { Theme };
 
+const defaultProps = {
+  addonInfo: {
+    inline: false,
+    header: true,
+    source: true,
+    propTables: [],
+    maxPropsIntoLine: 3,
+    maxPropObjectKeys: 3,
+    maxPropArrayLength: 3,
+    maxPropStringLength: 50,
+  },
+};
+
 export default {
   addWithChapters(storyName, storyContent = {}) {
     return this.add(storyName, context => (
@@ -18,6 +31,7 @@ export default {
         subtitle={storyContent.subtitle}
         info={storyContent.info}
         chapters={storyContent.chapters}
+        {...defaultProps}
       />
     ));
   },

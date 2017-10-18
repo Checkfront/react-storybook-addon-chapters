@@ -17,6 +17,7 @@ const propTypes = {
     PropTypes.object,
     PropTypes.array,
   ]),
+  addonInfo: PropTypes.object,
 };
 
 const defaultProps = {
@@ -39,6 +40,7 @@ export const sectionButtonStyles = {
   float: 'right',
   marginLeft: 5,
   padding: '5px 10px',
+
 };
 
 export const sectionStyles = {
@@ -179,8 +181,10 @@ export default class Section extends Component {
   }
 
   renderSourceCode() {
+    const addonInfo = this.props.addonInfo;
+
     const sourceCode = React.Children.map(this.props.children, (root, idx) => (
-      <Node key={idx} depth={0} node={root} />
+      <Node key={idx} depth={0} node={root} {...addonInfo} {...this.props} />
     ));
 
     return SectionDecorator.sourceCode(sourceCode);
