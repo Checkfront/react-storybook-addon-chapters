@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const styles = {
   color: '#fff',
@@ -10,25 +11,30 @@ const styles = {
   padding: '20px 30px',
 };
 
-const Button = ({ disabled, label, style, onClick }) => (
-  <button disabled={disabled} onClick={onClick}
-    style={styles}
-  >
-    {label}
-  </button>
-);
-
-Button.displayName = 'Button';
-Button.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  style: React.PropTypes.object,
-  disabled: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
+const propTypes = {
+  label: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
-Button.defaultProps = {
+
+const defaultProps = {
   label: 'Button Label',
   style: {},
   disabled: false,
 };
 
+function Button({ disabled, label, onClick }) {
+  return (
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      style={styles}
+    >
+      {label}
+    </button>
+  );
+}
+
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 export default Button;

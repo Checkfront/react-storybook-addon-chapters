@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PropVal from '@kadira/react-storybook-addon-info/dist/components/PropVal';
+import PropVal from '@storybook/addon-info/dist/components/PropVal';
 import theme from '../theme';
+
+const propTypes = {
+  type: PropTypes.func,
+};
 
 const PropTypesMap = new Map();
 for (const typeName in PropTypes) {
@@ -101,7 +105,4 @@ export default class PropTable extends React.Component {
   }
 }
 
-PropTable.displayName = 'PropTable';
-PropTable.propTypes = {
-  type: PropTypes.func,
-};
+PropTable.propTypes = propTypes;

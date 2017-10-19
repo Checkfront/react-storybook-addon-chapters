@@ -41,7 +41,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PropVal = require('@kadira/react-storybook-addon-info/dist/components/PropVal');
+var _PropVal = require('@storybook/addon-info/dist/components/PropVal');
 
 var _PropVal2 = _interopRequireDefault(_PropVal);
 
@@ -50,6 +50,10 @@ var _theme = require('../theme');
 var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var propTypes = {
+  type: _propTypes2.default.func
+};
 
 var PropTypesMap = new _map2.default();
 for (var typeName in _propTypes2.default) {
@@ -207,7 +211,4 @@ var PropTable = function (_React$Component) {
 exports.default = PropTable;
 
 
-PropTable.displayName = 'PropTable';
-PropTable.propTypes = {
-  type: _propTypes2.default.func
-};
+PropTable.propTypes = propTypes;
