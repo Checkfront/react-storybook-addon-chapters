@@ -29,6 +29,10 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _map = require('babel-runtime/core-js/map');
 
 var _map2 = _interopRequireDefault(_map);
@@ -41,7 +45,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PropVal = require('@kadira/react-storybook-addon-info/dist/components/PropVal');
+var _PropVal = require('@storybook/addon-info/dist/components/PropVal');
 
 var _PropVal2 = _interopRequireDefault(_PropVal);
 
@@ -51,15 +55,17 @@ var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var propTypes = {
+  component: _propTypes2.default.func
+};
+
 var PropTypesMap = new _map2.default();
-for (var typeName in _propTypes2.default) {
-  if (!_propTypes2.default.hasOwnProperty(typeName)) {
-    continue;
-  }
-  var component = _propTypes2.default[typeName];
-  PropTypesMap.set(component, typeName);
-  PropTypesMap.set(component.isRequired, typeName);
-}
+
+(0, _keys2.default)(_propTypes2.default).forEach(function (typeName) {
+  var type = _propTypes2.default[typeName];
+  PropTypesMap.set(type, typeName);
+  PropTypesMap.set(type.isRequired, typeName);
+});
 
 var padding = 10;
 var propTableStyles = exports.propTableStyles = {
@@ -98,31 +104,22 @@ var PropTable = function (_React$Component) {
       var props = {};
 
       if (component.propTypes) {
-        for (var property in component.propTypes) {
-          if (!component.propTypes.hasOwnProperty(property)) {
-            continue;
-          }
+        (0, _keys2.default)(component.propTypes).forEach(function (property) {
           var typeInfo = component.propTypes[property];
           var propType = PropTypesMap.get(typeInfo) || 'other';
           var required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
           props[property] = { property: property, propType: propType, required: required };
-        }
+        });
       }
 
       if (component.defaultProps) {
-        for (var _property in component.defaultProps) {
-          if (!component.defaultProps.hasOwnProperty(_property)) {
-            continue;
+        (0, _keys2.default)(component.defaultProps).forEach(function (property) {
+          var value = component.defaultProps[property];
+          if (!props[property]) {
+            props[property] = { property: property };
           }
-          var value = component.defaultProps[_property];
-          if (value === undefined) {
-            continue;
-          }
-          if (!props[_property]) {
-            props[_property] = { property: _property };
-          }
-          props[_property].defaultValue = value;
-        }
+          props[property].defaultValue = value;
+        });
       }
 
       var propsList = (0, _values2.default)(props);
@@ -208,6 +205,4 @@ exports.default = PropTable;
 
 
 PropTable.displayName = 'PropTable';
-PropTable.propTypes = {
-  type: _propTypes2.default.func
-};
+PropTable.propTypes = propTypes;

@@ -4,6 +4,23 @@ import Section from './Section';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
+const propTypes = {
+  context: PropTypes.object,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  info: PropTypes.string,
+  sections: PropTypes.arrayOf(PropTypes.object),
+  addonInfo: PropTypes.object,
+};
+
+const defaultProps = {
+  context: {},
+  title: '',
+  subtitle: '',
+  info: '',
+  sections: [],
+};
+
 export const chapterStyles = {
   header: {
     marginBottom: 60,
@@ -27,9 +44,44 @@ export const chapterStyles = {
   info: theme.infoStyle,
 };
 
+export class ChapterDecorator {
+  static title(title) {
+    return (
+      <h3 style={chapterStyles.title}>{title}</h3>
+    );
+  }
+
+  static subtitle(subtitle) {
+    return (
+      <span style={chapterStyles.subtitle}>{subtitle}</span>
+    );
+  }
+
+  static info(info) {
+    return (
+      <div style={chapterStyles.info}>{info}</div>
+    );
+  }
+
+  static ruler() {
+    return (
+      <hr style={chapterStyles.hr} />
+    );
+  }
+
+  static main(header, sections) {
+    return (
+      <div>
+        <div style={chapterStyles.header}>{header}</div>
+        {sections}
+      </div>
+    );
+  }
+}
+
 export default class Chapter extends Component {
   render() {
-    const { context, title, subtitle, info, sections } = this.props;
+    const { context, title, subtitle, info, sections, addonInfo } = this.props;
 
     const header = (
       <div>
@@ -48,6 +100,7 @@ export default class Chapter extends Component {
         subtitle: section.subtitle,
         info: section.info,
         ...options,
+        addonInfo,
       };
       return (
         <Section key={index} {...sectionProps}>
@@ -61,52 +114,5 @@ export default class Chapter extends Component {
 }
 
 Chapter.displayName = 'Chapter';
-Chapter.propTypes = {
-  context: PropTypes.object,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  info: PropTypes.string,
-  sections: PropTypes.arrayOf(PropTypes.object),
-};
-Chapter.defaultProps = {
-  context: {},
-  title: '',
-  subtitle: '',
-  info: '',
-  sections: [],
-};
-
-export class ChapterDecorator {
-  static title(title) {
-    return (
-      <h3 style={chapterStyles.title}>{title}</h3>
-    );
-  }
-
-  static subtitle(subtitle) {
-    return (
-      <p style={chapterStyles.subtitle}>{subtitle}</p>
-    );
-  }
-
-  static info(info) {
-    return (
-      <div style={chapterStyles.info}>{info}</div>
-    );
-  }
-
-  static ruler() {
-    return (
-      <hr style={chapterStyles.hr}/>
-    );
-  }
-
-  static main(header, sections) {
-    return (
-      <div>
-        <div style={chapterStyles.header}>{header}</div>
-        {sections}
-      </div>
-    );
-  };
-}
+Chapter.propTypes = propTypes;
+Chapter.defaultProps = defaultProps;

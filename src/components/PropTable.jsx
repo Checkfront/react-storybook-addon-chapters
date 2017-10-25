@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PropVal from '@kadira/react-storybook-addon-info/dist/components/PropVal';
+import PropVal from '@storybook/addon-info/dist/components/PropVal';
 import theme from '../theme';
 
+const propTypes = {
+  component: PropTypes.func,
+};
+
 const PropTypesMap = new Map();
-for (const typeName in PropTypes) {
-  if (!PropTypes.hasOwnProperty(typeName)) {
-    continue;
-  }
-  const component = PropTypes[typeName];
-  PropTypesMap.set(component, typeName);
-  PropTypesMap.set(component.isRequired, typeName);
-}
+
+Object.keys(PropTypes).forEach((typeName) => {
+  const type = PropTypes[typeName];
+  PropTypesMap.set(type, typeName);
+  PropTypesMap.set(type.isRequired, typeName);
+});
 
 const padding = 10;
 export const propTableStyles = {
@@ -41,31 +43,22 @@ export default class PropTable extends React.Component {
     const props = {};
 
     if (component.propTypes) {
-      for (const property in component.propTypes) {
-        if (!component.propTypes.hasOwnProperty(property)) {
-          continue;
-        }
+      Object.keys(component.propTypes).forEach((property) => {
         const typeInfo = component.propTypes[property];
         const propType = PropTypesMap.get(typeInfo) || 'other';
         const required = typeInfo.isRequired === undefined ? 'Yes' : 'No';
         props[property] = { property, propType, required };
-      }
+      });
     }
 
     if (component.defaultProps) {
-      for (const property in component.defaultProps) {
-        if (!component.defaultProps.hasOwnProperty(property)) {
-          continue;
-        }
+      Object.keys(component.defaultProps).forEach((property) => {
         const value = component.defaultProps[property];
-        if (value === undefined) {
-          continue;
-        }
         if (!props[property]) {
           props[property] = { property };
         }
         props[property].defaultValue = value;
-      }
+      });
     }
 
     const propsList = Object.values(props);
@@ -102,6 +95,4 @@ export default class PropTable extends React.Component {
 }
 
 PropTable.displayName = 'PropTable';
-PropTable.propTypes = {
-  type: PropTypes.func,
-};
+PropTable.propTypes = propTypes;
