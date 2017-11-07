@@ -37,7 +37,7 @@ storiesOf('Addon Chapters')
                 Each section comes with a **Section Title**, **Section Subtitle**, **Section Info**.
                 Simply omit any of them to hide them from rendering. The section below does not have a subtitle nor info.
 
-                There's also the option of showing the source code and \`propTypes\` of the component.
+                There's also the option of showing the source code and propTypes of the component.
               `,
             sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }} />),
             options: {
@@ -76,7 +76,7 @@ configure(function () {
 }, module);
 ~~~
 
-Then create your stories with the \`.addWithChapters\` API.
+Then create your stories with the **.addWithChapters** API.
 
 ~~~
 import React from 'react';
@@ -101,7 +101,7 @@ storiesOf('Addon Chapters')
               title: <Optional section title>,
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
-              sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
+              sectionFn: () => (<Button>My Button</Button>),
               options: {
                 showSource: true,
                 allowSourceToggling: true,
@@ -127,7 +127,7 @@ storiesOf('Addon Chapters')
   {
     info: `
         If you don't require displaying of the chapter information, simply use only one chapter with your list of sections and omit the chapter-related parameters.
-        You'll end up with just a list of rendered sections. Refer to the example in \`example/story.js\`.
+        You'll end up with just a list of rendered sections. Refer to the example in **example/story.js**.
       `,
     chapters: [
       {

@@ -3,21 +3,26 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 exports.default = renderInfoContent;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _markdownToReactComponents = require('markdown-to-react-components');
+var _marksy = require('marksy');
 
-var _markdownToReactComponents2 = _interopRequireDefault(_markdownToReactComponents);
+var _marksy2 = _interopRequireDefault(_marksy);
 
 var _markdown = require('@storybook/addon-info/dist/components/markdown');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_markdownToReactComponents2.default.configure({
+var defaultMarksyConf = {
   h1: _markdown.H1,
   h2: _markdown.H2,
   h3: _markdown.H3,
@@ -29,9 +34,12 @@ _markdownToReactComponents2.default.configure({
   a: _markdown.A,
   li: _markdown.LI,
   ul: _markdown.UL
-});
+};
 
 function renderInfoContent(content) {
+  var marksyConf = (0, _extends3.default)({}, defaultMarksyConf);
+  var markdownInfo = (0, _marksy2.default)(marksyConf, content);
+
   if (!content || content === '' || typeof content !== 'string') {
     return null;
   }
@@ -51,6 +59,6 @@ function renderInfoContent(content) {
   return _react2.default.createElement(
     'div',
     null,
-    (0, _markdownToReactComponents2.default)(source).tree
+    markdownInfo(source).tree
   );
 }

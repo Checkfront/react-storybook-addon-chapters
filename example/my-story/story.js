@@ -1,5 +1,5 @@
-/*
-import { Pre } from '@kadira/react-storybook-addon-info/dist/components/markdown';
+
+import { Pre } from '@storybook/addon-info/dist/components/markdown';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Button from '../Button';
@@ -44,12 +44,12 @@ SectionDecorator.component = function (component) {
   );
 };
 
- storiesOf('Custom decorators')
+storiesOf('Custom decorators')
   .addWithChapters(
   'Story With Chapters',
-  {
-    subtitle: 'And with customized layout',
-    chapters: [
+   {
+     subtitle: 'And with customized layout',
+     chapters: [
       {
         sections: [
           {
@@ -70,5 +70,5 @@ SectionDecorator.component = function (component) {
         ],
       },
     ],
-  }
-  );*/
+   }
+  );
