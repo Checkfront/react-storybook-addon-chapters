@@ -31,15 +31,13 @@ const defaultProps = {
 export default {
   addWithChapters(storyName, storyContent = {}) {
     return this.add(storyName, (context) => {
-      const chapters = (storyContent.chapters || []).map(chapter =>
-        Object.assign({}, chapter, {
-          sections: (chapter.sections || []).map(section =>
-            Object.assign({}, section, {
-              options: Object.assign({}, defaultProps.sectionOptions, section.options),
-            })
-          ),
-        })
-      );
+      (storyContent.chapters || []).forEach((chapter) => {
+        (chapter.sections || []).forEach((section) => {
+          Object.assign(section, {
+            options: Object.assign({}, defaultProps.sectionOptions, section.options),
+          });
+        });
+      });
 
       return (
         <Story
@@ -47,7 +45,7 @@ export default {
           title={storyName}
           subtitle={storyContent.subtitle}
           info={storyContent.info}
-          chapters={chapters}
+          chapters={storyContent.chapters}
           {...defaultProps}
         />
       );
