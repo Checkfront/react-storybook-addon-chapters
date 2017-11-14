@@ -81,6 +81,31 @@ storiesOf('Addon Chapters')
 
 > Have a look at [this example](example/story.js) stories to learn more about the `addWithChapters` API.
 
+## Global options
+
+To configure default options for all chapter sections (`section.options`), use `setDefaults` in `.storybook/config.js`	. 
+
+```js
+import React from 'react';
+import { configure, setAddon } from '@storybook/react';
+import chaptersAddon, { setDefaults } from 'react-storybook-addon-chapters';
+
+// optionally override defaults
+setDefaults({
+  sectionOptions: {
+    showSource: true,
+    allowSourceToggling: true,
+    showPropTables: false,
+    allowPropTablesToggling: true,
+  }
+});
+setAddon(chaptersAddon);
+
+configure(function () {
+  ...
+}, module);
+```
+
 ## Configuration Format
 
 #### Story

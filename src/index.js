@@ -20,19 +20,43 @@ const defaultProps = {
     maxPropArrayLength: 3,
     maxPropStringLength: 50,
   },
+  sectionOptions: {
+    showSource: true,
+    allowSourceToggling: true,
+    showPropTables: false,
+    allowPropTablesToggling: true,
+  },
 };
 
 export default {
   addWithChapters(storyName, storyContent = {}) {
-    return this.add(storyName, context => (
-      <Story
-        context={context}
-        title={storyName}
-        subtitle={storyContent.subtitle}
-        info={storyContent.info}
-        chapters={storyContent.chapters}
-        {...defaultProps}
-      />
-    ));
+    return this.add(storyName, (context) => {
+      const chapters = (storyContent.chapters || []).map(chapter =>
+        Object.assign({}, chapter, {
+          sections: (chapter.sections || []).map(section =>
+            Object.assign({}, section, {
+              options: Object.assign({}, defaultProps.sectionOptions, section.options),
+            })
+          ),
+        })
+      );
+
+      return (
+        <Story
+          context={context}
+          title={storyName}
+          subtitle={storyContent.subtitle}
+          info={storyContent.info}
+          chapters={chapters}
+          {...defaultProps}
+        />
+      );
+    });
   },
 };
+
+export function setDefaults(newDefaults) {
+  Object.assign(defaultProps.addonInfo, newDefaults.addonInfo);
+  Object.assign(defaultProps.sectionOptions, newDefaults.sectionOptions);
+  return defaultProps;
+}
