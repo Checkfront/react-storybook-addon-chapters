@@ -54,6 +54,22 @@ describe('Chapters Addon', () => {
       };
       addon.addWithChapters.call(scope, 'Story title', content);
     });
+    it('can be passed a function as a configuration argument', () => {
+      const expected = {
+        subtitle: 'Story subtitle',
+        info: 'Story info',
+        chapters: [],
+      };
+      const content = () => expected;
+      const scope = {
+        add(name, callback) {
+          const story = callback({});
+          const actual = story.props;
+          expect(actual).to.include.all.keys(expected);
+        },
+      };
+      addon.addWithChapters.call(scope, 'Story title', content);
+    });
   });
 
   describe('default options', () => {
