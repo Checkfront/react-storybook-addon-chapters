@@ -29,8 +29,12 @@ const defaultProps = {
 };
 
 export default {
-  addWithChapters(storyName, storyContent = {}) {
+  addWithChapters(storyName, storyContentOrFn = {}) {
     return this.add(storyName, (context) => {
+      const storyContent = typeof storyContentOrFn === 'function'
+          ? storyContentOrFn()
+          : storyContentOrFn;
+
       (storyContent.chapters || []).forEach((chapter) => {
         (chapter.sections || []).forEach((section) => {
           Object.assign(section, {
