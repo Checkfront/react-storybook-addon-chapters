@@ -1,6 +1,6 @@
 import React from 'react';
 import marksy from 'marksy';
-import { H1, H2, H3, H4, H5, H6, Code, P, UL, A, LI } from '@storybook/addon-info/dist/components/markdown';
+import { H1, H2, H3, H4, H5, H6, Code, UL, A, LI } from '@storybook/addon-info/dist/components/markdown';
 
 
 const defaultMarksyConf = {
@@ -11,7 +11,6 @@ const defaultMarksyConf = {
   h5: H5,
   h6: H6,
   code: Code,
-  p: P,
   a: A,
   li: LI,
   ul: UL,
@@ -35,6 +34,7 @@ export default function renderInfoContent(content) {
     padding = matches[0].length;
   }
   const source = lines.map(s => s.slice(padding)).join('\n');
+
   return (
     <div>
       {markdownInfo(source).tree}

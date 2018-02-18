@@ -30,7 +30,6 @@ var defaultMarksyConf = {
   h5: _markdown.H5,
   h6: _markdown.H6,
   code: _markdown.Code,
-  p: _markdown.P,
   a: _markdown.A,
   li: _markdown.LI,
   ul: _markdown.UL
@@ -56,6 +55,7 @@ function renderInfoContent(content) {
   var source = lines.map(function (s) {
     return s.slice(padding);
   }).join('\n');
+
   return _react2.default.createElement(
     'div',
     null,
