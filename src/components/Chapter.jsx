@@ -47,32 +47,32 @@ export const chapterStyles = {
 export class ChapterDecorator {
   static title(title) {
     return (
-      <h3 style={chapterStyles.title}>{title}</h3>
+      <h3 className="chapter-h3">{title}</h3>
     );
   }
 
   static subtitle(subtitle) {
     return (
-      <span style={chapterStyles.subtitle}>{subtitle}</span>
+      <span className="chapter-subtitle">{subtitle}</span>
     );
   }
 
   static info(info) {
     return (
-      <div style={chapterStyles.info}>{info}</div>
+      <div className="chapter-info">{info}</div>
     );
   }
 
   static ruler() {
     return (
-      <hr style={chapterStyles.hr} />
+      <hr className="chatper-hr" />
     );
   }
 
   static main(header, sections) {
     return (
       <div>
-        <div style={chapterStyles.header}>{header}</div>
+        <div className="chapter-header">{header}</div>
         {sections}
       </div>
     );

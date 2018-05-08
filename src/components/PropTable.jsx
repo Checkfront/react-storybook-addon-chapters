@@ -73,19 +73,19 @@ export default class PropTable extends React.Component {
       <table style={propTableStyles.propTable}>
         <thead>
           <tr>
-            <th style={propTableStyles.propTableTh}>Property</th>
-            <th style={propTableStyles.propTableTh}>PropType</th>
-            <th style={propTableStyles.propTableTh}>Required</th>
-            <th style={propTableStyles.propTableTh}>Default</th>
+            <th className="propTable-th">Property</th>
+            <th className="propTable-th">PropType</th>
+            <th className="propTable-th">Required</th>
+            <th className="propTable-th">Default</th>
           </tr>
         </thead>
         <tbody>
           {propsList.map(row => (
             <tr key={row.property}>
-              <td style={propTableStyles.propTableTd}>{row.property}</td>
-              <td style={propTableStyles.propTableTd}>{row.propType}</td>
-              <td style={propTableStyles.propTableTd}>{row.required}</td>
-              <td style={propTableStyles.propTableTd}>{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
+              <td className="propTable-td">{row.property}</td>
+              <td className="propTable-td">{row.propType}</td>
+              <td className="propTable-td">{row.required}</td>
+              <td className="propTable-td">{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
             </tr>
           ))}
         </tbody>

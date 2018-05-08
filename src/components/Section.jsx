@@ -89,7 +89,7 @@ export const sectionStyles = {
 export class SectionDecorator {
   static main(header, component, additional) {
     return (
-      <div style={sectionStyles.container}>
+      <div className="section-container">
         {header}
         {component}
         {additional}
@@ -99,7 +99,7 @@ export class SectionDecorator {
 
   static header(header) {
     return (
-      <div style={sectionStyles.header}>
+      <div className="section-header">
         <div>{header}</div>
       </div>
     );
@@ -107,19 +107,19 @@ export class SectionDecorator {
 
   static title(title) {
     return (
-      <h3 style={sectionStyles.title}>{title}</h3>
+      <h3 className="section-title">{title}</h3>
     );
   }
 
   static subtitle(subtitle) {
     return (
-      <p style={sectionStyles.subtitle}>{subtitle}</p>
+      <p className="section-subtitle">{subtitle}</p>
     );
   }
 
   static component(component) {
     return (
-      <div style={sectionStyles.componentContainer}>
+      <div className="section-component-container">
         {component}
       </div>
     );
@@ -135,8 +135,8 @@ export class SectionDecorator {
 
   static sourceCode(sourceCode) {
     return (
-      <div style={sectionStyles.subsection}>
-        <h4 style={sectionStyles.subsectionTitle}>Source</h4>
+      <div className="section-subsection">
+        <h4 className="section-subsection-title">Source</h4>
         <Pre>
           {sourceCode}
         </Pre>
@@ -146,8 +146,8 @@ export class SectionDecorator {
 
   static propTables(propTables) {
     return (
-      <div style={sectionStyles.subsection}>
-        <h4 style={sectionStyles.subsectionTitle}>PropTypes</h4>
+      <div className="section-subsection">
+        <h4 className="section-subsection-title">PropTypes</h4>
         {propTables}
       </div>
     );
@@ -155,14 +155,14 @@ export class SectionDecorator {
 
   static buttons(buttons) {
     return (
-      <div style={sectionStyles.buttonContainer}>{buttons}</div>
+      <div className="section-button-container">{buttons}</div>
     );
   }
 
   static info(infoContent) {
     return (
-      <div style={sectionStyles.subsection}>
-        <div style={sectionStyles.info}>
+      <div className="section-subsection">
+        <div className="seciont-info">
           {infoContent}
         </div>
       </div>

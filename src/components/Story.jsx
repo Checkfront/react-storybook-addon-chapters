@@ -46,26 +46,26 @@ export const storyStyles = {
 export class StoryDecorator {
   static title(title) {
     return (
-      <h1 style={storyStyles.title}>{title}</h1>
+      <h1 className="story-title">{title}</h1>
     );
   }
 
   static subtitle(subtitle) {
     return (
-      <span style={storyStyles.subtitle}>{subtitle}</span>
+      <span className="story-subtitle">{subtitle}</span>
     );
   }
 
   static info(info) {
     return (
-      <div style={storyStyles.info}>{info}</div>
+      <div className="story-info">{info}</div>
     );
   }
 
   static main(header, chapters) {
     return (
-      <div style={storyStyles.story}>
-        <div style={storyStyles.header}>{header}</div>
+      <div className="story">
+        <div className="story-header">{header}</div>
         {chapters}
       </div>
     );
