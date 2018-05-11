@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
 import renderInfoContent from '../utils/info-content';
-import theme from '../theme';
 
 const propTypes = {
   context: PropTypes.object,
@@ -21,7 +20,7 @@ const defaultProps = {
   sections: [],
 };
 
-export const chapterStyles = {
+/* export const chapterStyles = {
   header: {
     marginBottom: 60,
   },
@@ -42,7 +41,7 @@ export const chapterStyles = {
     marginTop: 0,
   },
   info: theme.infoStyle,
-};
+};*/
 
 export class ChapterDecorator {
   static title(title) {

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { baseFonts } from '@storybook/components';
 import Chapter from './Chapter';
 import renderInfoContent from '../utils/info-content';
-import theme from '../theme';
 
 const propTypes = {
   context: PropTypes.object,
@@ -20,27 +18,6 @@ const defaultProps = {
   subtitle: '',
   info: '',
   chapters: [],
-};
-
-export const storyStyles = {
-  story: {
-    ...baseFonts,
-  },
-  header: {
-    marginBottom: 60,
-  },
-  title: {
-    color: theme.grayDarkest,
-    fontSize: 36,
-    marginBottom: 10,
-  },
-  subtitle: {
-    color: theme.grayDark,
-    fontSize: 18,
-    marginBottom: 20,
-    marginTop: 0,
-  },
-  info: theme.infoStyle,
 };
 
 export class StoryDecorator {

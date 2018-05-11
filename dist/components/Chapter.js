@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ChapterDecorator = exports.chapterStyles = undefined;
+exports.ChapterDecorator = undefined;
 
 var _extends2 = require('babel-runtime/helpers/extends');
 
@@ -45,10 +45,6 @@ var _infoContent = require('../utils/info-content');
 
 var _infoContent2 = _interopRequireDefault(_infoContent);
 
-var _theme = require('../theme');
-
-var _theme2 = _interopRequireDefault(_theme);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var propTypes = {
@@ -68,28 +64,28 @@ var defaultProps = {
   sections: []
 };
 
-var chapterStyles = exports.chapterStyles = {
+/* export const chapterStyles = {
   header: {
-    marginBottom: 60
+    marginBottom: 60,
   },
   hr: {
     border: 'none',
-    backgroundColor: _theme2.default.border,
-    height: 1
+    backgroundColor: theme.border,
+    height: 1,
   },
   title: {
-    color: _theme2.default.grayDarkest,
+    color: theme.grayDarkest,
     fontSize: 24,
-    marginBottom: 10
+    marginBottom: 10,
   },
   subtitle: {
-    color: _theme2.default.grayDark,
+    color: theme.grayDark,
     fontSize: 16,
     marginBottom: 20,
-    marginTop: 0
+    marginTop: 0,
   },
-  info: _theme2.default.infoStyle
-};
+  info: theme.infoStyle,
+};*/
 
 var ChapterDecorator = function () {
   function ChapterDecorator() {
@@ -101,7 +97,7 @@ var ChapterDecorator = function () {
     value: function title(_title) {
       return _react2.default.createElement(
         'h3',
-        { style: chapterStyles.title },
+        { className: 'chapter-h3' },
         _title
       );
     }
@@ -110,7 +106,7 @@ var ChapterDecorator = function () {
     value: function subtitle(_subtitle) {
       return _react2.default.createElement(
         'span',
-        { style: chapterStyles.subtitle },
+        { className: 'chapter-subtitle' },
         _subtitle
       );
     }
@@ -119,14 +115,14 @@ var ChapterDecorator = function () {
     value: function info(_info) {
       return _react2.default.createElement(
         'div',
-        { style: chapterStyles.info },
+        { className: 'chapter-info' },
         _info
       );
     }
   }, {
     key: 'ruler',
     value: function ruler() {
-      return _react2.default.createElement('hr', { style: chapterStyles.hr });
+      return _react2.default.createElement('hr', { className: 'chatper-hr' });
     }
   }, {
     key: 'main',
@@ -136,7 +132,7 @@ var ChapterDecorator = function () {
         null,
         _react2.default.createElement(
           'div',
-          { style: chapterStyles.header },
+          { className: 'chapter-header' },
           header
         ),
         sections

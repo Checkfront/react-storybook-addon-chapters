@@ -4,7 +4,6 @@ import Node from '@storybook/addon-info/dist/components/Node';
 import { Pre } from '@storybook/addon-info/dist/components/markdown';
 import PropTable from './PropTable';
 import renderInfoContent from '../utils/info-content';
-import theme from '../theme';
 
 const propTypes = {
   title: PropTypes.string,
@@ -31,7 +30,7 @@ const defaultProps = {
   allowPropTablesToggling: true,
 };
 
-export const sectionButtonStyles = {
+/* export const sectionButtonStyles = {
   backgroundColor: 'transparent',
   border: `1px solid ${theme.gray}`,
   borderRadius: 3,
@@ -84,7 +83,7 @@ export const sectionStyles = {
     letterSpacing: 2,
     textTransform: 'uppercase',
   },
-};
+};*/
 
 export class SectionDecorator {
   static main(header, component, additional) {
@@ -265,7 +264,7 @@ export default class Section extends Component {
           this.setState({
             isPropsTableShown: !this.state.isPropsTableShown,
           });
-        }} style={this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button}
+        }} className={this.state.isPropsTableShown ? 'button-active' : 'button'}
       >
         {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
         </button>,
@@ -276,7 +275,7 @@ export default class Section extends Component {
           this.setState({
             isSourceShown: !this.state.isSourceShown,
           });
-        }} style={this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button}
+        }} className={this.state.isSourceShown ? 'button-active' : 'button'}
       >
         {this.state.isSourceShown ? 'Hide' : 'Show'} Source
         </button>,

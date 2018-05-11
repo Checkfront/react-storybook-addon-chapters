@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PropVal from '@storybook/addon-info/dist/components/PropVal';
-import theme from '../theme';
 
 const propTypes = {
   component: PropTypes.func,
@@ -15,7 +14,7 @@ Object.keys(PropTypes).forEach((typeName) => {
   PropTypesMap.set(type.isRequired, typeName);
 });
 
-const padding = 10;
+/*  const padding = 10;
 export const propTableStyles = {
   propTable: {
     fontSize: 13,
@@ -30,7 +29,7 @@ export const propTableStyles = {
     borderTop: `1px solid ${theme.grayLight}`,
     padding,
   },
-};
+};*/
 
 export default class PropTable extends React.Component {
   render() {
@@ -70,7 +69,7 @@ export default class PropTable extends React.Component {
     });
 
     return (
-      <table style={propTableStyles.propTable}>
+      <table className="propTable">
         <thead>
           <tr>
             <th className="propTable-th">Property</th>

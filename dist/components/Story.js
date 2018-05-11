@@ -3,7 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StoryDecorator = exports.storyStyles = undefined;
+exports.StoryDecorator = undefined;
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -25,10 +29,6 @@ var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -37,8 +37,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _components = require('@storybook/components');
-
 var _Chapter = require('./Chapter');
 
 var _Chapter2 = _interopRequireDefault(_Chapter);
@@ -46,10 +44,6 @@ var _Chapter2 = _interopRequireDefault(_Chapter);
 var _infoContent = require('../utils/info-content');
 
 var _infoContent2 = _interopRequireDefault(_infoContent);
-
-var _theme = require('../theme');
-
-var _theme2 = _interopRequireDefault(_theme);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -70,25 +64,6 @@ var defaultProps = {
   chapters: []
 };
 
-var storyStyles = exports.storyStyles = {
-  story: (0, _extends3.default)({}, _components.baseFonts),
-  header: {
-    marginBottom: 60
-  },
-  title: {
-    color: _theme2.default.grayDarkest,
-    fontSize: 36,
-    marginBottom: 10
-  },
-  subtitle: {
-    color: _theme2.default.grayDark,
-    fontSize: 18,
-    marginBottom: 20,
-    marginTop: 0
-  },
-  info: _theme2.default.infoStyle
-};
-
 var StoryDecorator = function () {
   function StoryDecorator() {
     (0, _classCallCheck3.default)(this, StoryDecorator);
@@ -99,7 +74,7 @@ var StoryDecorator = function () {
     value: function title(_title) {
       return _react2.default.createElement(
         'h1',
-        { style: storyStyles.title },
+        { className: 'story-title' },
         _title
       );
     }
@@ -108,7 +83,7 @@ var StoryDecorator = function () {
     value: function subtitle(_subtitle) {
       return _react2.default.createElement(
         'span',
-        { style: storyStyles.subtitle },
+        { className: 'story-subtitle' },
         _subtitle
       );
     }
@@ -117,7 +92,7 @@ var StoryDecorator = function () {
     value: function info(_info) {
       return _react2.default.createElement(
         'div',
-        { style: storyStyles.info },
+        { className: 'story-info' },
         _info
       );
     }
@@ -126,10 +101,10 @@ var StoryDecorator = function () {
     value: function main(header, chapters) {
       return _react2.default.createElement(
         'div',
-        { style: storyStyles.story },
+        { className: 'story' },
         _react2.default.createElement(
           'div',
-          { style: storyStyles.header },
+          { className: 'story-header' },
           header
         ),
         chapters
