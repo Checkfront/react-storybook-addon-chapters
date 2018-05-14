@@ -315,7 +315,8 @@ export default class Section extends Component {
     return SectionDecorator.main(
       SectionDecorator.header(header),
       SectionDecorator.component(children),
-      SectionDecorator.additional(additional), useTheme
+      SectionDecorator.additional(additional),
+      useTheme
     );
   }
 }

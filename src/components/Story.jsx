@@ -87,7 +87,7 @@ export default class Story extends Component {
     );
 
     const renderedChapters = chapters.map((chapter, index) => (
-      <Chapter key={index} context={context} addonInfo={addonInfo} {...chapter} useTheme={useTheme} />
+      <Chapter key={index} context={context} addonInfo={addonInfo} useTheme={useTheme} {...chapter} />
     ));
 
     return StoryDecorator.main(header, renderedChapters, useTheme);

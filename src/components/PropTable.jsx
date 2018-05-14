@@ -70,23 +70,26 @@ export default class PropTable extends React.Component {
       return a.property > b.property;
     });
 
+    const thStyle = useTheme ? propTableStyles.propTableTh : {};
+    const tdStyle = useTheme ? propTableStyles.propTableTd : {};
+
     return (
       <table style={useTheme ? propTableStyles.propTable : {}} className="propTable">
         <thead>
           <tr>
-            <th style={useTheme ? propTableStyles.propTableTh : {}} className="propTable-th">Property</th>
-            <th style={useTheme ? propTableStyles.propTableTh : {}} className="propTable-th">PropType</th>
-            <th style={useTheme ? propTableStyles.propTableTh : {}} className="propTable-th">Required</th>
-            <th style={useTheme ? propTableStyles.propTableTh : {}} className="propTable-th">Default</th>
+            <th style={thStyle} className="propTable-th">Property</th>
+            <th style={thStyle} className="propTable-th">PropType</th>
+            <th style={thStyle} className="propTable-th">Required</th>
+            <th style={thStyle} className="propTable-th">Default</th>
           </tr>
         </thead>
         <tbody>
           {propsList.map(row => (
             <tr key={row.property}>
-              <td style={useTheme ? propTableStyles.propTableTd : {}} className="propTable-td">{row.property}</td>
-              <td style={useTheme ? propTableStyles.propTableTd : {}} className="propTable-td">{row.propType}</td>
-              <td style={useTheme ? propTableStyles.propTableTd : {}} className="propTable-td">{row.required}</td>
-              <td style={useTheme ? propTableStyles.propTableTd : {}} className="propTable-td">{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
+              <td style={tdStyle} className="propTable-td">{row.property}</td>
+              <td style={tdStyle} className="propTable-td">{row.propType}</td>
+              <td style={tdStyle} className="propTable-td">{row.required}</td>
+              <td style={tdStyle} className="propTable-td">{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
             </tr>
           ))}
         </tbody>
