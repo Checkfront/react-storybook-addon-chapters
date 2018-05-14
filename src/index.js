@@ -1,8 +1,13 @@
 import React from 'react';
-import Story from './components/Story';
+import Theme from './theme';
+import Story, { StoryDecorator, storyStyles } from './components/Story';
+import { ChapterDecorator, chapterStyles } from './components/Chapter';
+import { SectionDecorator, sectionStyles } from './components/Section';
+import { propTableStyles } from './components/PropTable';
 
-// export { StoryDecorator, ChapterDecorator, SectionDecorator };
-// export { storyStyles, chapterStyles, sectionStyles, propTableStyles };
+export { StoryDecorator, ChapterDecorator, SectionDecorator };
+export { storyStyles, chapterStyles, sectionStyles, propTableStyles };
+export { Theme };
 
 const defaultProps = {
   addonInfo: {
@@ -20,6 +25,7 @@ const defaultProps = {
     allowSourceToggling: true,
     showPropTables: false,
     allowPropTablesToggling: true,
+    useTheme: true,
   },
 };
 

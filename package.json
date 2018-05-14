@@ -45,7 +45,8 @@
     "prop-types": "^15.6.0",
     "react-dom": "^0.14.7 || ^16.2.0",
     "react-test-renderer": "^16.0.0-0",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "style-loader": "^0.21.0"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

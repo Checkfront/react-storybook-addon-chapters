@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
 import renderInfoContent from '../utils/info-content';
+import theme from '../theme';
 
 const propTypes = {
   context: PropTypes.object,
@@ -10,6 +11,7 @@ const propTypes = {
   info: PropTypes.string,
   sections: PropTypes.arrayOf(PropTypes.object),
   addonInfo: PropTypes.object,
+  useTheme: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -20,7 +22,7 @@ const defaultProps = {
   sections: [],
 };
 
-/* export const chapterStyles = {
+export const chapterStyles = {
   header: {
     marginBottom: 60,
   },
@@ -41,37 +43,37 @@ const defaultProps = {
     marginTop: 0,
   },
   info: theme.infoStyle,
-};*/
+};
 
 export class ChapterDecorator {
-  static title(title) {
+  static title(title, useTheme) {
     return (
-      <h3 className="chapter-h3">{title}</h3>
+      <h3 style={useTheme ? chapterStyles.title : {}} className="chapter-h3">{title}</h3>
     );
   }
 
-  static subtitle(subtitle) {
+  static subtitle(subtitle, useTheme) {
     return (
-      <span className="chapter-subtitle">{subtitle}</span>
+      <span style={useTheme ? chapterStyles.subTitle : {}} className="chapter-subtitle">{subtitle}</span>
     );
   }
 
-  static info(info) {
+  static info(info, useTheme) {
     return (
-      <div className="chapter-info">{info}</div>
+      <div style={useTheme ? chapterStyles.info : {}} className="chapter-info">{info}</div>
     );
   }
 
-  static ruler() {
+  static ruler(useTheme) {
     return (
-      <hr className="chatper-hr" />
+      <hr style={useTheme ? chapterStyles.hr : {}} className="chatper-hr" />
     );
   }
 
-  static main(header, sections) {
+  static main(header, sections, useTheme) {
     return (
       <div>
-        <div className="chapter-header">{header}</div>
+        <div style={useTheme ? chapterStyles.header : {}} className="chapter-header">{header}</div>
         {sections}
       </div>
     );
@@ -80,14 +82,14 @@ export class ChapterDecorator {
 
 export default class Chapter extends Component {
   render() {
-    const { context, title, subtitle, info, sections, addonInfo } = this.props;
+    const { context, title, subtitle, info, sections, addonInfo, useTheme } = this.props;
 
     const header = (
       <div>
-        {title && ChapterDecorator.title(title)}
-        {subtitle && ChapterDecorator.subtitle(subtitle)}
-        {(subtitle || info) && ChapterDecorator.ruler()}
-        {info && ChapterDecorator.subtitle(renderInfoContent(info))}
+        {title && ChapterDecorator.title(title, useTheme)}
+        {subtitle && ChapterDecorator.subtitle(subtitle, useTheme)}
+        {(subtitle || info) && ChapterDecorator.ruler(useTheme)}
+        {info && ChapterDecorator.subtitle(renderInfoContent(info, useTheme))}
       </div>
     );
 
@@ -102,13 +104,13 @@ export default class Chapter extends Component {
         addonInfo,
       };
       return (
-        <Section key={index} {...sectionProps}>
+        <Section key={index} {...sectionProps} useTheme={useTheme}>
           {section.sectionFn(context)}
         </Section>
       );
     });
 
-    return ChapterDecorator.main(header, renderedSections);
+    return ChapterDecorator.main(header, renderedSections, useTheme);
   }
 }
 

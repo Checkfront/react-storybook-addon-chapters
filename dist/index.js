@@ -22,6 +22,8 @@ var _Story = require('./components/Story');
 
 var _Story2 = _interopRequireDefault(_Story);
 
+require('./style.css');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // export { StoryDecorator, ChapterDecorator, SectionDecorator };
