@@ -6,6 +6,7 @@ storiesOf('Addon Chapters')
   .addWithChapters(
   'Story With Chapters',
   {
+    useTheme: false,
     subtitle: 'Display multiple components within one story!',
     info: `
         React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (**Chapters**) and subcategories (**Sections**) for more organizational goodness.

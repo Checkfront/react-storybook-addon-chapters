@@ -18,6 +18,7 @@ const propTypes = {
     PropTypes.array,
   ]),
   addonInfo: PropTypes.object,
+  useTheme: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -87,9 +88,9 @@ export const sectionStyles = {
 };
 
 export class SectionDecorator {
-  static main(header, component, additional) {
+  static main(header, component, additional, useTheme) {
     return (
-      <div style={sectionStyles.container}>
+      <div style={useTheme ? sectionStyles.container : {}} className="section-container">
         {header}
         {component}
         {additional}
@@ -97,29 +98,29 @@ export class SectionDecorator {
     );
   }
 
-  static header(header) {
+  static header(header, useTheme) {
     return (
-      <div style={sectionStyles.header}>
+      <div style={useTheme ? sectionStyles.header : {}} className="section-header">
         <div>{header}</div>
       </div>
     );
   }
 
-  static title(title) {
+  static title(title, useTheme) {
     return (
-      <h3 style={sectionStyles.title}>{title}</h3>
+      <h3 style={useTheme ? sectionStyles.title : {}} className="section-title">{title}</h3>
     );
   }
 
-  static subtitle(subtitle) {
+  static subtitle(subtitle, useTheme) {
     return (
-      <p style={sectionStyles.subtitle}>{subtitle}</p>
+      <p style={useTheme ? sectionStyles.subtitle : {}} className="section-subtitle">{subtitle}</p>
     );
   }
 
-  static component(component) {
+  static component(component, useTheme) {
     return (
-      <div style={sectionStyles.componentContainer}>
+      <div style={useTheme ? sectionStyles.componentContainer : {}} className="section-component-container">
         {component}
       </div>
     );
@@ -133,10 +134,10 @@ export class SectionDecorator {
     );
   }
 
-  static sourceCode(sourceCode) {
+  static sourceCode(sourceCode, useTheme) {
     return (
-      <div style={sectionStyles.subsection}>
-        <h4 style={sectionStyles.subsectionTitle}>Source</h4>
+      <div style={useTheme ? sectionStyles.subsection : {}} className="section-subsection">
+        <h4 style={useTheme ? sectionStyles.subsection.title : {}} className="section-subsection-title">Source</h4>
         <Pre>
           {sourceCode}
         </Pre>
@@ -144,25 +145,25 @@ export class SectionDecorator {
     );
   }
 
-  static propTables(propTables) {
+  static propTables(propTables, useTheme) {
     return (
-      <div style={sectionStyles.subsection}>
-        <h4 style={sectionStyles.subsectionTitle}>PropTypes</h4>
+      <div style={useTheme ? sectionStyles.subsection : {}} className="section-subsection">
+        <h4 style={useTheme ? sectionStyles.subsection.title : {}} className="section-subsection-title">PropTypes</h4>
         {propTables}
       </div>
     );
   }
 
-  static buttons(buttons) {
+  static buttons(buttons, useTheme) {
     return (
-      <div style={sectionStyles.buttonContainer}>{buttons}</div>
+      <div style={useTheme ? sectionStyles.buttonContainer : {}} className="section-button-container">{buttons}</div>
     );
   }
 
-  static info(infoContent) {
+  static info(infoContent, useTheme) {
     return (
-      <div style={sectionStyles.subsection}>
-        <div style={sectionStyles.info}>
+      <div style={useTheme ? sectionStyles.subsection : {}} className="section-subsection">
+        <div style={useTheme ? sectionStyles.info : {}} className="section-info">
           {infoContent}
         </div>
       </div>
@@ -180,17 +181,17 @@ export default class Section extends Component {
     };
   }
 
-  renderSourceCode() {
+  renderSourceCode(useTheme) {
     const addonInfo = this.props.addonInfo;
 
     const sourceCode = React.Children.map(this.props.children, (root, idx) => (
       <Node key={idx} depth={0} node={root} {...addonInfo} {...this.props} />
     ));
 
-    return SectionDecorator.sourceCode(sourceCode);
+    return SectionDecorator.sourceCode(sourceCode, useTheme);
   }
 
-  renderPropTables() {
+  renderPropTables(useTheme) {
     const components = new Map();
 
     if (!this.props.children) {
@@ -235,7 +236,7 @@ export default class Section extends Component {
       return (
         <div key={idx}>
           <h5>&lt;{component.displayName || component.name}&gt; Component</h5>
-          <PropTable component={component} />
+          <PropTable component={component} useTheme={useTheme} />
         </div>
       );
     });
@@ -244,17 +245,17 @@ export default class Section extends Component {
       return null;
     }
 
-    return SectionDecorator.propTables(propTables);
+    return SectionDecorator.propTables(propTables, useTheme);
   }
 
   render() {
-    const { title, subtitle, children, info, showSource, showPropTables } = this.props;
+    const { title, subtitle, children, info, showSource, showPropTables, useTheme } = this.props;
     const showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
 
     const header = (
       <div>
-        {title && SectionDecorator.title(title)}
-        {subtitle && SectionDecorator.subtitle(subtitle)}
+        {title && SectionDecorator.title(title, useTheme)}
+        {subtitle && SectionDecorator.subtitle(subtitle, useTheme)}
       </div>
     );
 
@@ -265,7 +266,17 @@ export default class Section extends Component {
           this.setState({
             isPropsTableShown: !this.state.isPropsTableShown,
           });
-        }} style={this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button}
+        }}
+        style={
+            useTheme
+            ? this.state.isPropsTableShown
+              ? sectionStyles['button-active']
+              : sectionStyles.button
+            : this.state.isPropsTableShown
+              ? sectionStyles['button-active']
+              : sectionStyles.button
+            }
+        className={this.state.isPropsTableShown ? 'button-active' : 'button'}
       >
         {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
         </button>,
@@ -276,7 +287,17 @@ export default class Section extends Component {
           this.setState({
             isSourceShown: !this.state.isSourceShown,
           });
-        }} style={this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button}
+        }}
+        style={
+          useTheme
+            ? this.state.isSourceShown
+              ? sectionStyles['button-active']
+              : sectionStyles.button
+            : this.state.isSourceShown
+              ? sectionStyles['button-active']
+              : sectionStyles.button
+            }
+        className={this.state.isSourceShown ? 'button-active' : 'button'}
       >
         {this.state.isSourceShown ? 'Hide' : 'Show'} Source
         </button>,
@@ -284,17 +305,18 @@ export default class Section extends Component {
 
     const additional = (
       <div>
-        {info && SectionDecorator.info(renderInfoContent(info))}
-        {showButtonsRow && SectionDecorator.buttons(buttons)}
-        {this.state.isSourceShown && this.renderSourceCode()}
-        {this.state.isPropsTableShown && this.renderPropTables()}
+        {info && SectionDecorator.info(renderInfoContent(info), useTheme)}
+        {showButtonsRow && SectionDecorator.buttons(buttons, useTheme)}
+        {this.state.isSourceShown && this.renderSourceCode(useTheme)}
+        {this.state.isPropsTableShown && this.renderPropTables(useTheme)}
       </div>
     );
 
     return SectionDecorator.main(
       SectionDecorator.header(header),
       SectionDecorator.component(children),
-      SectionDecorator.additional(additional)
+      SectionDecorator.additional(additional),
+      useTheme
     );
   }
 }
