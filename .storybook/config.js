@@ -1,6 +1,6 @@
 import React from 'react';
 import { configure, setAddon, addDecorator } from '@storybook/react';
-import chapterAddon from '../src/';
+import chapterAddon, { setDefaults } from '../src/';
 
 addDecorator((story) => (
   <div style={{padding: 20}}>

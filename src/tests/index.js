@@ -20,6 +20,7 @@ const DEFAULTS = {
     allowSourceToggling: true,
     showPropTables: false,
     allowPropTablesToggling: true,
+    useTheme: true,
   },
 };
 

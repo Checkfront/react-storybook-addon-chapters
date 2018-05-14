@@ -36,6 +36,15 @@ configure(function () {
   ...
 }, module);
 ```
+To turn off the default styles add:
+```js
+
+setDefaults({sectionOptions: {useTheme: false}});
+
+```
+
+All rendered components have a specified class.  With the 'useTheme' set to false you should have no problem styling your chapters.
+
 
 Then create your stories with the `.addWithChapters` API.
 

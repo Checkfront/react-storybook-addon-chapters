@@ -5,6 +5,7 @@ import theme from '../theme';
 
 const propTypes = {
   component: PropTypes.func,
+  useTheme: PropTypes.object,
 };
 
 const PropTypesMap = new Map();
@@ -34,7 +35,7 @@ export const propTableStyles = {
 
 export default class PropTable extends React.Component {
   render() {
-    const component = this.props.component;
+    const { component, useTheme } = this.props;
 
     if (!component) {
       return null;
@@ -69,23 +70,26 @@ export default class PropTable extends React.Component {
       return a.property > b.property;
     });
 
+    const thStyle = useTheme ? propTableStyles.propTableTh : {};
+    const tdStyle = useTheme ? propTableStyles.propTableTd : {};
+
     return (
-      <table style={propTableStyles.propTable}>
+      <table style={useTheme ? propTableStyles.propTable : {}} className="propTable">
         <thead>
           <tr>
-            <th style={propTableStyles.propTableTh}>Property</th>
-            <th style={propTableStyles.propTableTh}>PropType</th>
-            <th style={propTableStyles.propTableTh}>Required</th>
-            <th style={propTableStyles.propTableTh}>Default</th>
+            <th style={thStyle} className="propTable-th">Property</th>
+            <th style={thStyle} className="propTable-th">PropType</th>
+            <th style={thStyle} className="propTable-th">Required</th>
+            <th style={thStyle} className="propTable-th">Default</th>
           </tr>
         </thead>
         <tbody>
           {propsList.map(row => (
             <tr key={row.property}>
-              <td style={propTableStyles.propTableTd}>{row.property}</td>
-              <td style={propTableStyles.propTableTd}>{row.propType}</td>
-              <td style={propTableStyles.propTableTd}>{row.required}</td>
-              <td style={propTableStyles.propTableTd}>{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
+              <td style={tdStyle} className="propTable-td">{row.property}</td>
+              <td style={tdStyle} className="propTable-td">{row.propType}</td>
+              <td style={tdStyle} className="propTable-td">{row.required}</td>
+              <td style={tdStyle} className="propTable-td">{row.defaultValue === undefined ? '-' : <PropVal val={row.defaultValue} />}</td>
             </tr>
           ))}
         </tbody>

@@ -12,6 +12,7 @@ const propTypes = {
   info: PropTypes.string,
   chapters: PropTypes.arrayOf(PropTypes.object),
   addonInfo: PropTypes.object,
+  sectionOptions: PropTypes.object,
 };
 
 const defaultProps = {
@@ -44,28 +45,28 @@ export const storyStyles = {
 };
 
 export class StoryDecorator {
-  static title(title) {
+  static title(title, useTheme) {
     return (
-      <h1 style={storyStyles.title}>{title}</h1>
+      <h1 style={useTheme ? storyStyles.title : {}} className="story-title">{title}</h1>
     );
   }
 
-  static subtitle(subtitle) {
+  static subtitle(subtitle, useTheme) {
     return (
-      <span style={storyStyles.subtitle}>{subtitle}</span>
+      <span style={useTheme ? storyStyles.subtitle : {}} className="story-subtitle">{subtitle}</span>
     );
   }
 
-  static info(info) {
+  static info(info, useTheme) {
     return (
-      <div style={storyStyles.info}>{info}</div>
+      <div style={useTheme ? storyStyles.info : {}} className="story-info">{info}</div>
     );
   }
 
-  static main(header, chapters) {
+  static main(header, chapters, useTheme) {
     return (
-      <div style={storyStyles.story}>
-        <div style={storyStyles.header}>{header}</div>
+      <div style={useTheme ? storyStyles.story : {}} className="story">
+        <div style={useTheme ? storyStyles.info : {}} className="story-header">{header}</div>
         {chapters}
       </div>
     );
@@ -74,21 +75,22 @@ export class StoryDecorator {
 
 export default class Story extends Component {
   render() {
-    const { context, subtitle, title, info, chapters, addonInfo } = this.props;
+    const { context, subtitle, title, info, chapters, addonInfo, sectionOptions } = this.props;
+    const { useTheme } = sectionOptions;
 
     const header = (
       <div>
-        {title && StoryDecorator.title(title)}
-        {subtitle && StoryDecorator.subtitle(subtitle)}
-        {info && StoryDecorator.subtitle(renderInfoContent(info))}
+        {title && StoryDecorator.title(title, useTheme)}
+        {subtitle && StoryDecorator.subtitle(subtitle, useTheme)}
+        {info && StoryDecorator.subtitle(renderInfoContent(info, useTheme))}
       </div>
     );
 
     const renderedChapters = chapters.map((chapter, index) => (
-      <Chapter key={index} context={context} addonInfo={addonInfo} {...chapter} />
+      <Chapter key={index} context={context} addonInfo={addonInfo} useTheme={useTheme} {...chapter} />
     ));
 
-    return StoryDecorator.main(header, renderedChapters);
+    return StoryDecorator.main(header, renderedChapters, useTheme);
   }
 }
 

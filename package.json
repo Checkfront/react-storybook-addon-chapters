@@ -16,7 +16,6 @@
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9011",
-    "my-storybook": "start-storybook -p 9011 -c .my-storybook",
     "publish-storybook": "bash .scripts/publish_storybook.sh"
   },
   "devDependencies": {
@@ -37,6 +36,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.2.1",
+    "extract-text-webpack-plugin": "^3.0.2",
     "git-url-parse": "^6.0.1",
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
@@ -50,9 +50,9 @@
     "react": "^16.2.0"
   },
   "dependencies": {
-    "@storybook/addon-info": "^3.3.13",
-    "@storybook/components": "^3.3.13",
-    "@storybook/react": "^3.3.13",
+    "@storybook/addon-info": "^3.4",
+    "@storybook/components": "^3.4",
+    "@storybook/react": "^3.4",
     "babel-runtime": "^6.5.0",
     "marksy": "^2.0.0",
     "react": "^16.2.0",
