@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.propTableStyles = undefined;
 
 var _values = require('babel-runtime/core-js/object/values');
 
@@ -48,10 +49,15 @@ var _PropVal = require('@storybook/addon-info/dist/components/PropVal');
 
 var _PropVal2 = _interopRequireDefault(_PropVal);
 
+var _theme = require('../theme');
+
+var _theme2 = _interopRequireDefault(_theme);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var propTypes = {
-  component: _propTypes2.default.func
+  component: _propTypes2.default.func,
+  useTheme: _propTypes2.default.object
 };
 
 var PropTypesMap = new _map2.default();
@@ -62,22 +68,22 @@ var PropTypesMap = new _map2.default();
   PropTypesMap.set(type.isRequired, typeName);
 });
 
-/*  const padding = 10;
-export const propTableStyles = {
+var padding = 10;
+var propTableStyles = exports.propTableStyles = {
   propTable: {
     fontSize: 13,
     borderCollapse: 'collapse',
-    marginLeft: -10,
+    marginLeft: -10
   },
   propTableTh: {
-    color: theme.grayDarker,
-    padding,
+    color: _theme2.default.grayDarker,
+    padding: padding
   },
   propTableTd: {
-    borderTop: `1px solid ${theme.grayLight}`,
-    padding,
-  },
-};*/
+    borderTop: '1px solid ' + _theme2.default.grayLight,
+    padding: padding
+  }
+};
 
 var PropTable = function (_React$Component) {
   (0, _inherits3.default)(PropTable, _React$Component);
@@ -90,7 +96,10 @@ var PropTable = function (_React$Component) {
   (0, _createClass3.default)(PropTable, [{
     key: 'render',
     value: function render() {
-      var component = this.props.component;
+      var _props = this.props,
+          component = _props.component,
+          useTheme = _props.useTheme;
+
 
       if (!component) {
         return null;
@@ -131,7 +140,7 @@ var PropTable = function (_React$Component) {
 
       return _react2.default.createElement(
         'table',
-        { className: 'propTable' },
+        { style: useTheme ? propTableStyles.propTable : {}, className: 'propTable' },
         _react2.default.createElement(
           'thead',
           null,
@@ -140,22 +149,22 @@ var PropTable = function (_React$Component) {
             null,
             _react2.default.createElement(
               'th',
-              { className: 'propTable-th' },
+              { style: useTheme ? propTableStyles.propTableTh : {}, className: 'propTable-th' },
               'Property'
             ),
             _react2.default.createElement(
               'th',
-              { className: 'propTable-th' },
+              { style: useTheme ? propTableStyles.propTableTh : {}, className: 'propTable-th' },
               'PropType'
             ),
             _react2.default.createElement(
               'th',
-              { className: 'propTable-th' },
+              { style: useTheme ? propTableStyles.propTableTh : {}, className: 'propTable-th' },
               'Required'
             ),
             _react2.default.createElement(
               'th',
-              { className: 'propTable-th' },
+              { style: useTheme ? propTableStyles.propTableTh : {}, className: 'propTable-th' },
               'Default'
             )
           )
@@ -169,22 +178,22 @@ var PropTable = function (_React$Component) {
               { key: row.property },
               _react2.default.createElement(
                 'td',
-                { className: 'propTable-td' },
+                { style: useTheme ? propTableStyles.propTableTd : {}, className: 'propTable-td' },
                 row.property
               ),
               _react2.default.createElement(
                 'td',
-                { className: 'propTable-td' },
+                { style: useTheme ? propTableStyles.propTableTd : {}, className: 'propTable-td' },
                 row.propType
               ),
               _react2.default.createElement(
                 'td',
-                { className: 'propTable-td' },
+                { style: useTheme ? propTableStyles.propTableTd : {}, className: 'propTable-td' },
                 row.required
               ),
               _react2.default.createElement(
                 'td',
-                { className: 'propTable-td' },
+                { style: useTheme ? propTableStyles.propTableTd : {}, className: 'propTable-td' },
                 row.defaultValue === undefined ? '-' : _react2.default.createElement(_PropVal2.default, { val: row.defaultValue })
               )
             );

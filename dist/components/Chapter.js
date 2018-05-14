@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ChapterDecorator = undefined;
+exports.ChapterDecorator = exports.chapterStyles = undefined;
 
 var _extends2 = require('babel-runtime/helpers/extends');
 
@@ -45,6 +45,10 @@ var _infoContent = require('../utils/info-content');
 
 var _infoContent2 = _interopRequireDefault(_infoContent);
 
+var _theme = require('../theme');
+
+var _theme2 = _interopRequireDefault(_theme);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var propTypes = {
@@ -53,7 +57,8 @@ var propTypes = {
   subtitle: _propTypes2.default.string,
   info: _propTypes2.default.string,
   sections: _propTypes2.default.arrayOf(_propTypes2.default.object),
-  addonInfo: _propTypes2.default.object
+  addonInfo: _propTypes2.default.object,
+  useTheme: _propTypes2.default.bool
 };
 
 var defaultProps = {
@@ -64,28 +69,28 @@ var defaultProps = {
   sections: []
 };
 
-/* export const chapterStyles = {
+var chapterStyles = exports.chapterStyles = {
   header: {
-    marginBottom: 60,
+    marginBottom: 60
   },
   hr: {
     border: 'none',
-    backgroundColor: theme.border,
-    height: 1,
+    backgroundColor: _theme2.default.border,
+    height: 1
   },
   title: {
-    color: theme.grayDarkest,
+    color: _theme2.default.grayDarkest,
     fontSize: 24,
-    marginBottom: 10,
+    marginBottom: 10
   },
   subtitle: {
-    color: theme.grayDark,
+    color: _theme2.default.grayDark,
     fontSize: 16,
     marginBottom: 20,
-    marginTop: 0,
+    marginTop: 0
   },
-  info: theme.infoStyle,
-};*/
+  info: _theme2.default.infoStyle
+};
 
 var ChapterDecorator = function () {
   function ChapterDecorator() {
@@ -94,45 +99,45 @@ var ChapterDecorator = function () {
 
   (0, _createClass3.default)(ChapterDecorator, null, [{
     key: 'title',
-    value: function title(_title) {
+    value: function title(_title, useTheme) {
       return _react2.default.createElement(
         'h3',
-        { className: 'chapter-h3' },
+        { style: useTheme ? chapterStyles.title : {}, className: 'chapter-h3' },
         _title
       );
     }
   }, {
     key: 'subtitle',
-    value: function subtitle(_subtitle) {
+    value: function subtitle(_subtitle, useTheme) {
       return _react2.default.createElement(
         'span',
-        { className: 'chapter-subtitle' },
+        { style: useTheme ? chapterStyles.subTitle : {}, className: 'chapter-subtitle' },
         _subtitle
       );
     }
   }, {
     key: 'info',
-    value: function info(_info) {
+    value: function info(_info, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'chapter-info' },
+        { style: useTheme ? chapterStyles.info : {}, className: 'chapter-info' },
         _info
       );
     }
   }, {
     key: 'ruler',
-    value: function ruler() {
-      return _react2.default.createElement('hr', { className: 'chatper-hr' });
+    value: function ruler(useTheme) {
+      return _react2.default.createElement('hr', { style: useTheme ? chapterStyles.hr : {}, className: 'chatper-hr' });
     }
   }, {
     key: 'main',
-    value: function main(header, sections) {
+    value: function main(header, sections, useTheme) {
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'div',
-          { className: 'chapter-header' },
+          { style: useTheme ? chapterStyles.header : {}, className: 'chapter-header' },
           header
         ),
         sections
@@ -161,16 +166,17 @@ var Chapter = function (_Component) {
           subtitle = _props.subtitle,
           info = _props.info,
           sections = _props.sections,
-          addonInfo = _props.addonInfo;
+          addonInfo = _props.addonInfo,
+          useTheme = _props.useTheme;
 
 
       var header = _react2.default.createElement(
         'div',
         null,
-        title && ChapterDecorator.title(title),
-        subtitle && ChapterDecorator.subtitle(subtitle),
-        (subtitle || info) && ChapterDecorator.ruler(),
-        info && ChapterDecorator.subtitle((0, _infoContent2.default)(info))
+        title && ChapterDecorator.title(title, useTheme),
+        subtitle && ChapterDecorator.subtitle(subtitle, useTheme),
+        (subtitle || info) && ChapterDecorator.ruler(useTheme),
+        info && ChapterDecorator.subtitle((0, _infoContent2.default)(info, useTheme))
       );
 
       var renderedSections = sections.map(function (section, index) {
@@ -185,12 +191,12 @@ var Chapter = function (_Component) {
         });
         return _react2.default.createElement(
           _Section2.default,
-          (0, _extends3.default)({ key: index }, sectionProps),
+          (0, _extends3.default)({ key: index }, sectionProps, { useTheme: useTheme }),
           section.sectionFn(context)
         );
       });
 
-      return ChapterDecorator.main(header, renderedSections);
+      return ChapterDecorator.main(header, renderedSections, useTheme);
     }
   }]);
   return Chapter;

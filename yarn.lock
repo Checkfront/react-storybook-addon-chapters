@@ -17,7 +17,7 @@
     react-inspector "^2.2.2"
     uuid "^3.2.1"
 
-"@storybook/addon-info@^3.3.13":
+"@storybook/addon-info@^3.4":
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-3.4.4.tgz#cb3bea21ae2f17b4897bd0618bd053a4b05af55a"
   dependencies:
@@ -62,7 +62,7 @@
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-3.4.4.tgz#e76a457e7a19ba7a66fae9cce91bf52e6ece3f6e"
 
-"@storybook/components@3.4.4", "@storybook/components@^3.3.13":
+"@storybook/components@3.4.4", "@storybook/components@^3.4":
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-3.4.4.tgz#272bcbdb2ac28583de049f75352f9eec76835641"
   dependencies:
@@ -148,7 +148,7 @@
   dependencies:
     babel-runtime "^6.5.0"
 
-"@storybook/react@^3.3.13":
+"@storybook/react@^3.4":
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-3.4.4.tgz#53c9c8f50283ee9bdc8bfcb882cbf74b0658a4f1"
   dependencies:
@@ -6865,13 +6865,6 @@ strip-json-comments@~2.0.1:
 style-loader@^0.20.3:
   version "0.20.3"
   resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.20.3.tgz#ebef06b89dec491bcb1fdb3452e913a6fd1c10c4"
-  dependencies:
-    loader-utils "^1.1.0"
-    schema-utils "^0.4.5"
-
-style-loader@^0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.21.0.tgz#68c52e5eb2afc9ca92b6274be277ee59aea3a852"
   dependencies:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SectionDecorator = undefined;
+exports.SectionDecorator = exports.sectionStyles = exports.sectionButtonStyles = undefined;
 
 var _from = require('babel-runtime/core-js/array/from');
 
@@ -12,10 +12,6 @@ var _from2 = _interopRequireDefault(_from);
 var _map = require('babel-runtime/core-js/map');
 
 var _map2 = _interopRequireDefault(_map);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -36,6 +32,10 @@ var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _react = require('react');
 
@@ -59,6 +59,10 @@ var _infoContent = require('../utils/info-content');
 
 var _infoContent2 = _interopRequireDefault(_infoContent);
 
+var _theme = require('../theme');
+
+var _theme2 = _interopRequireDefault(_theme);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var propTypes = {
@@ -69,7 +73,8 @@ var propTypes = {
   showPropTables: _propTypes2.default.bool,
   propTables: _propTypes2.default.arrayOf(_propTypes2.default.func),
   children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  addonInfo: _propTypes2.default.object
+  addonInfo: _propTypes2.default.object,
+  useTheme: _propTypes2.default.bool
 };
 
 var defaultProps = {
@@ -83,60 +88,59 @@ var defaultProps = {
   allowPropTablesToggling: true
 };
 
-/* export const sectionButtonStyles = {
+var sectionButtonStyles = exports.sectionButtonStyles = {
   backgroundColor: 'transparent',
-  border: `1px solid ${theme.gray}`,
+  border: '1px solid ' + _theme2.default.gray,
   borderRadius: 3,
-  color: theme.grayDark,
+  color: _theme2.default.grayDark,
   cursor: 'pointer',
   float: 'right',
   marginLeft: 5,
-  padding: '5px 10px',
+  padding: '5px 10px'
 
 };
 
-export const sectionStyles = {
+var sectionStyles = exports.sectionStyles = {
   container: {
-    marginBottom: 100,
+    marginBottom: 100
   },
   header: {
-    marginBottom: 60,
+    marginBottom: 60
   },
   title: {
-    color: theme.grayDarkest,
+    color: _theme2.default.grayDarkest,
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 10
   },
   subtitle: {
-    color: theme.grayDark,
+    color: _theme2.default.grayDark,
     fontSize: 14,
     marginBottom: 20,
-    marginTop: 0,
+    marginTop: 0
   },
   buttonContainer: {
-    height: 15,
+    height: 15
   },
   button: sectionButtonStyles,
-  'button-active': {
-    ...sectionButtonStyles,
-    backgroundColor: theme.grayLight,
-    borderColor: theme.grayLight,
-    color: theme.grayDark,
-  },
-  info: theme.infoStyle,
+  'button-active': (0, _extends3.default)({}, sectionButtonStyles, {
+    backgroundColor: _theme2.default.grayLight,
+    borderColor: _theme2.default.grayLight,
+    color: _theme2.default.grayDark
+  }),
+  info: _theme2.default.infoStyle,
   componentContainer: {
-    marginBottom: 60,
+    marginBottom: 60
   },
   subsection: {
-    marginBottom: 60,
+    marginBottom: 60
   },
   subsectionTitle: {
-    color: theme.grayDark,
+    color: _theme2.default.grayDark,
     fontSize: 12,
     letterSpacing: 2,
-    textTransform: 'uppercase',
-  },
-};*/
+    textTransform: 'uppercase'
+  }
+};
 
 var SectionDecorator = function () {
   function SectionDecorator() {
@@ -145,10 +149,10 @@ var SectionDecorator = function () {
 
   (0, _createClass3.default)(SectionDecorator, null, [{
     key: 'main',
-    value: function main(header, component, additional) {
+    value: function main(header, component, additional, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-container' },
+        { style: useTheme ? sectionStyles.container : {}, className: 'section-container' },
         header,
         component,
         additional
@@ -156,10 +160,10 @@ var SectionDecorator = function () {
     }
   }, {
     key: 'header',
-    value: function header(_header) {
+    value: function header(_header, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-header' },
+        { style: useTheme ? sectionStyles.header : {}, className: 'section-header' },
         _react2.default.createElement(
           'div',
           null,
@@ -169,28 +173,28 @@ var SectionDecorator = function () {
     }
   }, {
     key: 'title',
-    value: function title(_title) {
+    value: function title(_title, useTheme) {
       return _react2.default.createElement(
         'h3',
-        { className: 'section-title' },
+        { style: useTheme ? sectionStyles.title : {}, className: 'section-title' },
         _title
       );
     }
   }, {
     key: 'subtitle',
-    value: function subtitle(_subtitle) {
+    value: function subtitle(_subtitle, useTheme) {
       return _react2.default.createElement(
         'p',
-        { className: 'section-subtitle' },
+        { style: useTheme ? sectionStyles.subtitle : {}, className: 'section-subtitle' },
         _subtitle
       );
     }
   }, {
     key: 'component',
-    value: function component(_component) {
+    value: function component(_component, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-component-container' },
+        { style: useTheme ? sectionStyles.componentContainer : {}, className: 'section-component-container' },
         _component
       );
     }
@@ -209,13 +213,13 @@ var SectionDecorator = function () {
     }
   }, {
     key: 'sourceCode',
-    value: function sourceCode(_sourceCode) {
+    value: function sourceCode(_sourceCode, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-subsection' },
+        { style: useTheme ? sectionStyles.subsection : {}, className: 'section-subsection' },
         _react2.default.createElement(
           'h4',
-          { className: 'section-subsection-title' },
+          { style: useTheme ? sectionStyles.subsection.title : {}, className: 'section-subsection-title' },
           'Source'
         ),
         _react2.default.createElement(
@@ -227,13 +231,13 @@ var SectionDecorator = function () {
     }
   }, {
     key: 'propTables',
-    value: function propTables(_propTables) {
+    value: function propTables(_propTables, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-subsection' },
+        { style: useTheme ? sectionStyles.subsection : {}, className: 'section-subsection' },
         _react2.default.createElement(
           'h4',
-          { className: 'section-subsection-title' },
+          { style: useTheme ? sectionStyles.subsection.title : {}, className: 'section-subsection-title' },
           'PropTypes'
         ),
         _propTables
@@ -241,22 +245,22 @@ var SectionDecorator = function () {
     }
   }, {
     key: 'buttons',
-    value: function buttons(_buttons) {
+    value: function buttons(_buttons, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-button-container' },
+        { style: useTheme ? sectionStyles.buttonContainer : {}, className: 'section-button-container' },
         _buttons
       );
     }
   }, {
     key: 'info',
-    value: function info(infoContent) {
+    value: function info(infoContent, useTheme) {
       return _react2.default.createElement(
         'div',
-        { className: 'section-subsection' },
+        { style: useTheme ? sectionStyles.subsection : {}, className: 'section-subsection' },
         _react2.default.createElement(
           'div',
-          { className: 'seciont-info' },
+          { style: useTheme ? sectionStyles.info : {}, className: 'section-info' },
           infoContent
         )
       );
@@ -284,7 +288,7 @@ var Section = function (_Component) {
 
   (0, _createClass3.default)(Section, [{
     key: 'renderSourceCode',
-    value: function renderSourceCode() {
+    value: function renderSourceCode(useTheme) {
       var _this2 = this;
 
       var addonInfo = this.props.addonInfo;
@@ -293,11 +297,11 @@ var Section = function (_Component) {
         return _react2.default.createElement(_Node2.default, (0, _extends3.default)({ key: idx, depth: 0, node: root }, addonInfo, _this2.props));
       });
 
-      return SectionDecorator.sourceCode(sourceCode);
+      return SectionDecorator.sourceCode(sourceCode, useTheme);
     }
   }, {
     key: 'renderPropTables',
-    value: function renderPropTables() {
+    value: function renderPropTables(useTheme) {
       var components = new _map2.default();
 
       if (!this.props.children) {
@@ -349,7 +353,7 @@ var Section = function (_Component) {
             component.displayName || component.name,
             '> Component'
           ),
-          _react2.default.createElement(_PropTable2.default, { component: component })
+          _react2.default.createElement(_PropTable2.default, { component: component, useTheme: useTheme })
         );
       });
 
@@ -357,7 +361,7 @@ var Section = function (_Component) {
         return null;
       }
 
-      return SectionDecorator.propTables(propTables);
+      return SectionDecorator.propTables(propTables, useTheme);
     }
   }, {
     key: 'render',
@@ -370,15 +374,16 @@ var Section = function (_Component) {
           children = _props.children,
           info = _props.info,
           showSource = _props.showSource,
-          showPropTables = _props.showPropTables;
+          showPropTables = _props.showPropTables,
+          useTheme = _props.useTheme;
 
       var showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
 
       var header = _react2.default.createElement(
         'div',
         null,
-        title && SectionDecorator.title(title),
-        subtitle && SectionDecorator.subtitle(subtitle)
+        title && SectionDecorator.title(title, useTheme),
+        subtitle && SectionDecorator.subtitle(subtitle, useTheme)
       );
 
       var buttons = [this.props.allowPropTablesToggling && _react2.default.createElement(
@@ -388,7 +393,9 @@ var Section = function (_Component) {
             _this3.setState({
               isPropsTableShown: !_this3.state.isPropsTableShown
             });
-          }, className: this.state.isPropsTableShown ? 'button-active' : 'button'
+          },
+          style: useTheme ? this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button : this.state.isPropsTableShown ? sectionStyles['button-active'] : sectionStyles.button,
+          className: this.state.isPropsTableShown ? 'button-active' : 'button'
         },
         this.state.isPropsTableShown ? 'Hide' : 'Show',
         ' Props Table'
@@ -399,7 +406,9 @@ var Section = function (_Component) {
             _this3.setState({
               isSourceShown: !_this3.state.isSourceShown
             });
-          }, className: this.state.isSourceShown ? 'button-active' : 'button'
+          },
+          style: useTheme ? this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button : this.state.isSourceShown ? sectionStyles['button-active'] : sectionStyles.button,
+          className: this.state.isSourceShown ? 'button-active' : 'button'
         },
         this.state.isSourceShown ? 'Hide' : 'Show',
         ' Source'
@@ -408,13 +417,13 @@ var Section = function (_Component) {
       var additional = _react2.default.createElement(
         'div',
         null,
-        info && SectionDecorator.info((0, _infoContent2.default)(info)),
-        showButtonsRow && SectionDecorator.buttons(buttons),
-        this.state.isSourceShown && this.renderSourceCode(),
-        this.state.isPropsTableShown && this.renderPropTables()
+        info && SectionDecorator.info((0, _infoContent2.default)(info), useTheme),
+        showButtonsRow && SectionDecorator.buttons(buttons, useTheme),
+        this.state.isSourceShown && this.renderSourceCode(useTheme),
+        this.state.isPropsTableShown && this.renderPropTables(useTheme)
       );
 
-      return SectionDecorator.main(SectionDecorator.header(header), SectionDecorator.component(children), SectionDecorator.additional(additional));
+      return SectionDecorator.main(SectionDecorator.header(header), SectionDecorator.component(children), SectionDecorator.additional(additional), useTheme);
     }
   }]);
   return Section;

@@ -10,8 +10,6 @@ addDecorator((story) => (
 
 setAddon(chapterAddon);
 
-//setDefaults({sectionOptions: {useTheme: false}});
-
 configure(function () {
   require('../example/story');
 }, module);
