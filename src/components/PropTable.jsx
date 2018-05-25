@@ -5,7 +5,7 @@ import theme from '../theme';
 
 const propTypes = {
   component: PropTypes.func,
-  useTheme: PropTypes.object,
+  useTheme: PropTypes.bool,
 };
 
 const PropTypesMap = new Map();
