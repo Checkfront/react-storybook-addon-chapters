@@ -71,7 +71,7 @@ storiesOf('Addon Chapters')
               title: <Optional section title>,
               subtitle: <Optional section subtitle>,
               info: <Optional section info>,
-              sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }/>),
+              sectionFn: () => (<Button label="My Button" onClick={() => { alert('Hello World!'); }}/>),
               options: {
                 showSource: true,
                 allowSourceToggling: true,
