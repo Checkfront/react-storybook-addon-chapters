@@ -26,6 +26,7 @@ const defaultProps = {
     showPropTables: false,
     allowPropTablesToggling: true,
     useTheme: true,
+    decorator: false,
   },
 };
 

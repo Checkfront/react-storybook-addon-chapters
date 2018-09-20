@@ -21,6 +21,7 @@ const DEFAULTS = {
     showPropTables: false,
     allowPropTablesToggling: true,
     useTheme: true,
+    decorator: false,
   },
 };
 
