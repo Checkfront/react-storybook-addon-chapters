@@ -152,3 +152,51 @@ storiesOf('Addon Chapters')
   }
   );
 
+const decorator = story => (
+  <div
+    style={{
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      display: 'inline-block',
+      padding: '10px',
+    }}
+  >
+    {story()}
+  </div>
+);
+
+storiesOf('Addon Chapters')
+  .addWithChapters(
+  'Story With Decorators',
+  {
+    info: `
+      If you don't require displaying of the chapter information, simply use only one chapter with your list of sections and omit the chapter-related parameters.
+      You'll end up with just a list of rendered sections. Refer to the example in **example/story.js**.
+    `,
+    chapters: [
+      {
+        sections: [
+          {
+            title: 'Section Title',
+            subtitle: 'Section Subtitle',
+            info: `
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            `,
+            sectionFn: () => (<Button label="My Button" onClick={() => { }} />),
+            options: {
+              decorator,
+            },
+          },
+          {
+            title: 'Section Title Again',
+            subtitle: 'Section Subtitle Again',
+            sectionFn: () => (<Button label="My Button Again" onClick={() => { }} />),
+            options: {
+              decorator,
+            },
+          },
+        ],
+      },
+    ],
+  }
+  );
+

@@ -118,10 +118,15 @@ export class SectionDecorator {
     );
   }
 
-  static component(component, useTheme) {
+  static component(component, useTheme, decorator) {
+    const decoratedComponent = decorator ? decorator(() => component) : component;
+
     return (
-      <div style={useTheme ? sectionStyles.componentContainer : {}} className="section-component-container">
-        {component}
+      <div
+        style={useTheme ? sectionStyles.componentContainer : {}}
+        className="section-component-container"
+      >
+        {decoratedComponent}
       </div>
     );
   }
@@ -249,7 +254,7 @@ export default class Section extends Component {
   }
 
   render() {
-    const { title, subtitle, children, info, showSource, showPropTables, useTheme } = this.props;
+    const { title, subtitle, children, info, showSource, showPropTables, useTheme, decorator } = this.props;
     const showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
 
     const header = (
@@ -314,7 +319,7 @@ export default class Section extends Component {
 
     return SectionDecorator.main(
       SectionDecorator.header(header),
-      SectionDecorator.component(children),
+      SectionDecorator.component(children, useTheme, decorator),
       SectionDecorator.additional(additional),
       useTheme
     );

@@ -106,6 +106,7 @@ setDefaults({
     allowSourceToggling: true,
     showPropTables: false,
     allowPropTablesToggling: true,
+    decorator: story => (<div>{story()}</div>),
   }
 });
 setAddon(chaptersAddon);
@@ -147,6 +148,7 @@ configure(function () {
 | options.allowSourceToggling | Allow showing/hiding of the component's source | Boolean | True |
 | options.showPropTables | Display the component's propTypes | Boolean | False |
 | options.allowPropTablesToggling | Allow showing/hiding of the component's propTypes | Boolean | True |
+| options.decorator | An optional decorator function that will be used for rendering the component in section | Function | - |
 
 ## The FAQ
 
