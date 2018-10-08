@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Button from './Button';
 
-storiesOf('Addon Chapters')
+storiesOf('Addon Chapters', module)
   .addWithChapters(
   'Story With Chapters',
   {
@@ -164,7 +164,7 @@ const decorator = story => (
   </div>
 );
 
-storiesOf('Addon Chapters')
+storiesOf('Addon Chapters', module)
   .addWithChapters(
   'Story With Decorators',
   {
