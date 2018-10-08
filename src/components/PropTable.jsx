@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PropVal from '@storybook/addon-info/dist/components/PropVal';
 import theme from '../theme';
@@ -33,7 +33,7 @@ export const propTableStyles = {
   },
 };
 
-export default class PropTable extends React.Component {
+export default class PropTable extends Component {
   render() {
     const { component, useTheme } = this.props;
 
