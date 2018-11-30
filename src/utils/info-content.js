@@ -1,6 +1,6 @@
 import React from 'react';
 import marksy from 'marksy';
-import { H1, H2, H3, H4, H5, H6, Code, UL, A, LI } from '@storybook/addon-info/dist/components/markdown';
+import { H1, H2, H3, H4, H5, H6, Code, UL, A, LI, P } from '@storybook/addon-info/dist/components/markdown';
 
 
 const defaultMarksyConf = {
@@ -12,13 +12,13 @@ const defaultMarksyConf = {
   h6: H6,
   code: Code,
   a: A,
+  p: P,
   li: LI,
   ul: UL,
 };
 
 export default function renderInfoContent(content) {
-  const marksyConf = { ...defaultMarksyConf };
-  const markdownInfo = marksy(marksyConf, content);
+  const markdownInfo = marksy(defaultMarksyConf, content);
 
   if (!content || content === '' || typeof content !== 'string') {
     return null;

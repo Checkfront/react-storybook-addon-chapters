@@ -82,7 +82,7 @@ export default class Story extends Component {
       <div>
         {title && StoryDecorator.title(title, useTheme)}
         {subtitle && StoryDecorator.subtitle(subtitle, useTheme)}
-        {info && StoryDecorator.subtitle(renderInfoContent(info, useTheme))}
+        {info && StoryDecorator.subtitle(renderInfoContent(info), useTheme)}
       </div>
     );
 

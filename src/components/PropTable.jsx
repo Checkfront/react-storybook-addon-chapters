@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PropVal from '@storybook/addon-info/dist/components/PropVal';
+import PropVal from '@storybook/addon-info';
 import theme from '../theme';
 
 const propTypes = {
@@ -20,7 +20,6 @@ const padding = 10;
 export const propTableStyles = {
   propTable: {
     fontSize: 13,
-    borderCollapse: 'collapse',
     marginLeft: -10,
   },
   propTableTh: {

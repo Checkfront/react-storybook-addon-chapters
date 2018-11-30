@@ -9,17 +9,12 @@ const updateConfig = require('./user/modify_webpack_config');
 
 const config = {
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css?$/,
         loaders: ['style', 'raw'],
         include: path.resolve(__dirname, '../'),
       },
-      {
-        test: /\.json?$/,
-        loaders: ['json'],
-        include: path.resolve(__dirname, '../'),
-      }
     ],
   },
 };

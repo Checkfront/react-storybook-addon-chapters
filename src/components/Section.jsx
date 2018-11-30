@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Node from '@storybook/addon-info/dist/components/Node';
-import { Pre } from '@storybook/addon-info/dist/components/markdown';
+import { Node, Pre } from '@storybook/addon-info';
 import PropTable from './PropTable';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
