@@ -12,20 +12,20 @@ const styles = {
 };
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
   label: 'Button Label',
-  style: {},
   disabled: false,
 };
 
 function Button({ disabled, label, onClick }) {
   return (
     <button
+      type="button"
       disabled={disabled}
       onClick={onClick}
       style={styles}

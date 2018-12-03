@@ -6,7 +6,9 @@ import { SectionDecorator, sectionStyles } from './components/Section';
 import { propTableStyles } from './components/PropTable';
 
 export { StoryDecorator, ChapterDecorator, SectionDecorator };
-export { storyStyles, chapterStyles, sectionStyles, propTableStyles };
+export {
+  storyStyles, chapterStyles, sectionStyles, propTableStyles,
+};
 export { Theme };
 
 const defaultProps = {
@@ -34,8 +36,8 @@ export default {
   addWithChapters(storyName, storyContentOrFn = {}) {
     return this.add(storyName, (context) => {
       const storyContent = typeof storyContentOrFn === 'function'
-          ? storyContentOrFn()
-          : storyContentOrFn;
+        ? storyContentOrFn()
+        : storyContentOrFn;
 
       (storyContent.chapters || []).forEach((chapter) => {
         (chapter.sections || []).forEach((section) => {

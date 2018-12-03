@@ -1,6 +1,8 @@
 import React from 'react';
 import marksy from 'marksy';
-import { H1, H2, H3, H4, H5, H6, Code, UL, A, LI, P } from '@storybook/addon-info/dist/components/markdown';
+import {
+  H1, H2, H3, H4, H5, H6, Code, UL, A, LI, P,
+} from '@storybook/addon-info/dist/components/markdown';
 
 
 const defaultMarksyConf = {

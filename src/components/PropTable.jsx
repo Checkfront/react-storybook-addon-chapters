@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PropVal from '@storybook/addon-info';
+import PropVal from './PropVal';
 import theme from '../theme';
 
 const propTypes = {
   component: PropTypes.func,
   useTheme: PropTypes.bool,
+};
+
+const defaultProps = {
+  useTheme: false,
+  component: {},
 };
 
 const PropTypesMap = new Map();
@@ -62,6 +67,7 @@ export default class PropTable extends Component {
     }
 
     const propsList = Object.values(props);
+
     if (!propsList.length) {
       return <small>No propTypes defined!</small>;
     }
@@ -99,3 +105,4 @@ export default class PropTable extends Component {
 
 PropTable.displayName = 'PropTable';
 PropTable.propTypes = propTypes;
+PropTable.defaultProps = defaultProps;
