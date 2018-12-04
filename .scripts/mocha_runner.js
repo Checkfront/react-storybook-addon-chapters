@@ -8,8 +8,7 @@ require('@babel/register');
 require('@babel/polyfill');
 
 // Add jsdom support, which is required for enzyme.
-var jsdom = require('jsdom');
-const { JSDOM } = jsdom;
+const { JSDOM } = require('jsdom');
 
 const { document } = (new JSDOM('', { url: 'http://localhost:9011'})).window;
 

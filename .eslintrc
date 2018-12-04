@@ -13,6 +13,6 @@
     "import/named": 0
   },
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 9
   }
 }
