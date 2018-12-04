@@ -11,7 +11,7 @@ const propTypes = {
   info: PropTypes.string,
   showSource: PropTypes.bool,
   showPropTables: PropTypes.bool,
-  propTables: PropTypes.arrayOf(PropTypes.func).isRequired,
+  propTables: PropTypes.arrayOf(PropTypes.func),
   children: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
