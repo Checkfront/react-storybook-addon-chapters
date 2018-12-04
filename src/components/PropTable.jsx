@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PropVal from './PropVal';
+import PropVal from '@storybook/addon-info/dist/components/Node';
 import theme from '../theme';
 
 const propTypes = {
