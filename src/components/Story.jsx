@@ -75,19 +75,21 @@ export class StoryDecorator {
 
 export default class Story extends Component {
   render() {
-    const { context, subtitle, title, info, chapters, addonInfo, sectionOptions } = this.props;
+    const {
+      context, subtitle, title, info, chapters, addonInfo, sectionOptions,
+    } = this.props;
     const { useTheme } = sectionOptions;
 
     const header = (
       <div>
         {title && StoryDecorator.title(title, useTheme)}
         {subtitle && StoryDecorator.subtitle(subtitle, useTheme)}
-        {info && StoryDecorator.subtitle(renderInfoContent(info, useTheme))}
+        {info && StoryDecorator.subtitle(renderInfoContent(info), useTheme)}
       </div>
     );
 
-    const renderedChapters = chapters.map((chapter, index) => (
-      <Chapter key={index} context={context} addonInfo={addonInfo} useTheme={useTheme} {...chapter} />
+    const renderedChapters = chapters.map((chapter, i) => (
+      <Chapter key={i} context={context} addonInfo={addonInfo} useTheme={useTheme} {...chapter} />
     ));
 
     return StoryDecorator.main(header, renderedChapters, useTheme);

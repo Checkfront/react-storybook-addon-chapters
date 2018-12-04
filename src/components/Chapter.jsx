@@ -89,7 +89,7 @@ export default class Chapter extends Component {
         {title && ChapterDecorator.title(title, useTheme)}
         {subtitle && ChapterDecorator.subtitle(subtitle, useTheme)}
         {(subtitle || info) && ChapterDecorator.ruler(useTheme)}
-        {info && ChapterDecorator.subtitle(renderInfoContent(info, useTheme))}
+        {info && ChapterDecorator.subtitle(renderInfoContent(info), useTheme)}
       </div>
     );
 

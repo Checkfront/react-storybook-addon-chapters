@@ -4,15 +4,17 @@
 // Do not modify this file.
 // Use `.scripts/user/pretest.js instead`.
 
-require('babel-core/register');
-require('babel-polyfill');
+require('@babel/register');
+require('@babel/polyfill');
 
 // Add jsdom support, which is required for enzyme.
-var jsdom = require('jsdom').jsdom;
+const { JSDOM } = require('jsdom');
+
+const { document } = (new JSDOM('', { url: 'http://localhost:9011'})).window;
 
 var exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = jsdom('');
+global.document = document;
 global.window = document.defaultView;
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {

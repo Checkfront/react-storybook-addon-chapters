@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Node from '@storybook/addon-info/dist/components/Node';
-import { Pre } from '@storybook/addon-info/dist/components/markdown';
 import PropTable from './PropTable';
+import Node from '@storybook/addon-info/dist/components/Node';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
@@ -16,13 +15,14 @@ const propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
-  ]),
-  addonInfo: PropTypes.object,
+  ]).isRequired,
+  allowSourceToggling: PropTypes.bool,
+  allowPropTablesToggling: PropTypes.bool,
+  addonInfo: PropTypes.object.isRequired,
   useTheme: PropTypes.bool,
 };
 
 const defaultProps = {
-  context: {},
   title: '',
   subtitle: '',
   info: '',
@@ -30,6 +30,7 @@ const defaultProps = {
   allowSourceToggling: true,
   showPropTables: false,
   allowPropTablesToggling: true,
+  useTheme: false,
 };
 
 export const sectionButtonStyles = {
@@ -84,6 +85,14 @@ export const sectionStyles = {
     fontSize: 12,
     letterSpacing: 2,
     textTransform: 'uppercase',
+  },
+  pre: {
+    fontSize: '.88em',
+    fontFamily: 'Menlo, Monaco, "Courier New", monospace',
+    backgroundColor: 'rgb(250, 250, 250)',
+    padding: '0.5rem',
+    lineHeight: '1.5',
+    overflowX: 'scroll',
   },
 };
 
@@ -143,9 +152,9 @@ export class SectionDecorator {
     return (
       <div style={useTheme ? sectionStyles.subsection : {}} className="section-subsection">
         <h4 style={useTheme ? sectionStyles.subsection.title : {}} className="section-subsection-title">Source</h4>
-        <Pre>
+        <pre style={useTheme ? sectionStyles.pre : {}} className="section-pre">
           {sourceCode}
-        </Pre>
+        </pre>
       </div>
     );
   }
@@ -187,9 +196,9 @@ export default class Section extends Component {
   }
 
   renderSourceCode(useTheme) {
-    const addonInfo = this.props.addonInfo;
+    const { addonInfo, children } = this.props;
 
-    const sourceCode = React.Children.map(this.props.children, (root, idx) => (
+    const sourceCode = React.Children.map(children, (root, idx) => (
       <Node key={idx} depth={0} node={root} {...addonInfo} {...this.props} />
     ));
 
@@ -197,20 +206,21 @@ export default class Section extends Component {
   }
 
   renderPropTables(useTheme) {
+    const { children, propTables } = this.props;
     const components = new Map();
 
-    if (!this.props.children) {
+    if (!children) {
       return null;
     }
 
-    if (this.props.propTables) {
-      this.props.propTables.forEach(function (component) {
+    if (propTables) {
+      propTables.forEach(function (component) {
         components.set(component, true);
       });
     }
 
     // Depth-first traverse and collect components.
-    function extract(children) {
+    function extract() {
       if (!children) {
         return;
       }
@@ -230,23 +240,27 @@ export default class Section extends Component {
     }
 
     // Extract components from children.
-    extract(this.props.children);
+    extract();
 
     const componentsList = Array.from(components.keys());
     componentsList.sort(function (a, b) {
       return (a.displayName || a.name) > (b.displayName || b.name);
     });
 
-    const propTables = componentsList.map(function (component, idx) {
+    const newPropTables = componentsList.map(function (component, i) {
       return (
-        <div key={idx}>
-          <h5>&lt;{component.displayName || component.name}&gt; Component</h5>
+        <div key={i}>
+          <h5>
+&lt;
+            {component.displayName || component.name}
+&gt; Component
+          </h5>
           <PropTable component={component} useTheme={useTheme} />
         </div>
       );
     });
 
-    if (!propTables || propTables.length === 0) {
+    if (!newPropTables || newPropTables.length === 0) {
       return null;
     }
 
@@ -254,8 +268,12 @@ export default class Section extends Component {
   }
 
   render() {
-    const { title, subtitle, children, info, showSource, showPropTables, useTheme, decorator } = this.props;
-    const showButtonsRow = this.props.allowPropTablesToggling || this.props.allowSourceToggling;
+    const {
+      title, subtitle, children, info, allowPropTablesToggling, allowSourceToggling, useTheme, decorator,
+    } = this.props;
+    const showButtonsRow = allowPropTablesToggling || allowSourceToggling;
+
+    const { isPropsTableShown, isSourceShown } = this.state;
 
     const header = (
       <div>
@@ -265,55 +283,67 @@ export default class Section extends Component {
     );
 
     const buttons = [
-      this.props.allowPropTablesToggling &&
+      allowPropTablesToggling
+      && (
       <button
-        key="allowPropTablesToggling" onClick={() => {
+        type="button"
+        key="allowPropTablesToggling"
+        onClick={() => {
           this.setState({
             isPropsTableShown: !this.state.isPropsTableShown,
           });
         }}
         style={
             useTheme
-            ? this.state.isPropsTableShown
-              ? sectionStyles['button-active']
-              : sectionStyles.button
-            : this.state.isPropsTableShown
-              ? sectionStyles['button-active']
-              : sectionStyles.button
+              ? isPropsTableShown
+                ? sectionStyles['button-active']
+                : sectionStyles.button
+              : isPropsTableShown
+                ? sectionStyles['button-active']
+                : sectionStyles.button
             }
-        className={this.state.isPropsTableShown ? 'button-active' : 'button'}
+        className={isPropsTableShown ? 'button-active' : 'button'}
       >
-        {this.state.isPropsTableShown ? 'Hide' : 'Show'} Props Table
-        </button>,
+        {isPropsTableShown ? 'Hide' : 'Show'}
+        {' '}
+Props Table
+      </button>
+      ),
 
-      this.props.allowSourceToggling &&
+      allowSourceToggling
+      && (
       <button
-        key="allowSourceToggling" onClick={() => {
+        type="button"
+        key="allowSourceToggling"
+        onClick={() => {
           this.setState({
-            isSourceShown: !this.state.isSourceShown,
+            isSourceShown: !isSourceShown,
           });
         }}
         style={
           useTheme
-            ? this.state.isSourceShown
+            ? isSourceShown
               ? sectionStyles['button-active']
               : sectionStyles.button
-            : this.state.isSourceShown
+            : isSourceShown
               ? sectionStyles['button-active']
               : sectionStyles.button
             }
-        className={this.state.isSourceShown ? 'button-active' : 'button'}
+        className={isSourceShown ? 'button-active' : 'button'}
       >
-        {this.state.isSourceShown ? 'Hide' : 'Show'} Source
-        </button>,
+        {isSourceShown ? 'Hide' : 'Show'}
+        {' '}
+Source
+      </button>
+      ),
     ];
 
     const additional = (
       <div>
         {info && SectionDecorator.info(renderInfoContent(info), useTheme)}
         {showButtonsRow && SectionDecorator.buttons(buttons, useTheme)}
-        {this.state.isSourceShown && this.renderSourceCode(useTheme)}
-        {this.state.isPropsTableShown && this.renderPropTables(useTheme)}
+        {isSourceShown && this.renderSourceCode(useTheme)}
+        {isPropsTableShown && this.renderPropTables(useTheme)}
       </div>
     );
 
@@ -321,7 +351,7 @@ export default class Section extends Component {
       SectionDecorator.header(header),
       SectionDecorator.component(children, useTheme, decorator),
       SectionDecorator.additional(additional),
-      useTheme
+      useTheme,
     );
   }
 }
