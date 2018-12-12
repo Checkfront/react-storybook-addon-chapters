@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PropTable from './PropTable';
 import Node from '@storybook/addon-info/dist/components/Node';
+import PropTable from './PropTable';
 import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
@@ -220,27 +220,27 @@ export default class Section extends Component {
     }
 
     // Depth-first traverse and collect components.
-    function extract() {
-      if (!children) {
+    function extract(traverseChildren) {
+      if (!traverseChildren) {
         return;
       }
-      if (Array.isArray(children)) {
-        children.forEach(extract);
+      if (Array.isArray(traverseChildren)) {
+        traverseChildren.forEach(extract);
         return;
       }
-      if (children.props && children.props.children) {
-        extract(children.props.children);
+      if (traverseChildren.props && traverseChildren.props.children) {
+        extract(traverseChildren.props.children);
       }
-      if (typeof children === 'string' || typeof children.type === 'string') {
+      if (typeof traverseChildren === 'string' || typeof traverseChildren.type === 'string') {
         return;
       }
-      if (children.type && !components.has(children.type)) {
-        components.set(children.type, true);
+      if (traverseChildren.type && !components.has(traverseChildren.type)) {
+        components.set(traverseChildren.type, true);
       }
     }
 
     // Extract components from children.
-    extract();
+    extract(children);
 
     const componentsList = Array.from(components.keys());
     componentsList.sort(function (a, b) {
@@ -264,7 +264,7 @@ export default class Section extends Component {
       return null;
     }
 
-    return SectionDecorator.propTables(propTables, useTheme);
+    return SectionDecorator.propTables(newPropTables, useTheme);
   }
 
   render() {
