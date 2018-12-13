@@ -110,7 +110,7 @@ export class SectionDecorator {
   static header(header, useTheme) {
     return (
       <div style={useTheme ? sectionStyles.header : {}} className="section-header">
-        <div>{header}</div>
+        {header}
       </div>
     );
   }
@@ -142,8 +142,8 @@ export class SectionDecorator {
 
   static additional(additional) {
     return (
-      <div>
-        <div>{additional}</div>
+      <div style={useTheme ? sectionStyles.additional : {}} className="section-additional">
+        {additional}
       </div>
     );
   }

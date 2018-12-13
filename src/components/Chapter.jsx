@@ -72,9 +72,11 @@ export class ChapterDecorator {
 
   static main(header, sections, useTheme) {
     return (
-      <div>
+      <div style={useTheme ? chapterStyles.chapter : {}} className="chapter">
         <div style={useTheme ? chapterStyles.header : {}} className="chapter-header">{header}</div>
-        {sections}
+        <div className="chapter-sections">
+          {sections}
+        </div>
       </div>
     );
   }
