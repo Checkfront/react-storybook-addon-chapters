@@ -140,7 +140,7 @@ export class SectionDecorator {
     );
   }
 
-  static additional(additional) {
+  static additional(additional, useTheme) {
     return (
       <div style={useTheme ? sectionStyles.additional : {}} className="section-additional">
         {additional}

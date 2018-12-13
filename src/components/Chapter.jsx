@@ -84,7 +84,9 @@ export class ChapterDecorator {
 
 export default class Chapter extends Component {
   render() {
-    const { context, title, subtitle, info, sections, addonInfo, useTheme } = this.props;
+    const {
+      context, title, subtitle, info, sections, addonInfo, useTheme,
+    } = this.props;
 
     const header = (
       <div>
