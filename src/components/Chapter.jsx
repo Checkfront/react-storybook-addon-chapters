@@ -66,15 +66,17 @@ export class ChapterDecorator {
 
   static ruler(useTheme) {
     return (
-      <hr style={useTheme ? chapterStyles.hr : {}} className="chatper-hr" />
+      <hr style={useTheme ? chapterStyles.hr : {}} className="chapter-hr" />
     );
   }
 
   static main(header, sections, useTheme) {
     return (
-      <div>
+      <div style={useTheme ? chapterStyles.chapter : {}} className="chapter">
         <div style={useTheme ? chapterStyles.header : {}} className="chapter-header">{header}</div>
-        {sections}
+        <div className="chapter-sections">
+          {sections}
+        </div>
       </div>
     );
   }
