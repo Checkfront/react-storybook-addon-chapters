@@ -67,7 +67,9 @@ export class StoryDecorator {
     return (
       <div style={useTheme ? storyStyles.story : {}} className="story">
         <div style={useTheme ? storyStyles.info : {}} className="story-header">{header}</div>
-        {chapters}
+        <div className="story-chapters">
+          {chapters}
+        </div>
       </div>
     );
   }
