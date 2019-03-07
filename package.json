@@ -1,6 +1,6 @@
 {
   "name": "react-storybook-addon-chapters",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "description": "React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.",
   "repository": {
     "type": "git",
@@ -19,9 +19,10 @@
     "publish-storybook": "bash .scripts/publish_storybook.sh"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
@@ -39,24 +40,24 @@
     "jsdom": "^13.0.0",
     "mocha": "^5.2.0",
     "prop-types": "^15.6.2",
-    "react-dom": "^16.6.3",
-    "react-test-renderer": "^16.6.3",
+    "react-dom": "^16.8.3",
+    "react-test-renderer": "^16.8.3",
     "sinon": "^7.1.1",
     "webpack": "^4.26.1"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
-    "react": "^16.4.0"
+    "react": "^16.8.0"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "@emotion/styled": "^10.0.1",
-    "@storybook/addon-info": "^4.0.9",
-    "@storybook/components": "^4.0.11",
-    "@storybook/react": "^4.0.9",
+    "@storybook/addon-info": "^5.0.0",
+    "@storybook/components": "^5.0.0",
+    "@storybook/react": "^5.0.0",
     "marksy": "^2.0.0",
-    "react": "^16.6.3",
+    "react": "^16.8.0",
     "react-addons-create-fragment": "^15.6.2"
   },
   "main": "dist/index.js",
