@@ -6,8 +6,8 @@ import renderInfoContent from '../utils/info-content';
 import theme from '../theme';
 
 const propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
+  subtitle: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
   info: PropTypes.string,
   showSource: PropTypes.bool,
   showPropTables: PropTypes.bool,

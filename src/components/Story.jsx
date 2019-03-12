@@ -7,8 +7,8 @@ import theme from '../theme';
 
 const propTypes = {
   context: PropTypes.object,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
+  subtitle: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
   info: PropTypes.string,
   chapters: PropTypes.arrayOf(PropTypes.object),
   addonInfo: PropTypes.object,
