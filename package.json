@@ -53,10 +53,10 @@
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/polyfill": "^7.2.5",
     "@emotion/styled": "^10.0.7",
-    "@storybook/addon-info": "^5.0.0",
+    "@storybook/addon-info": "github:storybooks/storybook#d739347ee9f10e6679a0ccbf399a4dd72ba6cf96",
     "@storybook/components": "^5.0.0",
     "@storybook/react": "^5.0.0",
-    "marksy": "2.0.1",
+    "marksy": "^7.0.1",
     "react": "^16.8.4"
   },
   "main": "dist/index.js",
