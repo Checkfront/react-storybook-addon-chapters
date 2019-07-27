@@ -1,66 +1,66 @@
 {
-  "name": "react-storybook-addon-chapters",
-  "version": "3.1.3",
-  "description": "React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Checkfront/react-storybook-addon-chapters.git"
-  },
-  "license": "MIT",
-  "scripts": {
-    "prepublish": ". ./.scripts/prepublish.sh",
-    "lint": "eslint src",
-    "lintfix": "eslint src --fix",
-    "testonly": "mocha --require .scripts/mocha_runner src/**/tests/**/*.js",
-    "test": "npm run lint && npm run testonly",
-    "test-watch": "npm run testonly -- --watch --watch-extensions js",
-    "start": "npm run storybook",
-    "storybook": "start-storybook -p 9011",
-    "publish-storybook": "bash .scripts/publish_storybook.sh"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-transform-runtime": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
-    "chai": "^4.2.0",
-    "create-react-class": "^15.6.3",
-    "enzyme": "^3.9.0",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "git-url-parse": "^11.1.2",
-    "jsdom": "^13.2.0",
-    "mocha": "^5.2.0",
-    "prop-types": "^15.7.2",
-    "react-dom": "^16.8.4",
-    "react-test-renderer": "^16.8.4",
-    "sinon": "^7.2.7",
-    "webpack": "^4.29.6"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.8.0"
-  },
-  "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/polyfill": "^7.2.5",
-    "@emotion/styled": "^10.0.7",
-    "@storybook/addon-info": "^5.0.0",
-    "@storybook/components": "^5.0.0",
-    "@storybook/react": "^5.0.0",
-    "marksy": "2.0.1",
-    "react": "^16.8.4"
-  },
-  "main": "dist/index.js",
-  "engines": {
-    "npm": "^3.0.0"
-  }
+	"name": "react-storybook-addon-chapters",
+	"version": "3.1.5",
+	"description": "React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Checkfront/react-storybook-addon-chapters.git"
+	},
+	"license": "MIT",
+	"scripts": {
+		"prepublish": ". ./.scripts/prepublish.sh",
+		"lint": "eslint src",
+		"lintfix": "eslint src --fix",
+		"testonly": "mocha --require .scripts/mocha_runner src/**/tests/**/*.js",
+		"test": "npm run lint && npm run testonly",
+		"test-watch": "npm run testonly -- --watch --watch-extensions js",
+		"start": "npm run storybook",
+		"storybook": "start-storybook -p 9011",
+		"publish-storybook": "bash .scripts/publish_storybook.sh"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.5.5",
+		"@babel/core": "^7.5.5",
+		"@babel/plugin-transform-runtime": "^7.5.5",
+		"@babel/preset-env": "^7.5.5",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/register": "^7.5.5",
+		"babel-eslint": "^10.0.2",
+		"babel-loader": "^8.0.6",
+		"chai": "^4.2.0",
+		"create-react-class": "^15.6.3",
+		"enzyme": "^3.10.0",
+		"eslint": "^6.1.0",
+		"eslint-config-airbnb": "^17.1.1",
+		"eslint-plugin-babel": "^5.3.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.14.3",
+		"git-url-parse": "^11.1.2",
+		"jsdom": "^15.1.1",
+		"mocha": "^6.2.0",
+		"prop-types": "^15.7.2",
+		"react-dom": "^16.8.6",
+		"react-test-renderer": "^16.8.6",
+		"sinon": "^7.3.2",
+		"webpack": "^4.38.0"
+	},
+	"peerDependencies": {
+		"prop-types": "^15.7.2",
+		"react": "^16.8.6"
+	},
+	"dependencies": {
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/polyfill": "^7.4.4",
+		"@emotion/styled": "^10.0.14",
+		"@storybook/addon-info": "^5.1.9",
+		"@storybook/components": "^5.1.9",
+		"@storybook/react": "^5.1.9",
+		"marksy": "2.0.1",
+		"react": "^16.8.6"
+	},
+	"main": "dist/index.js",
+	"engines": {
+		"npm": "^3.0.0"
+	}
 }
