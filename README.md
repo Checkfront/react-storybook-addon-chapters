@@ -1,6 +1,8 @@
-# ⛔ [DEPRECATED] React Storybook Chapters Addon
+## ⛔ [DEPRECATED] This addon is no longer maintained and is now considered deprecated in favour of Storybook's native [nesting](https://storybook.js.org/docs/react/get-started/whats-a-story#nesting-stories) and [component hierarchy](https://storybook.js.org/docs/react/writing-stories/naming-components-and-hierarchy). We recommend Storybook version 6 be used instead.
 
-## This addon is no longer maintained and is now considered deprecated. We recommend Storybook version 6 be used instead.
+<br>
+
+# React Storybook Chapters Addon
 
 React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.
 
