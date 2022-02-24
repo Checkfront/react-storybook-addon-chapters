@@ -1,3 +1,7 @@
+## ⛔ [DEPRECATED] This addon is no longer maintained and is now considered deprecated in favour of Storybook's native [nesting and component hierarchy](https://storybook.js.org/docs/react/writing-stories/naming-components-and-hierarchy). We recommend Storybook version 6 be used instead.
+
+<br>
+
 # React Storybook Chapters Addon
 
 React Storybook Chapters addon allows showcasing of multiple components within a story by breaking it down into smaller categories (chapters) and subcategories (sections) for more organizational goodness.
@@ -36,15 +40,14 @@ configure(function () {
   ...
 }, module);
 ```
+
 To turn off the default styles add:
+
 ```js
-
-setDefaults({sectionOptions: {useTheme: false}});
-
+setDefaults({ sectionOptions: { useTheme: false } });
 ```
 
-All rendered components have a specified class.  With the 'useTheme' set to false you should have no problem styling your chapters.
-
+All rendered components have a specified class. With the 'useTheme' set to false you should have no problem styling your chapters.
 
 Then create your stories with the `.addWithChapters` API.
 
@@ -92,7 +95,7 @@ storiesOf('Addon Chapters')
 
 ## Global options
 
-To configure default options for all chapter sections (`section.options`), use `setDefaults` in `.storybook/config.js`	. 
+To configure default options for all chapter sections (`section.options`), use `setDefaults` in `.storybook/config.js` .
 
 ```js
 import React from 'react';
@@ -120,35 +123,35 @@ configure(function () {
 
 #### Story
 
-| Key | Description |  Type | Default |
-|-|-|-|-|
-| subtitle | Story subtitle | String | - |
-| info | Additional information for the story | String (markdown) | - |
-| chapters | An array of Chapter objects | Array<Chapter> | - |
+| Key      | Description                          | Type              | Default |
+| -------- | ------------------------------------ | ----------------- | ------- |
+| subtitle | Story subtitle                       | String            | -       |
+| info     | Additional information for the story | String (markdown) | -       |
+| chapters | An array of Chapter objects          | Array<Chapter>    | -       |
 
 #### Chapter
 
-| Key | Description |  Type | Default |
-|-|-|-|-|
-| title | Chapter title | String | - |
-| subtitle | Chapter subtitle | String | - |
-| info | Additional information for the chapter | String (markdown) | - |
-| sections | An array of Section objects | Array<Section> | - |
+| Key      | Description                            | Type              | Default |
+| -------- | -------------------------------------- | ----------------- | ------- |
+| title    | Chapter title                          | String            | -       |
+| subtitle | Chapter subtitle                       | String            | -       |
+| info     | Additional information for the chapter | String (markdown) | -       |
+| sections | An array of Section objects            | Array<Section>    | -       |
 
 #### Section
 
-| Key | Description |  Type | Default |
-|-|-|-|-|
-| title | Section title | String | - |
-| subtitle | Section subtitle | String | - |
-| info | Additional information for the section | String (markdown) | - |
-| sectionFn | A function that returns a React component to be displayed | Function | - |
-| options | A configuration object for this section. Refer to the next few rows for the keys | Object | - |
-| options.showSource | Display the component's source | Boolean | True |
-| options.allowSourceToggling | Allow showing/hiding of the component's source | Boolean | True |
-| options.showPropTables | Display the component's propTypes | Boolean | False |
-| options.allowPropTablesToggling | Allow showing/hiding of the component's propTypes | Boolean | True |
-| options.decorator | An optional decorator function that will be used for rendering the component in section | Function | - |
+| Key                             | Description                                                                             | Type              | Default |
+| ------------------------------- | --------------------------------------------------------------------------------------- | ----------------- | ------- |
+| title                           | Section title                                                                           | String            | -       |
+| subtitle                        | Section subtitle                                                                        | String            | -       |
+| info                            | Additional information for the section                                                  | String (markdown) | -       |
+| sectionFn                       | A function that returns a React component to be displayed                               | Function          | -       |
+| options                         | A configuration object for this section. Refer to the next few rows for the keys        | Object            | -       |
+| options.showSource              | Display the component's source                                                          | Boolean           | True    |
+| options.allowSourceToggling     | Allow showing/hiding of the component's source                                          | Boolean           | True    |
+| options.showPropTables          | Display the component's propTypes                                                       | Boolean           | False   |
+| options.allowPropTablesToggling | Allow showing/hiding of the component's propTypes                                       | Boolean           | True    |
+| options.decorator               | An optional decorator function that will be used for rendering the component in section | Function          | -       |
 
 ## The FAQ
 
