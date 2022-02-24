@@ -1,4 +1,4 @@
-## ⛔ [DEPRECATED] This addon is no longer maintained and is now considered deprecated in favour of Storybook's native [nesting](https://storybook.js.org/docs/react/get-started/whats-a-story#nesting-stories) and [component hierarchy](https://storybook.js.org/docs/react/writing-stories/naming-components-and-hierarchy). We recommend Storybook version 6 be used instead.
+## ⛔ [DEPRECATED] This addon is no longer maintained and is now considered deprecated in favour of Storybook's native [nesting and component hierarchy](https://storybook.js.org/docs/react/writing-stories/naming-components-and-hierarchy). We recommend Storybook version 6 be used instead.
 
 <br>
 
