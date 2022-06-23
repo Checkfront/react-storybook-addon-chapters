@@ -38,7 +38,7 @@
 		"eslint-plugin-react": "^7.21.3",
 		"eslint-plugin-react-hooks": "^1.7.0",
 		"git-url-parse": "^11.1.2",
-		"jsdom": "^15.1.1",
+		"jsdom": "^16.5.0",
 		"mocha": "^6.2.2",
 		"prop-types": "^15.7.2",
 		"react-dom": "^16.8.6",
