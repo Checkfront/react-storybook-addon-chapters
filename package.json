@@ -44,7 +44,7 @@
 		"react-dom": "^16.8.6",
 		"react-test-renderer": "^16.8.6",
 		"sinon": "^7.3.2",
-		"webpack": "^4.38.0"
+		"webpack": "^5.75.0"
 	},
 	"peerDependencies": {
 		"prop-types": "^15.7.2",
@@ -55,7 +55,7 @@
 		"@emotion/styled": "^10.0.23",
 		"@storybook/addon-info": "^5.3.21",
 		"@storybook/components": "^5.3.21",
-		"@storybook/react": "^5.3.21",
+		"@storybook/react": "^6.5.15",
 		"core-js": "^3.21.1",
 		"marksy": "2.0.1",
 		"react": "^16.8.6"
