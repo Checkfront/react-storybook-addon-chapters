@@ -55,7 +55,7 @@
 		"@emotion/styled": "^10.0.23",
 		"@storybook/addon-info": "^5.3.21",
 		"@storybook/components": "^5.3.21",
-		"@storybook/react": "^5.3.21",
+		"@storybook/react": "^7.0.5",
 		"core-js": "^3.21.1",
 		"marksy": "2.0.1",
 		"react": "^16.8.6"
